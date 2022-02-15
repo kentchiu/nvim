@@ -20,7 +20,7 @@ call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'       
-Plug 'vim-airline/vim-airline-themes' "airline 的主题
+Plug 'vim-airline/vim-airline-themes' "airline 的主题 
 
 call plug#end()
 
@@ -64,8 +64,11 @@ augroup END
 " }}}
 
 
-
 " COC PLUGINS -------------------------------------------------------------- {{{
+
+" add extension names to the g:coc_global_extensions variable, and coc will install the missing extensions after coc.nvim service started.
+let g:coc_global_extensions = ['coc-explorer', 'coc-git', 'coc-tsserver', 'coc-prettier', 'coc-json']
+
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -323,6 +326,7 @@ set expandtab       " expand tab to spaces so that tabs are spaces
 nnoremap <silent> <leader>ev :edit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
     \ echomsg "Nvim config successfully reloaded!"<cr>
+
 
 
 " }}} 

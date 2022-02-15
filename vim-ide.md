@@ -8,6 +8,9 @@
 
 ## COC Plugins
 
+Lots of completion behavior can be changed by [using the configuration file](https://github.com/neoclide/coc.nvim/wiki/Using-the-configuration-file), check out `:h coc-config-suggest` for details
+
+查詢 coc extends help 方式是, `:CocList extensions` , 在 extansons list item 上按 <tab> 就會跳出相關的 actions, 選 help 即可.
 
 ###
 
