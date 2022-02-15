@@ -302,6 +302,49 @@ let g:airline_theme = 'codedark' " codedark colorscheme supports airline
 
 " Temporary Test --------------------------------------------------------- {{{
 
-set mouse=a
+" set mouse=a
+"
+" Use mouse to select and resize windows, etc.
+if has('mouse')
+    set mouse=nv  " Enable mouse in several mode
+    set mousemodel=popup  " Set the behaviour of mouse
+endif
+
+
+
+" General tab settings
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " expand tab to spaces so that tabs are spaces
+
+
+" Edit and reload init.vim quickly
+nnoremap <silent> <leader>ev :edit $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
+    \ echomsg "Nvim config successfully reloaded!"<cr>
+
 
 " }}} 
+"
+" To Be Confirm --------------------------------------------------------- {{{ 
+
+" Ignore certain files and folders when globbing
+" set wildignore+=*.o,*.obj,*.bin,*.dll,*.exe
+" set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
+" set wildignore+=*.pyc
+" set wildignore+=*.DS_Store
+" set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
+
+" Clipboard settings, always use clipboard for all delete, yank, change, put
+" operation, see https://stackoverflow.com/q/30691466/6064933
+" set clipboard+=unnamed
+" set clipboard+=unnamedplus
+"
+" set spelllang=en,cjk  " Spell languages
+"
+"" Toggle spell checking
+" nnoremap <silent> <F11> :set spell!<cr>
+" inoremap <silent> <F11> <C-O>:set spell!<cr>
+
+" }}}
