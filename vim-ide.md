@@ -4,6 +4,8 @@
 
 使用指令 ':verbose imap <tab>' 確定 tab 沒有被映射到其他插件
 
+`:checkhealth` 在 neovim 可以輸入指令檢查
+
 ## COC Plugins
 
 
@@ -13,7 +15,6 @@
 
 `g:coc_node_path` 啟動服務狀態前，要先配置 node 執行位置 配置到 .vimrc
 
-`:checkhealth` 在 neovim 可以輸入指令檢查
 
 `:CocInfo` 使用此指令查看服務資訊 vim 可以用這個指令檢查服務狀態
 
@@ -35,4 +36,30 @@
 - `gd`: go to definition
 - <C> + o : go back to last position
 
+## Windows KeyMap
 
+### MOVING WINDOWS
+
+```
+CTRL+W r       -   Swap bottom/top if split horizontally
+CTRL+W R       -   Swap top/bottom if split horizontally
+
+CTRL+w r       -   Rotates the windows from left to right - only if the windows are split vertically
+CTRL+w R       -   Rotates the windows from right to left - only if the windows are split vertically
+
+CTRL+w H       -   Move current window the far left and use the full height of the screen
+CTRL+w J       -   Move current window the far bottom and use the full width of the screen
+CTRL+w K       -   Move current window the far top and full width of the screen
+CTRL+w L       -   Move current window the far right and full height of the screen
+
+```
+
+### NAVIGATE BETWEEN WINDOWS
+
+```
+CTRL+w CTRL+w  -   switch between windows
+CTRL+w UP      -   Move to the top window from current window
+CTRL+w DOWN    -   Move to the bottom window from current window
+CTRL+w LEFT    -   Move to the left window from current window
+CTRL+w RIGHT   -   Move to the right window from current window
+```
