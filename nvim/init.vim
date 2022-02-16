@@ -8,23 +8,24 @@ set number
 set cursorline
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
-set nowrap
+" set nowrap
+
+" Use mouse to select and resize windows, etc.
+if has('mouse')
+    set mouse=nv  " Enable mouse in several mode
+    set mousemodel=popup  " Set the behaviour of mouse
+endif
+
+
+
+" General tab settings
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " expand tab to spaces so that tabs are spaces
 
 
 " }}} 
-
-
-" PLUGINS ---------------------------------------------------------------- {{{
-
-call plug#begin()
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'       
-Plug 'vim-airline/vim-airline-themes' "airline 的主题 
-
-call plug#end()
-
-" }}}
 
 
 " PLUGINS ---------------------------------------------------------------- {{{
@@ -304,22 +305,6 @@ let g:airline_theme = 'codedark' " codedark colorscheme supports airline
 
 
 " Temporary Test --------------------------------------------------------- {{{
-
-" set mouse=a
-"
-" Use mouse to select and resize windows, etc.
-if has('mouse')
-    set mouse=nv  " Enable mouse in several mode
-    set mousemodel=popup  " Set the behaviour of mouse
-endif
-
-
-
-" General tab settings
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set shiftwidth=4    " number of spaces to use for autoindent
-set expandtab       " expand tab to spaces so that tabs are spaces
 
 
 " Edit and reload init.vim quickly
