@@ -1,0 +1,294 @@
+*kent-nvim-notes.txt*	Kent Nvim Notes
+
+
+		  Personal Nvim Tips    by Kent Chiu
+
+
+Kent Nvim Tips					*kent*
+
+                                      Type |gO| to see the table of contents.
+
+==============================================================================
+1. Userful Keymaps					*kent.keymaps*
+
+大部分 <leader> 開頭的 keymaps 能觸發 |which-key.nvim.txt|  的 popup
+window.比較不會被忽略, 然而有一些 keymap 不適用 <leader> key 觸發的,
+如果沒有經常在使用就會忘記了,所以, 這邊把一些有用, 但是容易被忽略的keymaps
+整理出來.
+
+
+- `gw` : Search word under cursor
+- `ya` : Yank all in braces   
+- `CTRL-<SPACE>` in vmode : Expand selection.
+- `K` : lsp hover
+- `<leader> ck` : lsp signature help
+- `gp` : paste without lose info (quick replace)
+- `<leader> ;` : test current method
+- `CTRL-W o`: Max window.
+- `m`: Crete Fold
+- LSP hover 連續觸發兩次後 'K K', cursor 會 focus float window,
+  就可以當做一版的 window 操作
+- `C-w w`: focus 到其他window 
+
+有些 keymap 是在特定的 buffer (window) 裡面才有效的, ex: quicklist, 或者是
+telescope 的 查詢 float window, neo-test 的 test summary window,
+這些都有自己的 buffer scope keymaps, 而且只有foucs 停駐在特定的window
+時才會生效. 這時,可以用 `:map` 或是 `:verbose map` 查 keymaps
+
+------------------------------------------------------------------------------
+			                         *kent.keymaps.comment*
+
+comment: https://github.com/numToStr/Comment.nvim
+
+
+`gcw` - Toggle from the current cursor position to the next word
+`gc$` - Toggle from the current cursor position to the end of line
+`gc}` - Toggle until the next blank line
+`gc5j` - Toggle 5 lines after the current cursor position
+`gc8k` - Toggle 8 lines before the current cursor position
+`gcip` - Toggle inside of paragraph
+`gca}` - Toggle around curly brackets
+
+# Blockwise
+
+`gb2}` - Toggle until the 2 next blank line
+`gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
+`gbac` - Toggle comment around a class (w/ LSP/treesitter support)  
+
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.copy-to-commandline*
+
+1. `gw` or `*` to mark word on cursor
+2. `:` to command-line mode
+3. Press CTRL-r" to paste from default register
+
+------------------------------------------------------------------------------
+			                        *kent.keymaps.telescope*
+
+- CTRL-/ :  Show mappings for picker actions (insert mode)
+- `?` : Show mappings for picker actions (normal mode)  
+- CTRL-q : Send all items not filtered to quickfixlist (qflist)
+- ALT-q : Send all selected items to qflist 
+- <ESC> or CTRL-[ : Enter normal mode
+
+------------------------------------------------------------------------------
+				                   *kent.keymaps.debug*
+
+先要確定對應的 debugger lib 有安裝, python 需要安裝 'pydebug' 這個是跟 project
+的其他 lib 在一起的, 不要安裝成 global 的.
+
+
+config file 可以先使用 vscode 產生, 產生後要修改成標準的 json 格式 (去掉註解跟
+tail common)
+
+
+使用 `require('dap.ext.vscode').load_launchjs()` 載入 launch.json, 載入後用
+<F5> (continu) 啟動 debugger,如果有成功配置, nvim 會的 debugger
+啟動選項會有 configurations 裡面 name 裡面的值會出現在啟動的選項,選擇該選
+項啟動即可.
+
+- <F1>: step into 
+- <F2>: step over
+- <F3>: step out
+- <F5>: continue
+
+
+.vscode/launch.json example
+
+>json
+  {
+      "version": "0.2.0",
+      "configurations": [
+	  {
+	      "name": "Python: FastAPI",
+	      "type": "python",
+	      "request": "launch",
+	      "module": "uvicorn",
+	      "args": [
+		  "chatgpt.main:app --reload --port 9999"
+	      ],
+	      "jinja": true,
+	      "justMyCode": true
+	  }
+      ]
+  }
+
+
+------------------------------------------------------------------------------
+				                 *kent.keymaps.neotest*
+
+
+
+from |neotest.setup()|
+
+>lua
+    summary = {
+      animated = true,
+      enabled = true,
+      expand_errors = true,
+      follow = true,
+      mappings = {
+        attach = "a",
+        clear_marked = "M",
+        clear_target = "T",
+        debug = "d",
+        debug_marked = "D",
+        expand = { "<CR>", "<2-LeftMouse>" },
+        expand_all = "e",
+        jumpto = "i",
+        mark = "m",
+        next_failed = "J",
+        output = "o",
+        prev_failed = "K",
+        run = "r",
+        run_marked = "R",
+        short = "O",
+        stop = "u",
+        target = "t"
+      },
+
+
+------------------------------------------------------------------------------
+				                 *kent.keymaps.trouble*
+>lua
+   action_keys = { -- key mappings for actions in the trouble list
+        -- map to {} to remove a mapping, for example:
+        -- close = {},
+        close = "q", -- close the list
+        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+        refresh = "r", -- manually refresh
+        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+        open_split = { "<c-x>" }, -- open buffer in new split
+        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+        open_tab = { "<c-t>" }, -- open buffer in new tab
+        jump_close = {"o"}, -- jump to the diagnostic and close the list
+        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+        toggle_preview = "P", -- toggle auto_preview
+        hover = "K", -- opens a small popup with the full multiline message
+        preview = "p", -- preview the diagnostic location
+        close_folds = {"zM", "zm"}, -- close all folds
+        open_folds = {"zR", "zr"}, -- open all folds
+        toggle_fold = {"zA", "za"}, -- toggle fold of current file
+        previous = "k", -- previous item
+        next = "j" -- next item
+    },
+
+
+==============================================================================
+2. Commands	                 			*kent.commands*
+
+
+查詢目前 buffer 的 LSP 有支援哪些功能 >vim
+
+    :lua print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities)).
+
+開啟/關閉 diagnostic >vim
+
+    :lua vim.lsp.diagnostic.enable()
+    :lua vim.lsp.diagnostic.disable()
+
+
+------------------------------------------------------------------------------
+						      *kent.search-and-replace*
+
+
+1. telescope search and send to qlist
+2. `:cdo s/foo/bar/gc`
+
+
+  :grep foo
+  :cdo s/foo/bar
+  :cfdo update
+`
+
+update 是指將文件保存並更新。
+因此，當你在 NeoVim 中執行 cfdo update 指令時，它會對當前打開的所有文件進行保存並更新操作。
+
+------------------------------------------------------------------------------
+						      *kent.diff*
+
+比較兩個檔案, 用 `vim diff file1 file2` 或者是,開兩個 vsplit window 後,
+用 `diff this` command
+
+==============================================================================
+3. Tmux				      			*kent.tmux*
+
+- `<lader> + ?` : List all key mappings
+- `<lader> + z` : Maximum curren pane
+
+
+==============================================================================
+4. NVIM Config debug			         *kent.nvim-config-debug*
+
+執行純淨版
+
+`nvim -U none`
+
+
+==============================================================================
+5. MISC	                         			*kent.misc*
+
+Text Object 裡面的 `word` 跟 `WORD` 的差別:
+
+A word is... an almost C-style variable name.
+
+– A consecutive string of characters containing only of letters, digits and 
+  underscores.
+– Can be modified through the 'iskeyword' option, if you are working with a 
+  language that has slightly different specification of variable names!
+– They are meant to indicate variable name and values!
+
+A WORD is... what unix standard thinks is a word.
+
+- A sequence of characters delimited by any kind of whitespace characters.
+
+
+------------------------------------------------------------------------------
+						      *kent.poetry*
+
+開發 python 時, 在進入 nvim 前,需要先用 `poetry shell` 進入 virtual
+environment, 不然 LSP 會抓不到對應的lib 跟 python interpretor, 另外在使用
+terminal 時, 需要用 `source .venv/bin/activate` 啟動 terminal 內的 virtual
+environment
+
+這邊應該可以使用 autocmd 自動化這個過程
+
+
+==============================================================================
+6. Help 						*kent.help*
+
+如果這個 help file 在 NVIM 裡面變成 readonly , 可以用 `setlocal modifiable`
+讓它變成可以寫入
+
+
+To rebuild this document:
+
+Go to the "doc" folder and run the command `:helptags doc` . This will generate 
+a "tags" file in the same folder. Once the file has been generated, the 
+command `:help kent` should work.
+
+Vim Doc syntax: |help-writing|
+
+
+code block   >
+
+>vim
+  function xxx 
+    ddefe
+  endfunction
+
+
+------------------------------------------------------------------------------
+			         		  *kent.help.help-syntax*
+
+- 標題：用 * 開頭和結尾的一行文字表示標題.
+- 段落：用空行分隔的一段連續文字表示一個段落，每段文字應不超過 80 個字元。
+- 清單：以 -、+、或 * 開頭的行表示清單項目。
+- 程式碼區塊：用 | 包住的詞彙或片語表示程式碼區塊.
+- 強調：用 _ 包住的詞彙或片語表示需要強調的內容.
+- 超連結：使用 | 包住的詞彙或片語表示超連結。
+
+cheatsheet: https://devhints.io/vim-help
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
