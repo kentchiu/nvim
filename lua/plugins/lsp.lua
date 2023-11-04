@@ -7,6 +7,7 @@ return {
       table.insert(opts.ensure_installed, "angular-language-server")
       table.insert(opts.ensure_installed, "html-lsp")
       table.insert(opts.ensure_installed, "htmx-lsp")
+      table.insert(opts.ensure_installed, "debugpy")
     end,
   },
 }
