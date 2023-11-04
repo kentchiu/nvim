@@ -4,6 +4,28 @@
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
+
+-- make page forward/backwoard firendly
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll window Downwards And Center It" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll window Upwards And Center It" })
+
+-- GitSigns
+vim.keymap.set("n", "<leader>gd", function()
+  require("gitsigns").diffthis()
+end, { desc = "View Git diff" })
+vim.keymap.set("n", "<leader>gl", function()
+  require("gitsigns").blame_line()
+end, { desc = "View Git blame" })
+vim.keymap.set("n", "<leader>gL", function()
+  require("gitsigns").blame_line({ full = true })
+end, { desc = "View full Git blame" })
+
+-- cd to current folder
+-- vim.keymap.set("n", "<leader>bc", "<cmd>cd %:p:h<cr>", { desc = "Change to current folder" })
+
+-- telescope
+--    { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+-- vim.keymap.set("n", "<leaderFF>")
 -- vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
 
 -- Keymaps for better default experience
@@ -14,7 +36,6 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
 -- Remap for dealing with word wrap
 -- vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
 
 -- end
 -- vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
@@ -29,7 +50,6 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
 -- vim.keymap.set("v", "<", "<gv")
 -- vim.keymap.set("v", ">", ">gv")
 
-
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 -- vim.keymap.set("n", "<leader>ur", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><cr>",
@@ -37,7 +57,6 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
 
 -- highlights under cursor
 -- vim.keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-
 
 --
 -- misc
@@ -54,28 +73,12 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
 -- Search word under cursor
 -- vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
-
 -- create fold
 -- vim.keymap.set("n", "<leader>z", "zf%", { desc = "Create Fold", remap = true })
-
--- make page forward/backwoard firendly
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll window Downwards And Center It" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll window Upwards And Center It" })
 
 -- Paste without losing data in register
 -- vim.api.nvim_set_keymap("n", "gp", '"0p', {noremap = true, silent = true, desc="Quick Paste"})
 -- vim.api.nvim_set_keymap("v", "gp", '"0p', {noremap = true, silent = true, desc="Quick Paste"})
-
--- GitSigns
-vim.keymap.set("n", "<leader>gd", function()
-  require("gitsigns").diffthis()
-end, { desc = "View Git diff" })
-vim.keymap.set("n", "<leader>gl", function()
-  require("gitsigns").blame_line()
-end, { desc = "View Git blame" })
-vim.keymap.set("n", "<leader>gL", function()
-  require("gitsigns").blame_line({ full = true })
-end, { desc = "View full Git blame" })
 
 -- unit tests
 -- vim.keymap.set("n", "<leader>tt", "<cmd>!pytest<cr>", { desc = "Run Pytest Test" , silent = true })
