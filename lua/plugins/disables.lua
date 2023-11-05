@@ -12,6 +12,7 @@ return {
   { "echasnovski/mini.bufremove", enabled = false },
   { "folke/todo-comments.nvim", enabled = false },
   { "echasnovski/mini.ai", enabled = false },
+  { "echasnovski/mini.animate", enabled = false },
   { "echasnovski/mini.pairs", enabled = false },
   { "stevearc/dressing.nvim", enabled = false },
   { "lukas-reineke/headlines.nvim", enabled = false },
