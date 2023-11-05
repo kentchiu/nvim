@@ -20,6 +20,12 @@ vim.keymap.set("n", "<leader>gL", function()
   require("gitsigns").blame_line({ full = true })
 end, { desc = "View full Git blame" })
 
+-- remove ^M
+vim.keymap.set("n", "<leader>bc", "<cmd>%s/\\r$//g<cr>", { desc = "remove ^M" })
+
+--Search word under cursor
+vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+
 -- cd to current folder
 -- vim.keymap.set("n", "<leader>bc", "<cmd>cd %:p:h<cr>", { desc = "Change to current folder" })
 
@@ -70,9 +76,6 @@ end, { desc = "View full Git blame" })
 -- Clear search with <esc>
 -- vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
--- Search word under cursor
--- vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
-
 -- create fold
 -- vim.keymap.set("n", "<leader>z", "zf%", { desc = "Create Fold", remap = true })
 
@@ -82,6 +85,3 @@ end, { desc = "View full Git blame" })
 
 -- unit tests
 -- vim.keymap.set("n", "<leader>tt", "<cmd>!pytest<cr>", { desc = "Run Pytest Test" , silent = true })
-
--- remove ^M
--- vim.keymap.set("n", "<leader>fc", "<cmd>%s/\\r$//g<cr>" ,{desc = "remove ^M" })
