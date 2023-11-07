@@ -107,10 +107,10 @@ return {
         },
         print_var_statements = {
           typescript = {
-            'console.info("🟥 %s", %s);',
+            'console.log("🟥 %s", %s);',
           },
           typescriptreact = {
-            'console.info("🟥 %s", %s);',
+            'console.log("🟥 %s", %s);',
           },
           python = {
             'print(f"🟥 %s {str(%s)}")',
