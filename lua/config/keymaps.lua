@@ -9,17 +9,17 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll window Downwards And Center It" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll window Upwards And Center It" })
 
--- GitSigns
-vim.keymap.set("n", "<leader>gd", function()
-  require("gitsigns").diffthis()
-end, { desc = "View Git diff" })
-vim.keymap.set("n", "<leader>gl", function()
-  require("gitsigns").blame_line()
-end, { desc = "View Git blame" })
-vim.keymap.set("n", "<leader>gL", function()
-  require("gitsigns").blame_line({ full = true })
-end, { desc = "View full Git blame" })
-
+-- -- GitSigns
+-- vim.keymap.set("n", "<leader>gd", function()
+--   require("gitsigns").diffthis()
+-- end, { desc = "View Git diff" })
+-- vim.keymap.set("n", "<leader>gl", function()
+--   require("gitsigns").blame_line()
+-- end, { desc = "View Git blame" })
+-- vim.keymap.set("n", "<leader>gL", function()
+--   require("gitsigns").blame_line({ full = true })
+-- end, { desc = "View full Git blame" })
+--
 -- remove ^M
 vim.keymap.set("n", "<leader>bc", "<cmd>%s/\\r$//g<cr>", { desc = "remove ^M" })
 
