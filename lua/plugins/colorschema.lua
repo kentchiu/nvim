@@ -1,7 +1,6 @@
 return {
   { "olimorris/onedarkpro.nvim" },
   { "Mofiqul/dracula.nvim" },
-  { "catppuccin/nvim",          name = "catppuccin" },
   {
     "projekt0n/github-nvim-theme",
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -10,16 +9,17 @@ return {
       -- random theme
       local items = {
         "onedark",
-        "onedark_vivid",
-        "onedark_dark",
+        -- "onedark_vivid",
+        -- "onedark_dark",
         "tokyonight",
         "tokyonight-night",
         -- "tokyonight-storm",
         -- "tokyonight-moon",
         "dracula",
         "github_dark",
-        "github_dark_default",
-        "github_dark_dimmed",
+        "github_dark_tritanopia",
+        "github_dark_high_contrast",
+        -- "github_dark_dimmed",
       }
 
       math.randomseed(os.time())
