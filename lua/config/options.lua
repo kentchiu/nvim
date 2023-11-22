@@ -4,7 +4,8 @@
 
 vim.opt.relativenumber = false -- Relative line numbers
 vim.opt.listchars = { space = "·", tab = "⇥ ", eol = "↵" }
-vim.opt.swapfile = false -- disable swapfiles
+vim.opt.swapfile = false       -- disable swapfiles
+vim.opt.conceallevel = 0       -- disable conceal
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
 -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 --   vim.lsp.handlers.hover, { border = "rounded", })
@@ -12,13 +13,3 @@ vim.opt.swapfile = false -- disable swapfiles
 -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 --   vim.lsp.handlers.signature_help, { border = "rounded" }
 -- )
-
--- wrap on markdown filetype
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = {'markdown'},
---   desc = 'Word wrap on Markdown',
---   callback = function()
---     vim.opt_local.wrap = true
---   end
--- })
---

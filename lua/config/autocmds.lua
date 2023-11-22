@@ -43,3 +43,15 @@ vim.api.nvim_create_autocmd("InsertCharPre", {
     vim.api.nvim_input("<Esc>m'" .. row + 1 .. "gg" .. col + 1 .. "|if<Esc>`'la")
   end,
 })
+
+
+
+-- wrap on markdown filetype
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = {'markdown'},
+--   desc = 'Word wrap on Markdown',
+--   callback = function()
+--     vim.opt_local.wrap = true
+--   end
+-- })
+--
