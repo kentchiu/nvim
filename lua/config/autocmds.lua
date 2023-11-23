@@ -2,7 +2,16 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
--- Treesitter automatic Python format strings
+
+-- Disable autoformat for lua files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "typescript" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
+
+-- Treesitter automatic Python format rtrings
 vim.api.nvim_create_augroup("py-fstring", { clear = true })
 vim.api.nvim_create_autocmd("InsertCharPre", {
   pattern = { "*.py" },
