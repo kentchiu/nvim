@@ -13,7 +13,7 @@ return
         selection_caret = " ",
         path_display = { "smart" },
         dynamic_preview_title = true,
-        winblend = 70,
+        -- winblend = 20,
         multi_icon = '+',
         layout_config = {
           height = 0.95,
