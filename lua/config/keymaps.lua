@@ -18,6 +18,12 @@ vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 -- Paste without losing data in register
 vim.keymap.set({ "n", "v" }, "gp", '"0p', { noremap = true, silent = true, desc = "Quick Paste" })
 
+-- HL as amplified versions of hjkl
+vim.keymap.set({ "n", "v" }, "H", "0^") -- "beginning of line"
+vim.keymap.set({ "n", "v" }, "L", "$")  --"end of line"
+vim.keymap.set({ "n", "v" }, "M", "gm") --"middle of line"
+
+
 
 -- cd to current folder
 -- vim.keymap.set("n", "<leader>bc", "<cmd>cd %:p:h<cr>", { desc = "Change to current folder" })
