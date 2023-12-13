@@ -1,6 +1,6 @@
 return {
-   -- add more treesitter parsers
-   {
+  -- add more treesitter parsers
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
@@ -8,6 +8,7 @@ return {
         "c",
         "diff",
         "html",
+        "http",
         "javascript",
         "json",
         "jsonc",

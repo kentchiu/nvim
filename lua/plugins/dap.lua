@@ -1,3 +1,5 @@
+-- vim.keymap.set({ "n", "i" }, "<leader>dP", "import pdb;pdb.set_trace()")
+
 return {
   {
     "mfussenegger/nvim-dap",
