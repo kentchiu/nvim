@@ -1,0 +1,32 @@
+{
+  "translate_tw": {
+    "type": "chat",
+    "opts": {
+      "title": "󰗊 繁體中文",
+      "template": "Translate this into {{lang}}:\n\n{{input}}",
+      "strategy": "display",
+      "params": {
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.3
+      }
+    },
+    "args": {
+      "lang": {
+        "type": "string",
+        "optional": "true",
+        "default": "繁體中文"
+      }
+    }
+  },
+  "cs_2_ts": {
+    "type": "chat",
+    "opts": {
+      "template": "Translate Simple Chinese to Traditional Chinese. You should keep the original content as same as possible and **DO NOT** translate symbols. That means after translation, the length of content should be the same:\n\n{{input}}",
+      "strategy": "replace",
+      "params": {
+        "model": "gpt-3.5-turbo",
+        "temperature": 0
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ return {
       ensure_installed = {
         "bash",
         "c",
+        "csv",
         "diff",
         "html",
         "http",

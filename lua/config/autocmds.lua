@@ -56,11 +56,14 @@ vim.api.nvim_create_autocmd("InsertCharPre", {
 
 
 -- wrap on markdown filetype
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = {'markdown'},
---   desc = 'Word wrap on Markdown',
---   callback = function()
---     vim.opt_local.wrap = true
---   end
--- })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown' },
+  desc = 'Word wrap on Markdown',
+  callback = function()
+    -- lazyvim will enable spell by default, but it will mass errors in Chinese content
+    -- ref: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+    vim.opt_local.spell = false
+    -- vim.opt_local.wrap = true
+  end
+})
 --
