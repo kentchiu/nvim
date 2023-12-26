@@ -6,11 +6,10 @@ return {
       local default_im_select = "1033"
       local default_command = "im-select.exe"
 
-
-      if vim.fn.has('mac') then
+      if vim.fn.has('mac') == 1 then
         default_im_select = "com.apple.keylayout.ABC"
         default_command = "im-select"
-      elseif vim.fn.has('win32') or vim.fn.has('win64') then
+      elseif vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
         default_im_select = "1033"
         default_command = "im-select.exe"
       else
@@ -46,7 +45,7 @@ return {
         set_previous_events     = { "InsertEnter" },
 
         -- Show notification about how to install executable binary when binary missed
-        keep_quiet_on_no_binary = false,
+        keep_quiet_on_no_binary = true,
 
         -- Async run `default_command` to switch IM or not
         async_switch_im         = true
