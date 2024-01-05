@@ -16,9 +16,9 @@ return {
         -- "tokyonight-storm",
         -- "tokyonight-moon",
         "dracula",
-        "github_dark",
-        "github_dark_tritanopia",
-        "github_dark_high_contrast",
+        -- "github_dark",
+        -- "github_dark_tritanopia",
+        -- "github_dark_high_contrast",
         -- "github_dark_dimmed",
       }
 

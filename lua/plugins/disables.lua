@@ -9,7 +9,7 @@ return {
   { "RRethy/vim-illuminate",        enabled = false },
   { "echasnovski/mini.bufremove",   enabled = false },
   { "echasnovski/mini.ai",          enabled = false },
-  { "echasnovski/mini.animate",     enabled = false },
+  { "echasnovski/mini.animate",     enabled = true },
   { "stevearc/dressing.nvim",       enabled = false },
   { "lukas-reineke/headlines.nvim", enabled = false },
   { "nvim-treesitter-context",      enabled = false },
