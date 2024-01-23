@@ -1,6 +1,7 @@
 return {
   {
     'kentchiu/gemini.nvim',
+    enabled = false,
     opts = {
       api_key = os.getenv('GOOGLE_API_KEY'),
       locale = 'en',
