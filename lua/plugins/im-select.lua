@@ -3,6 +3,12 @@ return {
     "keaising/im-select.nvim",
 
     config = function()
+      -- windows
+      -- 1033 is the IME ID for English US Keyboard
+      -- 1028 is the IME ID for rime
+      -- 2052 is the IME ID for sougo
+      -- macos
+      -- com.apple.keylayout.ABC is the IME ID for English US Keyboard
       local default_im_select = "1033"
       local default_command = "im-select.exe"
 
