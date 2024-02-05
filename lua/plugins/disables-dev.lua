@@ -3,7 +3,6 @@ local env = vim.env
 if env.GOOGLE_API_KEY ~= nil then return {} end
 
 return {
-  { "kentchiu/gemini.nvim",    enabled = false },
   { "robitx/gp.nvim",          enabled = false },
   { "keaising/im-select.nvim", enabled = false },
   { "nvim.neotest/neotest",    enabled = false },
