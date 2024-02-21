@@ -19,9 +19,9 @@ vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 vim.keymap.set({ "n", "v" }, "gp", '"0p', { noremap = true, silent = true, desc = "Quick Paste" })
 
 -- HL as amplified versions of hjkl
-vim.keymap.set({ "n", "v" }, "H", "0^") -- "beginning of line"
-vim.keymap.set({ "n", "v" }, "L", "$")  --"end of line"
-vim.keymap.set({ "n", "v" }, "M", "gm") --"middle of line"
+vim.keymap.set({ "n", "v", "o", "x" }, "H", "0^")  -- "beginning of line"
+vim.keymap.set({ "n", "v", "o", "x" }, "L", "$")   --"end of line"
+vim.keymap.set({ "n", "v", "o", "x" }, "M", "gm")  --"middle of line"
 
 
 
