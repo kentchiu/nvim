@@ -1,7 +1,7 @@
 local user = os.getenv('USER')
 
 -- only enable these plugins for kent dev
-if user == 'kentxx' then return {} end
+if user == 'kent' then return {} end
 
 return {
   { "robitx/gp.nvim",                 enabled = false },
