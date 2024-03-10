@@ -1,6 +1,7 @@
-local env = vim.env
--- only kent's dev env has GOOGLE_API_KEY
-if env.GOOGLE_API_KEY ~= nil then return {} end
+local user = os.getenv('USER')
+
+-- only enable these plugins for kent dev
+if user == 'kent' then return {} end
 
 return {
   { "robitx/gp.nvim",          enabled = false },

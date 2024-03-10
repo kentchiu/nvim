@@ -4,12 +4,12 @@
 
 
 -- Disable autoformat for lua files
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "typescript", "html" },
-  callback = function()
-    vim.b.autoformat = false
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "typescript", "html" },
+--   callback = function()
+--     vim.b.autoformat = false
+--   end,
+-- })
 
 -- Treesitter automatic Python format rtrings
 vim.api.nvim_create_augroup("py-fstring", { clear = true })

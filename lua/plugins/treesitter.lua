@@ -6,8 +6,8 @@ return {
       ensure_installed = {
         "bash",
         "c",
-        "c_sharp",
-        "css",
+        -- "c_sharp",
+        -- "css",
         "csv",
         "diff",
         "dot",

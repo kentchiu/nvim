@@ -6,8 +6,8 @@
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
 
 -- make page forward/backwoard firendly
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll window Downwards And Center It" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll window Upwards And Center It" })
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll window Downwards And Center It" })
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll window Upwards And Center It" })
 
 -- remove ^M
 vim.keymap.set("n", "<leader>bc", "<cmd>%s/\\r$//g<cr>", { desc = "remove ^M" })
@@ -16,12 +16,12 @@ vim.keymap.set("n", "<leader>bc", "<cmd>%s/\\r$//g<cr>", { desc = "remove ^M" })
 vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
 -- Paste without losing data in register
-vim.keymap.set({ "n", "v" }, "gp", '"0p', { noremap = true, silent = true, desc = "Quick Paste" })
+-- vim.keymap.set({ "n", "v" }, "gp", '"0p', { noremap = true, silent = true, desc = "Quick Paste" })
 
 -- HL as amplified versions of hjkl
-vim.keymap.set({ "n", "v", "o", "x" }, "H", "0^")  -- "beginning of line"
-vim.keymap.set({ "n", "v", "o", "x" }, "L", "$")   --"end of line"
-vim.keymap.set({ "n", "v", "o", "x" }, "M", "gm")  --"middle of line"
+vim.keymap.set({ "n", "v", "o", "x" }, "H", "0^") -- "beginning of line"
+vim.keymap.set({ "n", "v", "o", "x" }, "L", "$")  --"end of line"
+vim.keymap.set({ "n", "v", "o", "x" }, "M", "gm") --"middle of line"
 
 
 
