@@ -1,12 +1,12 @@
 local user = os.getenv('USER')
 
 -- only enable these plugins for kent dev
-if user == 'kent' then return {} end
+if user == 'kentxx' then return {} end
 
 return {
   { "robitx/gp.nvim",                 enabled = false },
   { "keaising/im-select.nvim",        enabled = false },
-  { "nvim.neotest/neotest",           enabled = false },
+  { "nvim-neotest/neotest",           enabled = false },
   { "williamboman/mason.nvim",        enabled = false },
   { "zbirenbaum/copilot.lua",         enabled = false },
   { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
@@ -15,4 +15,3 @@ return {
   { "mfussenegger/nvim-dap",          enabled = false },
   { "rest-nvim/rest.nvim",            enabled = false }
 }
-
