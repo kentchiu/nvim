@@ -67,7 +67,7 @@ vim.keymap.set({ "n", "v", "o", "x" }, "M", "gm") --"middle of line"
 -- misc
 
 -- Inspect TreeSitter
--- vim.keymap.set( "n" , "<leader>ci", "<cmd>Inspect<cr>", { desc = "Inspect TreeSitter Node" })
+vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- diagnostics
 -- vim.keymap.set("n", "<leader>cx", function() vim.diagnostic.open_float({ border = "rounded" }) end, { desc = "View Diagnostics In Float Window" })
