@@ -3,10 +3,6 @@ return
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      -- { "<leader>ff", "<cmd>cd %:p:h<cr><cmd>Telescope find_files<cr>", desc = "Find Files(cwd)" },
-      -- { "<leader>fF", "<cmd>Telescope find_files<cr>",                  desc = "Find Files(ROOT)" },
-      -- { "<leader>sG", "<cmd>cd %:p:h<cr><cmd>Telescope live_grep<cr>", desc = "Grep(cwd)" },
-      -- { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
       { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Find Files(cwd)" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>",               desc = "Recent" },
     },
@@ -51,7 +47,7 @@ return
           -- diff_context_lines = vim.o.scrolloff,
           -- entry_format = "state #$ID, $STAT, $TIME",
           -- time_format = "",
-          saved_only = true,
+          -- saved_only = true,
         },
         -- no other extensions here, they can have their own spec too
       },
