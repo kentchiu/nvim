@@ -187,7 +187,7 @@ return {
       { "<leader>ccv", "<cmd>CopilotChatToggle<cr>",        desc = "CopilotChat - Toggle Vsplit" },
 
       -- Legacy Command
-      { "<leader>cC",  "<cmd>CChatActions<cr>",             desc = "CopilotChat - Legacy Actions" },
+      { "<leader>ccc", "<cmd>CChatActions<cr>",             desc = "CopilotChat - Legacy Actions" },
     },
   },
 }
