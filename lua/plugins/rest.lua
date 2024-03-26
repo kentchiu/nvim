@@ -5,7 +5,7 @@ return {
     ft = "http",
     keys = {
       {
-        "<leader>rR",
+        "<leader>rrr",
         function()
           require("rest-nvim").run()
         end,
@@ -17,14 +17,14 @@ return {
       --   desc = "RestNvimRun",
       -- },
       {
-        "<leader>rC",
+        "<leader>rrc",
         function()
           require("rest-nvim").run(true)
         end,
         desc = "RestNvimPreview(curl)",
       },
       {
-        "<leader>rL",
+        "<leader>rrl",
         function()
           require("rest-nvim").last()
         end,
@@ -71,7 +71,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      opts.defaults["<leader>r"] = { name = "rest" }
+      opts.defaults["<leader>r"] = { name = "run in" }
+      opts.defaults["<leader>rr"] = { name = "restful" }
     end,
   },
 }

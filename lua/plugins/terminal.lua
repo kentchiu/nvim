@@ -41,11 +41,11 @@ return {
         float_zsh:toggle()
       end
 
-      vim.api.nvim_set_keymap("n", "<leader>tr", "<cmd>ToggleTermSendCurrentLine<cr>",
+      vim.api.nvim_set_keymap("n", "<leader>rtc", "<cmd>ToggleTermSendCurrentLine<cr>",
         { noremap = true, silent = true, desc = "Run Current Line" })
-      vim.api.nvim_set_keymap("v", "<leader>tr", "<cmd>ToggleTermSendCurrentLine<cr>",
+      vim.api.nvim_set_keymap("v", "<leader>rtc", "<cmd>ToggleTermSendCurrentLine<cr>",
         { noremap = true, silent = true, desc = "Run Current Line" })
-      vim.api.nvim_set_keymap("v", "<leader>tv", "y<cmd>ToggleTermSendVisualSelection<cr>",
+      vim.api.nvim_set_keymap("v", "<leader>rtv", "y<cmd>ToggleTermSendVisualSelection<cr>",
         { noremap = true, silent = true, desc = "Run Visual Selection" })
 
 
@@ -55,5 +55,11 @@ return {
         { desc = "horizontal Terminal" })
       vim.keymap.set({ "n", "i", "t" }, "<M-.>", "<cmd>lua terminal_toggle()<cr>", { desc = "Float Terminal" })
     end
+  },
+  {
+    "folke/which-key.nvim",
+    opts = function(_, opts)
+      opts.defaults["<leader>rt"] = { name = "terminal" }
+    end,
   },
 }
