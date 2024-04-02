@@ -21,7 +21,7 @@ return {
         "duskfox",
         "nordfox",
         "terafox",
-        "carbonfox",
+        -- "carbonfox",
       }
 
       math.randomseed(os.time())
