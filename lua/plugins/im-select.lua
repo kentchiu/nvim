@@ -1,7 +1,7 @@
 return {
   {
     "keaising/im-select.nvim",
-
+    enabled = false,
     config = function()
       -- windows
       -- 1033 is the IME ID for English US Keyboard
