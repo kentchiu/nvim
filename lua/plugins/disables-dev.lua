@@ -4,8 +4,6 @@ local user = os.getenv('USER')
 if user == 'kent' then return {} end
 
 return {
-  { "robitx/gp.nvim",                 enabled = false },
-  { "keaising/im-select.nvim",        enabled = false },
   { "nvim-neotest/neotest",           enabled = false },
   { "zbirenbaum/copilot.lua",         enabled = false },
   { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },

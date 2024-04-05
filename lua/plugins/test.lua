@@ -1,5 +1,5 @@
 return {
-  { "nvim-neotest/neotest-plenary" },
+  -- { "nvim-neotest/neotest-plenary" },
   -- {
   --   "nvim-neotest/neotest",
   --   -- Can be a list of adapters like what neotest expects,
