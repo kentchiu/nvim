@@ -21,32 +21,33 @@ local prompts = {
 
 
 return {
-  {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      filetypes = {
-        yaml = false,
-        markdown = true,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ["."] = false,
-      },
-      -- copilot_node_command = 'node', -- Node.js version must be > 18.x
-      server_opts_overrides = {
-        trace = "verbose",
-        settings = {
-          advanced = {
-            listCount = 10,         -- #completions for panel
-            inlineSuggestCount = 5, -- #completions for getCompletions
-          }
-        },
-      },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   opts = {
+  --     filetypes = {
+  --       yaml = false,
+  --       markdown = true,
+  --       help = false,
+  --       gitcommit = false,
+  --       gitrebase = false,
+  --       hgcommit = false,
+  --       svn = false,
+  --       cvs = false,
+  --       ["."] = false,
+  --     },
+  --     -- copilot_node_command = 'node', -- Node.js version must be > 18.x
+  --     server_opts_overrides = {
+  --       trace = "verbose",
+  --       settings = {
+  --         advanced = {
+  --           listCount = 10,         -- #completions for panel
+  --           inlineSuggestCount = 5, -- #completions for getCompletions
+  --         }
+  --       },
+  --     },
+  --   },
+  -- },
+
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",

@@ -30,3 +30,9 @@ vim.keymap.set({ "n", "v", "o", "x" }, "M", "gm") --"middle of line"
 
 -- Inspect TreeSitter
 vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
+
+
+-- vim.keymap.del("n", "<leader>ft")
+-- vim.keymap.del("n", "<leader>fT")
+-- vim.keymap.del("n", "<c-/>")
+-- vim.keymap.del("t", "<c-/>")

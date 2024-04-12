@@ -8,22 +8,23 @@ return
     },
     opts = {
       defaults = {
-        -- layout_strategy = "vertical",
-        prompt_prefix = " ",
-        selection_caret = " ",
-        path_display = { "smart" },
-        dynamic_preview_title = true,
-        -- winblend = 20,
-        multi_icon = '+',
-        layout_config = {
-          height = 0.95,
-          width = 0.95,
-          preview_width = 0.6,
-          prompt_position = "top"
-        },
-        -- sorting_strategy = "ascending",
+        layout_strategy = "vertical",
+        --       -- prompt_prefix = " ",
+        --       -- selection_caret = " ",
+        --       -- path_display = { "smart" },
+        --       -- dynamic_preview_title = true,
+        --       -- winblend = 20,
+        --       -- multi_icon = '+',
+        --       -- results_height = 10,
+        --       -- layout_config = {
+        --       --   height = 0.95,
+        --       --   width = 0.95,
+        --       --   -- preview_width = 0.7,
+        --       --   prompt_position = "top"
+        --       -- },
+        --       -- sorting_strategy = "ascending",
       },
-    },
+    }
   },
   {
     "debugloop/telescope-undo.nvim",
