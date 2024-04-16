@@ -52,18 +52,14 @@ return {
             {
               name = "@vue/typescript-plugin",
               location = vue_typescript_plugin,
-              languages = { "javascript", "typescript", "vue" },
+              languages = { "vue" },
             },
           },
         },
-        filetypes = {
-          "javascript",
-          "typescript",
-          "vue",
-        },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
       }
 
-      -- require 'lspconfig'.volar.setup {};
+      require 'lspconfig'.volar.setup {};
     end,
   }
   -- {
