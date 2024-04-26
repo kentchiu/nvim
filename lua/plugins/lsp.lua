@@ -40,28 +40,26 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       -- require('mason').setup({})
-      local vue_typescript_plugin = require('mason-registry')
-          .get_package('vue-language-server')
-          :get_install_path()
-          .. '/node_modules/@vue/language-server'
-          .. '/node_modules/@vue/typescript-plugin'
+      local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path()
+        .. "/node_modules/@vue/language-server"
+        .. "/node_modules/@vue/typescript-plugin"
 
-      require 'lspconfig'.tsserver.setup {
+      require("lspconfig").tsserver.setup({
         init_options = {
           plugins = {
             {
               name = "@vue/typescript-plugin",
               location = vue_typescript_plugin,
-              languages = { "vue" },
+              languages = { "typescript", "vue" },
             },
           },
         },
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-      }
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+      })
 
-      require 'lspconfig'.volar.setup {};
+      require("lspconfig").volar.setup({})
     end,
-  }
+  },
   -- {
   --   "ray-x/lsp_signature.nvim",
   --   event = "VeryLazy",
