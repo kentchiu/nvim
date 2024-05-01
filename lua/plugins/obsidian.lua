@@ -20,11 +20,11 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/dev/kent/notes",
+        path = "/mnt/c/Users/kentc/Documents/notes",
       },
       {
         name = "view360",
-        path = "~/dev/nices/view360-doc",
+        path = "/mnt/c/Users/kentc/dev/nices/view360-doc",
       },
     },
 

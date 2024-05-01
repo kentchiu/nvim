@@ -19,25 +19,36 @@ local prompts = {
   Concise = "Please rewrite the following text to make it more concise.",
 }
 
-
 return {
-
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = false,
+        help = true,
+      },
+    },
+  },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
       { "nvim-telescope/telescope.nvim" },
     },
     opts = {
       question_header = "## User ",
       answer_header = "## Copilot ",
       error_header = "## Error ",
-      separator = " ",            -- Separator to use in chat
+      separator = " ", -- Separator to use in chat
       prompts = prompts,
       auto_follow_cursor = false, -- Don't follow the cursor after getting response
-      show_help = false,          -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
+      show_help = false, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
       mappings = {
         -- Use tab for completion
         complete = {
@@ -163,10 +174,10 @@ return {
         desc = "Prompt actions",
       },
       -- Code related commands
-      { "<leader>ae", "<cmd>CopilotChatExplain<cr>",       desc = "Explain code" },
-      { "<leader>at", "<cmd>CopilotChatTests<cr>",         desc = "Generate tests" },
-      { "<leader>ar", "<cmd>CopilotChatReview<cr>",        desc = "Review code" },
-      { "<leader>aR", "<cmd>CopilotChatRefactor<cr>",      desc = "Refactor code" },
+      { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "Explain code" },
+      { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate tests" },
+      { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review code" },
+      { "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "Refactor code" },
       { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "Better Naming" },
       -- Chat with Copilot in visual mode
       {
@@ -215,13 +226,13 @@ return {
         desc = "Quick chat",
       },
       -- Debug
-      { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>",     desc = "Debug Info" },
+      { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>", desc = "Debug Info" },
       -- Fix the issue with diagnostic
       { "<leader>af", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "Fix Diagnostic" },
       -- Clear buffer and chat history
-      { "<leader>al", "<cmd>CopilotChatReset<cr>",         desc = "Clear buffer and chat history" },
+      { "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
       -- Toggle Copilot Chat Vsplit
-      { "<leader>av", "<cmd>CopilotChatToggle<cr>",        desc = "Toggle" },
+      { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "Toggle" },
     },
   },
   {
