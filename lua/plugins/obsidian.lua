@@ -27,6 +27,10 @@ return {
         path = "/mnt/c/Users/kentc/dev/nices/view360-doc",
       },
     },
+    disable_frontmatter = true,
+    ui = {
+      enable = false,
+    },
 
     -- see below for full list of options 👇
   },
