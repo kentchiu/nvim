@@ -2,14 +2,13 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
-
 -- Disable autoformat for lua files
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   pattern = { "typescript", "html" },
---   callback = function()
---     vim.b.autoformat = false
---   end,
--- })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "yaml", "yml" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
 
 -- Treesitter automatic Python format rtrings
 vim.api.nvim_create_augroup("py-fstring", { clear = true })
@@ -53,16 +52,14 @@ vim.api.nvim_create_autocmd("InsertCharPre", {
   end,
 })
 
-
-
 -- wrap on markdown filetype
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'markdown' },
-  desc = 'Word wrap on Markdown',
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  desc = "No Word wrap on Markdown",
   callback = function()
     -- lazyvim will enable spell by default, but it will mass errors in Chinese content
     -- ref: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
     vim.opt_local.spell = false
-    -- vim.opt_local.wrap = true
-  end
+    vim.opt_local.wrap = false
+  end,
 })
