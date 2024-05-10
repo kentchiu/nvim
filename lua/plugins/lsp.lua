@@ -20,20 +20,32 @@ return {
         .. "/node_modules/@vue/language-server"
         .. "/node_modules/@vue/typescript-plugin"
 
-      require("lspconfig").tsserver.setup({
+      -- require("lspconfig").tsserver.setup({
+      --   init_options = {
+      --     plugins = {
+      --       {
+      --         name = "@vue/typescript-plugin",
+      --         location = vue_typescript_plugin,
+      --         languages = { "typescript", "vue" },
+      --       },
+      --     },
+      --   },
+      --   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+      -- })
+      --
+      -- require("lspconfig").volar.setup({})
+      --
+      local lspconfig = require("lspconfig")
+
+      -- lspconfig.tsserver.setup {}
+      lspconfig.volar.setup({
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
         init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = vue_typescript_plugin,
-              languages = { "typescript", "vue" },
-            },
+          vue = {
+            hybridMode = false,
           },
         },
-        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
       })
-
-      require("lspconfig").volar.setup({})
     end,
   },
 }
