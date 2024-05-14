@@ -1,6 +1,10 @@
 return {
   {
-    'andrewferrier/debugprint.nvim',
+    "andrewferrier/debugprint.nvim",
+    dependencies = {
+      "echasnovski/mini.nvim", -- Needed to enable :ToggleCommentDebugPrints for NeoVim <= 0.9
+      "nvim-treesitter/nvim-treesitter", -- Needed to enable treesitter for NeoVim 0.8
+    },
     opts = {
       print_tag = "🟥",
       keymaps = {
@@ -13,8 +17,8 @@ return {
           variable_above_alwaysprompt = nil,
           textobj_below = "<leader>po",
           textobj_above = "<leader>pO",
-          toggle_comment_debug_prints = nil,
-          delete_debug_prints = nil,
+          toggle_comment_debug_prints = "<leader>pt",
+          delete_debug_prints = "<leader>pd",
         },
         visual = {
           variable_below = "<leader>pv",
@@ -26,13 +30,33 @@ return {
         delete_debug_prints = "DeleteDebugPrints",
       },
     },
-    config = function(_, opts, x)
-      require("debugprint").setup(opts)
+    config = function(_, opts)
+      local plugin = require("debugprint")
 
-      vim.keymap.set("n", "<Leader>pd", "<CMD>DeleteDebugPrints<CR>", { desc = "Delete Prints." })
+      local js = {
+        left = 'console.warn("',
+        right = '");',
+        mid_var = '", ',
+        right_var = ");",
+        find_treesitter_variable = function(opts)
+          if opts.node:type() == "property_identifier" then
+            return opts.get_node_text(opts.node:parent())
+          elseif opts.node:type() == "identifier" then
+            return opts.get_node_text(opts.node)
+          else
+            return nil
+          end
+        end,
+      }
+
+      opts.filetypes = {
+        ["vue"] = js,
+      }
+      plugin.setup(opts)
+
       vim.keymap.set("n", "<Leader>pl", function()
         vim.cmd("vimgrep " .. "/" .. opts.print_tag .. "/g `git ls-files`")
-        vim.fn.execute('copen')
+        vim.fn.execute("copen")
       end, { desc = "List All" })
     end,
   },

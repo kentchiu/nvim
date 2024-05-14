@@ -90,7 +90,6 @@ return {
       --
       -- default selection (visual or line)
       -- selection = function(source)
-      --   print("🟥[1]: copilot.lua:70: source=" .. vim.inspect(source))
       --   -- return select.visual(source) or select.line(source)
       -- end,
     },
