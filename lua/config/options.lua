@@ -15,3 +15,5 @@ vim.opt.conceallevel = 0 -- disable conceal
 -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 --   vim.lsp.handlers.signature_help, { border = "rounded" }
 -- )
+--
+vim.opt.inccommand = "split" -- Incremental live completion
