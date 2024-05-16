@@ -17,3 +17,4 @@ vim.opt.conceallevel = 0 -- disable conceal
 -- )
 --
 vim.opt.inccommand = "split" -- Incremental live completion
+vim.opt.scrolloff = 999 -- Keep cursor centered
