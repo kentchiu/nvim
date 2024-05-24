@@ -9,7 +9,7 @@ Kent Nvim Tips					*kent*
                                       Type |gO| to see the table of contents.
 
 ==============================================================================
-1. Userful Keymaps					*kent.keymaps*
+Userful Keymaps					*kent.keymaps*
 
 大部分 <leader> 開頭的 keymaps 能觸發 |which-key.nvim.txt|  的 popup
 window.比較不會被忽略, 然而有一些 keymap 不適用 <leader> key 觸發的,
@@ -17,43 +17,151 @@ window.比較不會被忽略, 然而有一些 keymap 不適用 <leader> key 觸�
 整理出來.
 
 
-- `gw` : Search word under cursor
+- `C-a`,`C-w`: Increment/Decrement (方便改版號), C-a 跟 tmux hotkey 衝突,
+  連按兩次可以解決
 - `ya` : Yank all in braces   
-- `CTRL-<SPACE>` in vmode : Expand selection.
-- `K` : lsp hover
-- `<leader> ck` : lsp signature help
-- `gp` : paste without lose info (quick replace)
-- `<leader> ;` : test current method
-- `CTRL-W o`: Max window.
+- `C-SPACE` : Expand selection.
+- `vii`,`via`: 針對 text-object 做選擇,很方便
 - `m`: Crete Fold
 - LSP hover 連續觸發兩次後 'K K', cursor 會 focus float window,
   就可以當做一版的 window 操作
 - `C-w w`: focus 到其他window 
+- `<leader>fb`: list buffers
+
+- <A-j>	Move Down	n, i, v
+- <A-k>	Move Up	n, i, v
+- <S-h>	Prev Buffer	n
+- <S-l>	Next Buffer	n
+- [b	Prev Buffer	n
+- ]b	Next Buffer	n
+
 
 有些 keymap 是在特定的 buffer (window) 裡面才有效的, ex: quicklist, 或者是
 telescope 的 查詢 float window, neo-test 的 test summary window,
 這些都有自己的 buffer scope keymaps, 而且只有foucs 停駐在特定的window
 時才會生效. 這時,可以用 `:map` 或是 `:verbose map` 查 keymaps
 
+
 ------------------------------------------------------------------------------
-			                         *kent.keymaps.comment*
+		                    *kent.modes*
 
-comment: https://github.com/numToStr/Comment.nvim
+- n: Normal mode
+- i: Insert mode
+- x: Visual mode
+- s: Select mode
+- o: Operator-pending mode
+- c: Command-line mode
+- t: Terminal mode
+- R: Replace mode
+- ni: Insert-Normal mode
+- ix: Insert-visual mode 
+- is: Insert-select mode
+- ex: Ex mode (Vim script mode)
+
+Insert-normal mode (ni)：
+
+  插入-正常模式是當處於插入模式並按下 Ctrl+O 時進入的臨時正常模式。在這個模式下，可以執行一個正常模式的命令，執行完後會自動返回插入模式。
+
+Insert-visual mode (ix)：
+
+  插入-可視模式是從插入模式轉到可視模式的過渡模式。這種模式很少使用，但它存在於 Vim 的模式列表中。
+
+Insert-select mode (is)：
+
+  插入-選擇模式是從插入模式轉到選擇模式的過渡模式。與插入-可視模式類似，也很少用到。
+
+Ex mode (Vim script mode, ex)：
+
+  Ex 模式是 Vim 的另一種命令模式，用戶可以編寫和執行 Vim 腳本。在這個模式下，編輯器只顯示一行，允許用戶輸入和執行長命令或腳本。 
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.ai*
+- open close 選到的不同
+- count 要加在 `a` ,`i` 前, ex: `v2ab`
 
 
-`gcw` - Toggle from the current cursor position to the next word
-`gc$` - Toggle from the current cursor position to the end of line
-`gc}` - Toggle until the next blank line
-`gc5j` - Toggle 5 lines after the current cursor position
-`gc8k` - Toggle 8 lines before the current cursor position
-`gcip` - Toggle inside of paragraph
-`gca}` - Toggle around curly brackets
+Alias:
 
-# Blockwise
+- b for braces
+- q for quote
+- ? for user prompt (左右可以不對稱)
+- t for tag 
+- f for function
+- a for argument
+- default: digits, punctuation, whitespace
 
-`gb2}` - Toggle until the 2 next blank line
-`gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
-`gbac` - Toggle comment around a class (w/ LSP/treesitter support)  
+extends by lazy:
+
+- c for class
+- d for digits
+- e for word with case
+- u for function usage  
+
+>lua
+  mappings = {
+    -- Main textobject prefixes
+    around = 'a',
+    inside = 'i',
+
+    -- Next/last variants
+    around_next = 'an',
+    inside_next = 'in',
+    around_last = 'al',
+    inside_last = 'il',
+
+    -- Move cursor to corresponding edge of `a` textobject
+    goto_left = 'g[',
+    goto_right = 'g]',
+  },
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.surround*
+which key 在 operation padding 是會出現 `l`, `n` 的選項,如果沒有要用這兩個,
+不要管它,直接用就可以了.
+
+>lua
+  add = 'sa', -- Add surrounding in Normal and Visual modes
+    delete = 'sd', -- Delete surrounding
+    find = 'sf', -- Find surrounding (to the right)
+    find_left = 'sF', -- Find surrounding (to the left)
+    highlight = 'sh', -- Highlight surrounding
+    replace = 'sr', -- Replace surrounding
+    update_n_lines = 'sn', -- Update `n_lines`
+
+    suffix_last = 'l', -- Suffix to search with "prev" method
+    suffix_next = 'n', -- Suffix to search with "next" method
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.lsp*
+
+source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/keymaps.lua
+
+- <leader>cl	Lsp Info	n
+- gd	Goto Definition	n
+- gr	References	n
+- gD	Goto Declaration	n
+- gI	Goto Implementation	n
+- gy	Goto T[y]pe Definition	n
+- K	Hover	n
+- gK	Signature Help	n
+- <c-k>	Signature Help	i
+- <leader>ca	Code Action	n, v
+- <leader>cc	Run Codelens	n, v
+- <leader>cC	Refresh & Display Codelens	n
+- <leader>cA	Source Action	n
+- ]]	Next Reference	n
+- [[	Next Reference	n
+- <leader>cr	Rename	n
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.flash*
+
+Key	Description	Mode
+<c-s>	Toggle Flash Search	c
+r	Remote Flash	o
+R	Treesitter Search	o, x
+s	Flash	n, o, x
+S	Flash Treesitter	n, o, x
 
 
 ------------------------------------------------------------------------------
@@ -119,7 +227,6 @@ tail common)
 				                 *kent.keymaps.neotest*
 
 
-
 from |neotest.setup()|
 
 >lua
@@ -176,7 +283,7 @@ from |neotest.setup()|
 
 
 ==============================================================================
-2. Commands	                 			*kent.commands*
+Commands	                 			*kent.commands*
 
 
 查詢目前 buffer 的 LSP 有支援哪些功能 >vim
@@ -211,15 +318,9 @@ update 是指將文件保存並更新。
 比較兩個檔案, 用 `vim diff file1 file2` 或者是,開兩個 vsplit window 後,
 用 `diff this` command
 
-==============================================================================
-3. Tmux				      			*kent.tmux*
-
-- `<lader> + ?` : List all key mappings
-- `<lader> + z` : Maximum curren pane
-
 
 ==============================================================================
-4. NVIM Config debug			         *kent.nvim-config-debug*
+NVIM Config debug			         *kent.nvim-config-debug*
 
 執行純淨版
 
@@ -227,7 +328,7 @@ update 是指將文件保存並更新。
 
 
 ==============================================================================
-5. MISC	                         			*kent.misc*
+MISC	                         			*kent.misc*
 
 Text Object 裡面的 `word` 跟 `WORD` 的差別:
 
@@ -256,7 +357,7 @@ environment
 
 
 ==============================================================================
-6. Help 						*kent.help*
+Help 						*kent.help*
 
 如果這個 help file 在 NVIM 裡面變成 readonly , 可以用 `setlocal modifiable`
 讓它變成可以寫入
@@ -285,7 +386,7 @@ code block   >
 - 標題：用 * 開頭和結尾的一行文字表示標題.
 - 段落：用空行分隔的一段連續文字表示一個段落，每段文字應不超過 80 個字元。
 - 清單：以 -、+、或 * 開頭的行表示清單項目。
-- 程式碼區塊：用 | 包住的詞彙或片語表示程式碼區塊.
+- 程式碼區塊：用 `>syntax` 包住的詞彙或片語表示程式碼區塊.
 - 強調：用 _ 包住的詞彙或片語表示需要強調的內容.
 - 超連結：使用 | 包住的詞彙或片語表示超連結。
 

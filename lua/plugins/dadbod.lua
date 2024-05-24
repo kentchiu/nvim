@@ -20,10 +20,10 @@ return {
       vim.g.db_ui_winwidth = 30
 
       -- opening it in a new tab
-      vim.keymap.set("n", "<leader><leader>db", ":tab DBUI<cr>", {})
-
-      -- just close the tab, but context related of the keybinding
-      vim.keymap.set("n", "<leader><leader>tq", ":tabclose<cr>")
+      -- vim.keymap.set("n", "<leader><leader>db", ":tab DBUI<cr>", {})
+      --
+      -- -- just close the tab, but context related of the keybinding
+      -- vim.keymap.set("n", "<leader><leader>tq", ":tabclose<cr>")
 
       local autocomplete_group = vim.api.nvim_create_augroup("vimrc_autocompletion", { clear = true })
       local cmp = require("cmp")
@@ -34,7 +34,7 @@ return {
             sources = {
               { name = "vim-dadbod-completion" },
               { name = "buffer" },
-              { name = "luasnip" },
+              -- { name = "luasnip" },
             },
           })
         end,
