@@ -1,9 +1,13 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    priority = 1000, -- make sure to load this before all the other start plugins
     keys = {
       { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Find Files(cwd)" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      -- git
+      { "<leader>gc", false },
+      { "<leader>gs", false },
     },
     opts = {
       defaults = {

@@ -281,6 +281,96 @@ from |neotest.setup()|
         next = "j" -- next item
     },
 
+==============================================================================
+Diff	                 			*kent.diff*
+
+1. 一個hunk 區塊, 還沒 cmmit 的undo -> mini toggle, 在那個 hunk 執行 `gH_` undelete current line hunk
+2. 一個hunk 區塊, 已經 commit 的 undo
+3. 一個檔案還沒 commit 的 undo,  :GRead, :G checkout -- <file>
+4. 一個檔案已經 commit 的 undo
+5. 一個檔案的異動 history, 可以會從 history 中 undo 一個 hunk
+6. 一個檔案的異動 history, 可以會從 history 中退到那個版本
+7. 列出目前還麼 commit 的檔案, :G
+8. 顯示效果在 sign: mini.diff, gitsings
+
+
+create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
+
+
+比較兩個檔案, 用 `vim diff file1 file2` 或者是,開兩個 vsplit window 後,
+用 `diff this` command
+
+有衝突時, 用 git mergetool 可以調用出 neovim 的 3-ways merge mode
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.minidiff*
+This module provides mappings for common actions with diffs, like:
+- Apply and reset hunks.
+- "Hunk range under cursor" textobject.
+- Go to first/previous/next/last hunk range.
+
+Examples:
+- `vip` followed by `gh` / `gH` applies/resets hunks inside current paragraph. Same can be achieved in operator form `ghip` / `gHip`, which has the advantage of being dot-repeatable.
+- `gh_` / `gH_` applies/resets current line (even if it is not a full hunk).
+- `ghgh` / `gHgh` applies/resets hunk range under cursor.
+- `dgh` deletes hunk range under cursor.
+- `[H` / `[h` / `]h` / `]H` navigate cursor to the first / previous / next / last hunk range of the current buffer.
+
+Mappings for some functionality are assumed to be done manually. See tag `*MiniDiff.operator()*` in help file.
+
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.undo*
+
+------------------------------------------------------------------------------
+		                    *kent.keymaps.fugitive*
+
+在 status view 裡面常用的資料有:
+
+commit:
+
+cc                      Create a commit.
+
+ca                      Amend the last commit and edit the message. 
+	  
+			git commit --amend
+
+			這個命令會重新提交上一次提交(commit id change)，
+			可以修改提交信息並包含新暫存的更改。
+
+			當你發現上一次提交有錯誤或遺漏，需要更正或補充內容時，
+			可以使用這個命令。
+
+cw                      Reword the last commit.
+
+			git commit --amend --only
+
+			用於重新編寫上一次提交的提交信息，但不改變提交的內容。
+			這個命令只修改提交信息，不影響已提交的文件。
+
+			這個命令只修改提交信息，不改變已提交的文件內容。
+
+cvc                     Create a commit with -v. (帶 diff view)
+
+cva                     Amend the last commit with -v. (帶 diff view)
+
+crc                     Revert the commit under the cursor.
+
+
+Diff maps ~
+                                                *fugitive_dp*
+dp                      Invoke |:Git| diff on the file under the cursor.
+                        Deprecated in favor of inline diffs.
+
+                                                *fugitive_dd*
+dd                      Perform a |:Gdiffsplit| on the file under the cursor.
+
+                                                *fugitive_dq*
+dq                      Close all but one diff buffer, and |:diffoff|! the
+                        last one.
+
+                                                *fugitive_d?*
+d?                      Show this help.
 
 ==============================================================================
 Commands	                 			*kent.commands*
@@ -311,12 +401,6 @@ Commands	                 			*kent.commands*
 
 update 是指將文件保存並更新。
 因此，當你在 NeoVim 中執行 cfdo update 指令時，它會對當前打開的所有文件進行保存並更新操作。
-
-------------------------------------------------------------------------------
-						      *kent.diff*
-
-比較兩個檔案, 用 `vim diff file1 file2` 或者是,開兩個 vsplit window 後,
-用 `diff this` command
 
 
 ==============================================================================
