@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>fa", '<cmd>let @+ = expand("%:.")<CR>', { desc = "C
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "Termial" })
 
-vim.keymap.set("n", "<leader>wo", "<C-W>o", { desc = "Make Only" })
+-- vim.keymap.set("n", "<leader>wo", "<C-W>o", { desc = "Make Only" })
 -- vim.keymap.del("n", "<leader>ft")
 -- vim.keymap.del("n", "<leader>fT")
 -- vim.keymap.del("n", "<c-/>")

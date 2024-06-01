@@ -14,12 +14,13 @@ require("lazy").setup({
     -- import any extras modules here
     -- coding
     { import = "lazyvim.plugins.extras.coding.copilot" },
+    { import = "lazyvim.plugins.extras.coding.copilot-chat" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     -- dap
     { import = "lazyvim.plugins.extras.dap.core" },
     -- editor
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    { import = "lazyvim.plugins.extras.editor.trouble-v3" },
+    -- { import = "lazyvim.plugins.extras.editor.trouble-v3" },
     -- formatter
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     -- lang
