@@ -1,7 +1,7 @@
 return {
   -- { "Mofiqul/dracula.nvim" },
   { "catppuccin/nvim", name = "catppuccin", lazy = false },
-  { "EdenEast/nightfox.nvim" },
+  -- { "EdenEast/nightfox.nvim" },
   {
     "olimorris/onedarkpro.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -11,16 +11,18 @@ return {
       local items = {
         "onedark",
         -- "catppuccin-latte",
-        "catppuccin-frappe",
-        "catppuccin-macchiato",
-        "catppuccin-mocha",
-        "tokyonight-moon",
-        "tokyonight-night",
-        "tokyonight-storm",
-        "nightfox",
-        "duskfox",
-        "nordfox",
-        "terafox",
+        "catppuccin",
+        -- "catppuccin-frappe",
+        -- "catppuccin-macchiato",
+        -- "catppuccin-mocha",
+        "tokyonight",
+        -- "tokyonight-moon",
+        -- "tokyonight-night",
+        -- "tokyonight-storm",
+        -- "nightfox",
+        -- "duskfox",
+        -- "nordfox",
+        -- "terafox",
         -- "carbonfox",
       }
 
