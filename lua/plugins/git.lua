@@ -17,7 +17,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewOpen<cr>", { desc = "Open Changes" })
-      vim.keymap.set("n", "<leader>gf", "<cmd>DiffviewFileHistory --follow %<cr>", { desc = "File History" })
+      vim.keymap.set("n", "<leader>gf", "<cmd>DiffviewFileHistory<cr>", { desc = "File History" })
       vim.keymap.set("n", "<leader>gx", "<cmd>DiffviewClose<cr>", { desc = "DiffviewClose" })
     end,
   },
