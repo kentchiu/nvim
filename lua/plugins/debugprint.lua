@@ -60,7 +60,6 @@ return {
       end, { desc = "List All" })
     end,
   },
-
   {
     "folke/which-key.nvim",
     opts = function(_, opts)

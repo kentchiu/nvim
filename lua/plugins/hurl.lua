@@ -35,4 +35,11 @@ return {
       { "<leader>rh", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
     },
   },
+
+  {
+    "folke/which-key.nvim",
+    opts = function(_, opts)
+      opts.defaults["<leader>r"] = { name = "run" }
+    end,
+  },
 }
