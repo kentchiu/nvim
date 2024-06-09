@@ -320,6 +320,32 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 
 
 ------------------------------------------------------------------------------
+		                    *kent.keymaps.diffvie- `:DiffviewOpen`
+- `:DiffviewOpen HEAD~2`
+- `:DiffviewOpen HEAD~4..HEAD~2`
+- `:DiffviewOpen d4a7b0d`
+- `:DiffviewOpen d4a7b0d^!`
+- `:DiffviewOpen d4a7b0d..519b30e`
+- `:DiffviewOpen origin/main...HEAD`
+
+
+- `:DiffviewFileHistory`
+- `:DiffviewFileHistory %`
+- `:DiffviewFileHistory path/to/some/file.txt`
+- `:DiffviewFileHistory path/to/some/directory`
+- `:DiffviewFileHistory include/this and/this :!but/not/this`
+- `:DiffviewFileHistory --range=origin..HEAD`
+- `:DiffviewFileHistory --range=feat/example-branch`
+- `:'<,'>DiffviewFileHistory`
+
+https://github.com/sindrets/diffview.nvim/blob/main/README.md
+
+- **Diff the index against a git rev:**
+  - `DiffviewOpen HEAD~2 --cached`
+  - Defaults to `HEAD` if no rev is given.
+
+
+------------------------------------------------------------------------------
 		                    *kent.keymaps.undo*
 
 ------------------------------------------------------------------------------
@@ -357,7 +383,7 @@ cva                     Amend the last commit with -v. (帶 diff view)
 crc                     Revert the commit under the cursor.
 
 
-Diff maps ~
+  Diff maps ~
                                                 *fugitive_dp*
 dp                      Invoke |:Git| diff on the file under the cursor.
                         Deprecated in favor of inline diffs.
