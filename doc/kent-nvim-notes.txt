@@ -303,6 +303,14 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 有衝突時, 用 git mergetool 可以調用出 neovim 的 3-ways merge mode
 
 ------------------------------------------------------------------------------
+		                    *kent.keymaps.issues*
+目前遇到的狀況
+
+1. mini.diff 的 toogle 只能比對還沒 commit 的檔案
+2. DiffviewFileHistory % 只能比對已經 commit 的版本, 而且, 兩邊的無法異動
+
+
+------------------------------------------------------------------------------
 		                    *kent.keymaps.minidiff*
 This module provides mappings for common actions with diffs, like:
 - Apply and reset hunks.
