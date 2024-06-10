@@ -1,17 +1,5 @@
 local others = {
   {
-    "brenoprata10/nvim-highlight-colors",
-    config = function()
-      -- Ensure termguicolors is enabled if not already
-      vim.opt.termguicolors = true
-      require("nvim-highlight-colors").setup({
-        ---Render style
-        ---@usage 'background'|'foreground'|'virtual'
-        render = "background",
-      })
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
