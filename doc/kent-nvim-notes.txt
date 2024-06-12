@@ -308,6 +308,12 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 
 1. mini.diff 的 toogle 只能比對還沒 commit 的檔案
 2. DiffviewFileHistory % 只能比對已經 commit 的版本, 而且, 兩邊的無法異動
+   先找出想要比對的 rev ,然後用 `DiffviewOpen rev` 這樣, 右邊就會是目前版本,
+   左邊是歷史版本, 兩邊都能修改, 但是,改右邊就好
+
+
+
+
 
 
 ------------------------------------------------------------------------------
@@ -329,12 +335,19 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 
 ------------------------------------------------------------------------------
 		                    *kent.keymaps.diffvie- `:DiffviewOpen`
-- `:DiffviewOpen HEAD~2`
-- `:DiffviewOpen HEAD~4..HEAD~2`
-- `:DiffviewOpen d4a7b0d`
-- `:DiffviewOpen d4a7b0d^!`
-- `:DiffviewOpen d4a7b0d..519b30e`
-- `:DiffviewOpen origin/main...HEAD`
+
+開啟後, 可以用 `g?` 看到 help
+
+
+- `:DiffviewOpen` : 顯示當前工作目錄的所有變更（如果有未提交的變更）或當前分支與默認分支（通常是 origin/main 或 origin/master）之間的差異。
+- `:DiffviewOpen HEAD~2`: 顯示當前 HEAD 與兩個提交之前的提交（即 HEAD~2）之間的差異。
+- `DiffviewOpen HEAD~2 --cached`: Diff the index against a git rev  (測試結果跟上面的沒兩樣)
+- `:DiffviewOpen HEAD~4..HEAD~2`: 顯示 HEAD~4 和 HEAD~2 之間的差異，即四個提交之前的版本與兩個提交之前的版本之間的變更。
+- `:DiffviewOpen d4a7b0d`: 顯示提交哈希為 d4a7b0d 的提交與它的父提交之間的差異。
+- `:DiffviewOpen d4a7b0d^!`: 顯示提交哈希為 d4a7b0d 的提交與它的父提交之間的差異。^! 的意思是「僅此提交」的變更。
+- `:DiffviewOpen d4a7b0d..519b30e`: 顯示 d4a7b0d 與 519b30e 之間的差異，這意味著從提交 d4a7b0d 到提交 519b30e 之間所有提交的累積變更。
+- `:DiffviewOpen origin/main...HEAD`: 顯示當前 HEAD 與遠端主分支 origin/main 之間的三點比較（three-dot comparison）差異，這會顯示所有在 HEAD 和 origin/main 之間的不同提交。
+
 
 
 - `:DiffviewFileHistory`
@@ -346,12 +359,15 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 - `:DiffviewFileHistory --range=feat/example-branch`
 - `:'<,'>DiffviewFileHistory`
 
+
 https://github.com/sindrets/diffview.nvim/blob/main/README.md
 
-- **Diff the index against a git rev:**
-  - `DiffviewOpen HEAD~2 --cached`
-  - Defaults to `HEAD` if no rev is given.
+config 裡面有一些 keymap 可以參考
 
+
+
+- **:**
+  - Defaults to `HEAD` if no rev is given.
 
 ------------------------------------------------------------------------------
 		                    *kent.keymaps.undo*
