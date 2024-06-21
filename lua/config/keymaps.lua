@@ -34,6 +34,7 @@ vim.keymap.del("n", "<leader>gg") -- Lazygit (Root Dir)
 vim.keymap.del("n", "<leader>gG") -- Lazygit (cwd)
 vim.keymap.del("n", "<leader>gf") -- Laygit Current File History
 vim.keymap.del("n", "<leader>gl") -- Lazygit Log
+vim.keymap.del("n", "<leader>gL") -- Lazygit Log
 vim.keymap.del("n", "<leader>gb") -- Laygit Blame line
 
 -- keymap 的啟動會比所有的plugin 還晚, 無法在 plugin 裡面 overwrite lazymap default keymap
