@@ -41,13 +41,28 @@ return {
       extensions = {
         undo = {
           -- telescope-undo.nvim config, see below
-          -- use_delta = true,
+          use_delta = true,
           -- use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
-          -- side_by_side = true,
+          side_by_side = true,
+          diff_context_lines = 6,
           -- diff_context_lines = vim.o.scrolloff,
           -- entry_format = "state #$ID, $STAT, $TIME",
           -- time_format = "",
           -- saved_only = true,
+          layout_strategy = "vertical",
+          layout_config = {
+            preview_height = 0.7,
+            preview_cutoff = 0.2,
+
+            -- `prompt_position`: 提示符的位置，可以是 "bottom"、"top" 或 "hidden"。
+            -- `preview_cutoff`: 預覽窗口的高度，當窗口高度超過此值時，將不會顯示預覽窗口。
+            -- `width`: 定義 Telescope 窗口的寬度，可以是數字或百分比（例如，0.75）。
+            -- `height`: 定義 Telescope 窗口的高度，可以是數字或百分比。
+            -- `horizontal`: 定義水平布局的選項，例如 `preview_width`。
+            -- `vertical`: 定義垂直布局的選項，例如 `preview_height`。
+            -- `mirror`: 如果設置為 true，則會鏡像布局。
+            -- `side_by_side`: 如果設置為 true，則結果和預覽窗口將並排顯示。
+          },
         },
         -- no other extensions here, they can have their own spec too
       },

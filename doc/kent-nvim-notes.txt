@@ -372,6 +372,27 @@ config 裡面有一些 keymap 可以參考
 ------------------------------------------------------------------------------
 		                    *kent.keymaps.undo*
 
+- `u` : undo
+- CTRL-R : redo
+- `U`: Undo all latest changes on one line.
+
+>lua
+      mappings = {
+        i = {
+          ["<cr>"] = require("telescope-undo.actions").yank_additions,
+          ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+          ["<C-cr>"] = require("telescope-undo.actions").restore,
+          -- alternative defaults, for users whose terminals do questionable things with modified <cr>
+          ["<C-y>"] = require("telescope-undo.actions").yank_deletions,
+          ["<C-r>"] = require("telescope-undo.actions").restore,
+        },
+        n = {
+          ["y"] = require("telescope-undo.actions").yank_additions,
+          ["Y"] = require("telescope-undo.actions").yank_deletions,
+          ["u"] = require("telescope-undo.actions").restore,
+        },
+      },
+
 ------------------------------------------------------------------------------
 		                    *kent.keymaps.fugitive*
 
@@ -435,9 +456,19 @@ Commands	                 			*kent.commands*
     :lua vim.lsp.diagnostic.enable()
     :lua vim.lsp.diagnostic.disable()
 
+==============================================================================
+Macro	                 			*kent.macro*
 
-------------------------------------------------------------------------------
-						      *kent.search-and-replace*
+- q{0-9a-zA-Z"}: recoding into register
+- q: stop recoding
+- @{register}: execute
+- @@: Repeat the previous @{0-9a-z":*} [count] times.
+- Q: Repeat the last recorded register [count] times.
+
+vim 錄製後是放到 register裡面, 所以, 可以查看 register 內容, 就可以看到 marco 錄製的內容, 而這個特性, 還有另一個有趣的使用方式, 就是, 可以把要錄製的內容, 寫成一行, 然後, yank 到 register , 然後還能像使用 marco 一樣的播放
+
+==============================================================================
+Search And Replace			      *kent.search-and-replace*
 
 
 1. telescope search and send to qlist
@@ -447,7 +478,6 @@ Commands	                 			*kent.commands*
   :grep foo
   :cdo s/foo/bar
   :cfdo update
-`
 
 update 是指將文件保存並更新。
 因此，當你在 NeoVim 中執行 cfdo update 指令時，它會對當前打開的所有文件進行保存並更新操作。
