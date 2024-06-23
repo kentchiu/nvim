@@ -1,10 +1,9 @@
 return {
-  -- { "Mofiqul/dracula.nvim" },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false,
-  },
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   lazy = false,
+  -- },
   -- { "EdenEast/nightfox.nvim" },
   {
     "olimorris/onedarkpro.nvim",
@@ -23,11 +22,6 @@ return {
         -- "tokyonight-moon",
         -- "tokyonight-night",
         -- "tokyonight-storm",
-        -- "nightfox",
-        -- "duskfox",
-        -- "nordfox",
-        -- "terafox",
-        -- "carbonfox",
       }
 
       math.randomseed(os.time())

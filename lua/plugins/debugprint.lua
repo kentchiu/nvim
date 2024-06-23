@@ -18,7 +18,7 @@ return {
           textobj_below = "<leader>po",
           textobj_above = "<leader>pO",
           toggle_comment_debug_prints = "<leader>pt",
-          delete_debug_prints = "<leader>pd",
+          delete_debug_prints = "<leader>px",
         },
         visual = {
           variable_below = "<leader>pv",
