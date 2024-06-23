@@ -21,7 +21,7 @@ require("lazy").setup({
     -- editor
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.editor.mini-diff" },
-    { import = "lazyvim.plugins.extras.editor.fzf" },
+    -- { import = "lazyvim.plugins.extras.editor.fzf" },
     -- formatter
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     -- lang
