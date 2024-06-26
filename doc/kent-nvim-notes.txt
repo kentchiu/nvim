@@ -293,7 +293,7 @@ Diff	                 			*kent.diff*
 7. 列出目前還麼 commit 的檔案, :G
 8. 顯示效果在 sign: mini.diff, gitsings
 9. virtual select text 後可以用 :DiffviewFileHistory 比對歷史版本
-
+10. :{range}GcLog 可以顯示 range 內的異動版本記錄
 
 create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 
