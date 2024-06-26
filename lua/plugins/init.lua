@@ -74,7 +74,6 @@ local kentOnly = {
   { "mfussenegger/nvim-dap", enabled = false },
   { "rest-nvim/rest.nvim", enabled = false },
   { "epwalsh/obsidian.nvim", enabled = false },
-  { "kristijanhusak/vim-dadbod-ui", enabled = false },
 }
 
 local results = {}
