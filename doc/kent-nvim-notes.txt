@@ -292,6 +292,7 @@ Diff	                 			*kent.diff*
 6. 一個檔案的異動 history, 可以會從 history 中退到那個版本
 7. 列出目前還麼 commit 的檔案, :G
 8. 顯示效果在 sign: mini.diff, gitsings
+9. virtual select text 後可以用 :DiffviewFileHistory 比對歷史版本
 
 
 create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
