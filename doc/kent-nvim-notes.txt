@@ -22,11 +22,12 @@ window.比較不會被忽略, 然而有一些 keymap 不適用 <leader> key 觸�
 - `ya` : Yank all in braces   
 - `C-SPACE` : Expand selection.
 - `vii`,`via`: 針對 text-object 做選擇,很方便
-- `m`: Crete Fold
+- za: 切換折疊狀態
+- zR: 打開所有折疊
+- zM: 關閉所有折疊
 - LSP hover 連續觸發兩次後 'K K', cursor 會 focus float window,
   就可以當做一版的 window 操作
 - `C-w w`: focus 到其他window 
-- `<leader>fb`: list buffers
 
 - <A-j>	Move Down	n, i, v
 - <A-k>	Move Up	n, i, v

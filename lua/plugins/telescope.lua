@@ -5,13 +5,36 @@ return {
     keys = {
       { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent(cwd)" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>se", "<cmd>Telescope spell_suggest<cr>", desc = "Spell" },
       -- git
       { "<leader>gc", false },
       { "<leader>gs", false },
     },
     opts = {
       defaults = {
-        layout_strategy = "vertical",
+        -- bottom_paen, center, cursor, horizontal, vertical, flex
+        layout_strategy = "horizontal",
+        -- hidden, tail, absolute, smart, truncate, filename_first ,shorten
+        path_display = { "filename_first" },
+        dynamic_preview_title = true,
+        -- layout_config = {
+        --   width = 0.95,
+        --   preview_width = 0.6,
+        -- },
+      },
+      pickers = {
+        grep_string = {
+          layout_config = {
+            width = 0.95,
+            preview_width = 0.6,
+          },
+        },
+        live_grep = {
+          layout_config = {
+            width = 0.95,
+            preview_width = 0.6,
+          },
+        },
       },
     },
     config = function(_, opts)

@@ -12,7 +12,7 @@ return {
       -- require("github-theme").setup({})
       -- random theme
       local items = {
-        "onedark",
+        -- "onedark",
         -- "catppuccin-latte",
         "catppuccin",
         -- "catppuccin-frappe",
