@@ -42,9 +42,8 @@ telescope 的 查詢 float window, neo-test 的 test summary window,
 這些都有自己的 buffer scope keymaps, 而且只有foucs 停駐在特定的window
 時才會生效. 這時,可以用 `:map` 或是 `:verbose map` 查 keymaps
 
-
 ------------------------------------------------------------------------------
-		                    *kent.modes*
+		                    *kent.keymaps.modes*
 
 - n: Normal mode
 - i: Insert mode
@@ -305,7 +304,7 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 有衝突時, 用 git mergetool 可以調用出 neovim 的 3-ways merge mode
 
 ------------------------------------------------------------------------------
-		                    *kent.keymaps.issues*
+		                    *kent.diff.issues*
 目前遇到的狀況
 
 1. mini.diff 的 toogle 只能比對還沒 commit 的檔案
@@ -319,7 +318,7 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 
 
 ------------------------------------------------------------------------------
-		                    *kent.keymaps.minidiff*
+		                    *kent.diff.minidiff*
 This module provides mappings for common actions with diffs, like:
 - Apply and reset hunks.
 - "Hunk range under cursor" textobject.
@@ -336,7 +335,7 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 
 
 ------------------------------------------------------------------------------
-		                    *kent.keymaps.diffvie- `:DiffviewOpen`
+		                    *kent.diff.diffvie- `:DiffviewOpen`
 
 開啟後, 可以用 `g?` 看到 help
 
@@ -372,7 +371,7 @@ config 裡面有一些 keymap 可以參考
   - Defaults to `HEAD` if no rev is given.
 
 ------------------------------------------------------------------------------
-		                    *kent.keymaps.undo*
+		                    *kent.diff.undo*
 
 - `u` : undo
 - CTRL-R : redo
@@ -396,7 +395,7 @@ config 裡面有一些 keymap 可以參考
       },
 
 ------------------------------------------------------------------------------
-		                    *kent.keymaps.fugitive*
+		                    *kent.diff.fugitive*
 
 在 status view 裡面常用的資料有:
 
@@ -468,6 +467,16 @@ Macro	                 			*kent.macro*
 - Q: Repeat the last recorded register [count] times.
 
 vim 錄製後是放到 register裡面, 所以, 可以查看 register 內容, 就可以看到 marco 錄製的內容, 而這個特性, 還有另一個有趣的使用方式, 就是, 可以把要錄製的內容, 寫成一行, 然後, yank 到 register , 然後還能像使用 marco 一樣的播放
+
+==============================================================================
+Snippets			      *kent.snippets*
+
+- angular: 	https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks/angular
+- vue:     	https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks/vue
+- python:  	https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/python
+- sql:     	https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/sql.json  
+- typescript:	https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/javascript/typescript.json
+
 
 ==============================================================================
 Search And Replace			      *kent.search-and-replace*

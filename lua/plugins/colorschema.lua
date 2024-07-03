@@ -13,15 +13,15 @@ return {
       -- random theme
       local items = {
         -- "onedark",
-        -- "catppuccin-latte",
-        "catppuccin",
-        -- "catppuccin-frappe",
-        -- "catppuccin-macchiato",
-        -- "catppuccin-mocha",
-        "tokyonight",
-        -- "tokyonight-moon",
-        -- "tokyonight-night",
-        -- "tokyonight-storm",
+        "catppuccin-latte",
+        -- "catppuccin",
+        "catppuccin-frappe",
+        "catppuccin-macchiato",
+        "catppuccin-mocha",
+        -- "tokyonight",
+        "tokyonight-moon",
+        "tokyonight-night",
+        "tokyonight-storm",
       }
 
       math.randomseed(os.time())
