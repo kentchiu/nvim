@@ -477,6 +477,10 @@ Snippets			      *kent.snippets*
 - sql:     	https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/sql.json  
 - typescript:	https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/javascript/typescript.json
 
+wiki:
+- vue:		https://github.com/rafamadriz/friendly-snippets/wiki/Vue
+- typescript: 	https://github.com/rafamadriz/friendly-snippets/wiki/Javascript,-Typescript,-Javascriptreact,-Typescriptreact
+  
 
 ==============================================================================
 Search And Replace			      *kent.search-and-replace*
