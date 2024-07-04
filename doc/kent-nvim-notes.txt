@@ -505,6 +505,8 @@ NVIM Config debug			         *kent.nvim-config-debug*
 
 `nvim -U none`
 
+- `:=`: equivalent to `:lua ={expr}` 
+
 
 ==============================================================================
 MISC	                         			*kent.misc*
