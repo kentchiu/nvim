@@ -31,16 +31,16 @@ return {
       vim.cmd(random_schema)
     end,
   },
-  -- {
-  --   "brenoprata10/nvim-highlight-colors",
-  --   config = function()
-  --     -- Ensure termguicolors is enabled if not already
-  --     vim.opt.termguicolors = true
-  --     require("nvim-highlight-colors").setup({
-  --       ---Render style
-  --       ---@usage 'background'|'foreground'|'virtual'
-  --       render = "background",
-  --     })
-  --   end,
-  -- },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    config = function()
+      -- Ensure termguicolors is enabled if not already
+      vim.opt.termguicolors = true
+      require("nvim-highlight-colors").setup({
+        ---Render style
+        ---@usage 'background'|'foreground'|'virtual'
+        render = "background",
+      })
+    end,
+  },
 }
