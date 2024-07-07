@@ -12,8 +12,8 @@ return {
       -- require("github-theme").setup({})
       -- random theme
       local items = {
-        -- "onedark",
-        "catppuccin-latte",
+        "onedark",
+        -- "catppuccin-latte",
         -- "catppuccin",
         "catppuccin-frappe",
         "catppuccin-macchiato",
