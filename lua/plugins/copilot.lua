@@ -1,5 +1,16 @@
 return {
   {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = false,
+        help = true,
+      },
+    },
+  },
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {
       debug = true, -- Enable debugging
