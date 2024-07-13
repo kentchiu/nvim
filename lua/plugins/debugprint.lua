@@ -67,7 +67,7 @@ return {
       local wk = require("which-key")
 
       wk.add({
-        { "<leader>p", group = "+print" }, -- group
+        { "<leader>p", group = "+print", icon = "" }, -- group
       })
     end,
   },
