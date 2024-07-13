@@ -12,9 +12,10 @@ vim.keymap.set("n", "<leader>bc", "<cmd>%s/\\r$//g<cr>", { desc = "remove ^M" })
 vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
 -- HL as amplified versions of hjkl
-vim.keymap.set({ "n", "v", "o", "x" }, "H", "0^") -- "beginning of line"
-vim.keymap.set({ "n", "v", "o", "x" }, "L", "$") --"end of line"
-vim.keymap.set({ "n", "v", "o", "x" }, "M", "gm") --"middle of line"
+vim.keymap.set({ "n", "x" }, "H", "0^") -- beginning of line
+vim.keymap.set({ "n" }, "L", "$") --end of line
+vim.keymap.set({ "x" }, "L", "g_") --end of line (without eol character)
+vim.keymap.set({ "n", "x" }, "M", "%") --middle of line
 
 -- cd to current folder
 -- vim.keymap.set("n", "<leader>bc", "<cmd>cd %:p:h<cr>", { desc = "Change to current folder" })
