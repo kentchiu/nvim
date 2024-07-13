@@ -22,6 +22,8 @@ return {
         "tokyonight-moon",
         "tokyonight-night",
         "tokyonight-storm",
+        --
+        "cyberdream",
       }
 
       math.randomseed(os.time())
@@ -30,6 +32,11 @@ return {
       -- print("Theme: " .. random_schema)
       vim.cmd(random_schema)
     end,
+  },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
   },
   {
     "brenoprata10/nvim-highlight-colors",

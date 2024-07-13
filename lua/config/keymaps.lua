@@ -30,7 +30,7 @@ vim.keymap.del("n", "<leader>ft")
 vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "Termial" })
 
 -- disable lazygit  keymap
-vim.keymap.del("n", "<leader>gg") -- Lazygit (Root Dir)
+-- vim.keymap.del("n", "<leader>gg") -- Lazygit (Root Dir)
 vim.keymap.del("n", "<leader>gG") -- Lazygit (cwd)
 vim.keymap.del("n", "<leader>gf") -- Laygit Current File History
 vim.keymap.del("n", "<leader>gl") -- Lazygit Log
@@ -42,3 +42,7 @@ vim.keymap.del("n", "<leader>gb") -- Laygit Blame line
 -- vim.api.nvim_set_keymap("n", "<leader>gb", ":G blame<CR>", { noremap = true, silent = true, desc = "Git blame" })
 -- vim.keymap.set("n", "<leader>gl", ":Gclog<CR>", { desc = "Commit Log in Qfix" })
 vim.keymap.set("n", "<leader>gb", "<cmd>DiffviewFileHistory<cr>", { desc = "Branch History" })
+
+-- tab keymap
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>")
+vim.keymap.set("n", "<leader>gd", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })

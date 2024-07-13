@@ -342,7 +342,7 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 
 - `:DiffviewOpen` : 顯示當前工作目錄的所有變更（如果有未提交的變更）或當前分支與默認分支（通常是 origin/main 或 origin/master）之間的差異。
 - `:DiffviewOpen HEAD~2`: 顯示當前 HEAD 與兩個提交之前的提交（即 HEAD~2）之間的差異。
-- `DiffviewOpen HEAD~2 --cached`: Diff the index against a git rev  (測試結果跟上面的沒兩樣)
+- `:DiffviewOpen HEAD~2 --cached`: Diff the index against a git rev  (測試結果跟上面的沒兩樣)
 - `:DiffviewOpen HEAD~4..HEAD~2`: 顯示 HEAD~4 和 HEAD~2 之間的差異，即四個提交之前的版本與兩個提交之前的版本之間的變更。
 - `:DiffviewOpen d4a7b0d`: 顯示提交哈希為 d4a7b0d 的提交與它的父提交之間的差異。
 - `:DiffviewOpen d4a7b0d^!`: 顯示提交哈希為 d4a7b0d 的提交與它的父提交之間的差異。^! 的意思是「僅此提交」的變更。
@@ -443,6 +443,76 @@ dq                      Close all but one diff buffer, and |:diffoff|! the
 
                                                 *fugitive_d?*
 d?                      Show this help.
+
+
+------------------------------------------------------------------------------
+		                    *kent.diff.neogit-telescope*
+
+				    
+# Neogit-Telescope 集成命令快速参考
+
+## 在 Neogit 缓冲区中：
+
+- `<C-p>`: 打开 Telescope 以搜索分支
+- `<C-f>`: 使用 Telescope 搜索提交日志
+- `<C-s>`: 通过 Telescope 查看和管理 stashes
+- `gb`: 使用 Telescope 界面进行交互式 rebase
+
+## 全局命令：
+
+- `:Neogit kind=tab`: 在新标签页中打开 Neogit
+- `:Telescope git_branches`: 列出并切换分支
+- `:Telescope git_commits`: 浏览所有提交
+- `:Telescope git_bcommits`: 浏览当前文件的提交历史
+- `:Telescope git_stash`: 查看和管理 stash
+
+## 提示：
+
+- 在大多数 Telescope 窗口中，您可以使用 `<C-n>` 和 `<C-p>` 来上下导航
+- 使用 `<CR>` (回车键) 来选择一个项目
+- 在 Telescope 窗口中输入文本可以进行实时过滤
+
+注意：具体的快捷键可能会根据您的 Neovim 配置略有不同。您可以使用 `:h neogit` 和 `:h telescope` 查看更多详细信息。
+
+
+------------------------------------------------------------------------------
+		                    *kent.diff.neogit-diffview*
+
+# Neogit-Diffview 集成命令快速参考
+
+## 在 Neogit 状态缓冲区中：
+
+- `dd`: 打开 Diffview 查看所有更改
+- `dh`: 打开文件历史视图
+- `dv`: 选择要比较的提交或引用
+
+## Diffview 命令：
+
+- `:DiffviewOpen`: 打开 Diffview
+- `:DiffviewFileHistory %`: 查看当前文件的历史
+- `:DiffviewOpen HEAD~2`: 比较当前状态与两个提交之前的状态
+- `:DiffviewOpen main...feature-branch`: 比较两个分支
+
+## 在 Diffview 中的快捷键：
+
+- `<tab>`: 在左右面板之间切换焦点
+- `<leader>e`: 切换文件树视图
+- `]c` 和 `[c`: 跳转到下一个/上一个更改
+- `<leader>co`: 选择冲突版本（ours）
+- `<leader>ct`: 选择冲突版本（theirs）
+- `<leader>cb`: 选择冲突版本（base）
+- `dx`: 放弃更改
+- `do`: 获取更改（相当于 `:diffget`）
+- `dp`: 应用更改（相当于 `:diffput`）
+
+## 提示：
+
+- 在 Diffview 中，您可以使用常规的 Vim 导航命令
+- 使用 `:h diffview` 查看完整的文档和快捷键列表
+- Diffview 与 Neogit 的集成使得在进行复杂的 Git 操作时更容易理解和管理更改
+
+注意：具体的快捷键可能会根据您的 Neovim 配置略有不同。始终检查您的配置或使用 `:h` 命令来确认快捷键。
+
 
 ==============================================================================
 Commands	                 			*kent.commands*
