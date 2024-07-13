@@ -29,12 +29,14 @@ window.比較不會被忽略, 然而有一些 keymap 不適用 <leader> key 觸�
   就可以當做一版的 window 操作
 - `C-w w`: focus 到其他window 
 
-- <A-j>	Move Down	n, i, v
-- <A-k>	Move Up	n, i, v
+- <A-j>	Move Down	n, i, x
+- <A-k>	Move Up		n, i, x
 - <S-h>	Prev Buffer	n
 - <S-l>	Next Buffer	n
 - [b	Prev Buffer	n
 - ]b	Next Buffer	n
+- gt	Next Tab	n
+- gT	Previous Tab	n
 
 
 有些 keymap 是在特定的 buffer (window) 裡面才有效的, ex: quicklist, 或者是

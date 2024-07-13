@@ -32,17 +32,17 @@ vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "
 
 -- disable lazygit  keymap
 -- vim.keymap.del("n", "<leader>gg") -- Lazygit (Root Dir)
-vim.keymap.del("n", "<leader>gG") -- Lazygit (cwd)
-vim.keymap.del("n", "<leader>gf") -- Laygit Current File History
-vim.keymap.del("n", "<leader>gl") -- Lazygit Log
-vim.keymap.del("n", "<leader>gL") -- Lazygit Log
-vim.keymap.del("n", "<leader>gb") -- Laygit Blame line
+-- vim.keymap.del("n", "<leader>gG") -- Lazygit (cwd)
+-- vim.keymap.del("n", "<leader>gf") -- Laygit Current File History
+-- vim.keymap.del("n", "<leader>gl") -- Lazygit Log
+-- vim.keymap.del("n", "<leader>gL") -- Lazygit Log
+-- vim.keymap.del("n", "<leader>gb") -- Laygit Blame line
 
 -- keymap 的啟動會比所有的plugin 還晚, 無法在 plugin 裡面 overwrite lazymap default keymap
 -- 所有目前只能寫在這裡, 才會 overwrite lazymap 的 keymap
 -- vim.api.nvim_set_keymap("n", "<leader>gb", ":G blame<CR>", { noremap = true, silent = true, desc = "Git blame" })
 -- vim.keymap.set("n", "<leader>gl", ":Gclog<CR>", { desc = "Commit Log in Qfix" })
-vim.keymap.set("n", "<leader>gb", "<cmd>DiffviewFileHistory<cr>", { desc = "Branch History" })
+-- vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory<cr>", { desc = "Branch History" })
 
 -- tab keymap
 vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>")
