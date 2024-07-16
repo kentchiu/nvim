@@ -27,12 +27,28 @@ return {
           layout_config = {
             width = 0.95,
             preview_width = 0.6,
+            preview_cutoff = 20,
           },
         },
         live_grep = {
           layout_config = {
             width = 0.95,
             preview_width = 0.6,
+            preview_cutoff = 20,
+          },
+        },
+        find_files = {
+          layout_config = {
+            width = 0.95,
+            preview_width = 0.6,
+            preview_cutoff = 20,
+          },
+        },
+        oldfiles = {
+          layout_config = {
+            width = 0.95,
+            preview_width = 0.6,
+            preview_cutoff = 20,
           },
         },
       },

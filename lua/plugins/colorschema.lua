@@ -6,7 +6,7 @@ return {
     config = function()
       -- random theme
       local items = {
-        "onedark",
+        -- "onedark",
         -- "catppuccin-latte",
         -- "catppuccin",
         "catppuccin-frappe",
