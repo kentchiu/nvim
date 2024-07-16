@@ -1,15 +1,9 @@
 return {
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   lazy = false,
-  -- },
-  -- { "EdenEast/nightfox.nvim" },
   {
-    "olimorris/onedarkpro.nvim",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      -- require("github-theme").setup({})
       -- random theme
       local items = {
         "onedark",
@@ -29,14 +23,8 @@ return {
       math.randomseed(os.time())
       local random_index = math.random(1, #items)
       local random_schema = "colorscheme" .. " " .. items[random_index]
-      -- print("Theme: " .. random_schema)
       vim.cmd(random_schema)
     end,
-  },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
   },
   {
     "brenoprata10/nvim-highlight-colors",

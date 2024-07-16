@@ -64,7 +64,11 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      opts.defaults["<leader>p"] = { name = "print" }
+      local wk = require("which-key")
+
+      wk.add({
+        { "<leader>p", group = "+print", icon = "" }, -- group
+      })
     end,
   },
 }
