@@ -49,6 +49,7 @@ local others = {
       },
     },
   },
+  { "nvim-treesitter/nvim-treesitter-context" },
 }
 
 local disables = {
