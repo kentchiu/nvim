@@ -49,7 +49,6 @@ local others = {
       },
     },
   },
-  { "nvim-treesitter/nvim-treesitter-context" },
 }
 
 local disables = {
@@ -60,7 +59,6 @@ local disables = {
   { "rcarriga/nvim-notify", enabled = false },
   { "folke/noice.nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
-  { "nvim-pack/nvim-spectre", enabled = false },
   { "folke/persistence.nvim", enabled = false },
   { "lukas-reineke/headlines.nvim", enabled = false },
 }
