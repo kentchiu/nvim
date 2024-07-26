@@ -305,6 +305,22 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 
 有衝突時, 用 git mergetool 可以調用出 neovim 的 3-ways merge mode
 
+
+
+------------------------------------------------------------------------------
+		                    *kent.diff.checkout*
+
+很多情況下, 發生衝突是, 都會以一個其中一個 branch 為主, 這是可以使用 git
+裡面的 `ours`, `theirs` 的參數處理, 這個參數是在 merged 後發生 conflict 時,
+使用 `checkout` 取出特定 branch 上面的版本來取代目前衝突的檔案
+
+>git
+  git merge feature_branch
+  # conflict at  src/foo/bar.txt
+  git checkout --theirs src/foo/bat.txt
+  git commit -am 'use src/foo/bar.txt in feature' 
+>
+
 ------------------------------------------------------------------------------
 		                    *kent.diff.issues*
 目前遇到的狀況
@@ -313,10 +329,6 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 2. DiffviewFileHistory % 只能比對已經 commit 的版本, 而且, 兩邊的無法異動
    先找出想要比對的 rev ,然後用 `DiffviewOpen rev` 這樣, 右邊就會是目前版本,
    左邊是歷史版本, 兩邊都能修改, 但是,改右邊就好
-
-
-
-
 
 
 ------------------------------------------------------------------------------
