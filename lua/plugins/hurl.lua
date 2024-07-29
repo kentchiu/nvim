@@ -41,6 +41,7 @@ return {
     opts = function(_, opts)
       local wk = require("which-key")
       wk.add({
+        mode = { "n", "v" },
         { "<leader>r", group = "+run", icon = "" }, -- group
       })
     end,

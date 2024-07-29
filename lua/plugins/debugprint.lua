@@ -67,6 +67,7 @@ return {
       local wk = require("which-key")
 
       wk.add({
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
         { "<leader>p", group = "+print", icon = "" }, -- group
       })
     end,
