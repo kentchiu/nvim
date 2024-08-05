@@ -3,8 +3,9 @@ return {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewOpen<cr>", { desc = "Open Changes" })
-      vim.keymap.set("n", "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", { desc = "File History" })
+      vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewOpen<cr>", { desc = "DV - Open Changes" })
+      vim.keymap.set("n", "<leader>g%", "<cmd>DiffviewFileHistory %<cr>", { desc = "DV - Current File History" })
+      vim.keymap.set("v", "<leader>gv", "<cmd>'<,'>DiffviewFileHistory<cr>", { desc = "DV - Current Selection" })
     end,
   },
   {
