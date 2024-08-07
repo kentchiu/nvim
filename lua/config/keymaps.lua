@@ -45,7 +45,7 @@ vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "
 
 -- tab keymap
 -- vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>")
-vim.keymap.set("n", "<leader>gd", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })
+vim.keymap.set("n", "<leader><tab>h", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })
 vim.keymap.set("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in vslipt" })
 
 -- map q: to nop in command mode
