@@ -58,20 +58,15 @@ local disables = {
   { "nvimdev/dashboard-nvim", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
   { "folke/noice.nvim", enabled = false },
-  { "akinsho/bufferline.nvim", enabled = false },
+  -- { "akinsho/bufferline.nvim", enabled = false },
   { "folke/persistence.nvim", enabled = false },
-  { "lukas-reineke/headlines.nvim", enabled = false },
 }
-
+--
 local kentOnly = {
   { "keaising/im-select.nvim", enabled = false },
   { "nvim-neotest/neotest", enabled = false },
   { "zbirenbaum/copilot.lua", enabled = false },
   { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
-  { "jay-babu/mason-nvim-dap", enabled = false },
-  { "mfussenegger/nvim-jdtls", enabled = false },
-  { "mfussenegger/nvim-dap", enabled = false },
-  { "rest-nvim/rest.nvim", enabled = false },
   { "epwalsh/obsidian.nvim", enabled = false },
 }
 
