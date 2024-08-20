@@ -1,6 +1,6 @@
 return {
   {
-    "scottmckendry/cyberdream.nvim",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
@@ -17,7 +17,6 @@ return {
         "tokyonight-night",
         "tokyonight-storm",
         --
-        "cyberdream",
       }
 
       math.randomseed(os.time())

@@ -48,7 +48,6 @@ require("lazy").setup({
     -- ui
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
-    { "nvim-treesitter/nvim-treesitter-context" },
     -- util
     -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     -- import/override with your plugins
