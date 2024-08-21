@@ -75,7 +75,7 @@ return {
 請提供詳細的反饋,包括具體的更正和改進建議。你的目標是確保文檔在技術上準確、結構清晰、易於理解,並能有效地傳達信息。 
           ]],
           mapping = "<leader>acc",
-          description = "Doccument Review",
+          description = ".NET Assistant",
           -- selection = require("CopilotChat.select").visual,
         },
 
