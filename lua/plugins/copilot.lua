@@ -75,7 +75,7 @@ return {
 請提供詳細的反饋,包括具體的更正和改進建議。你的目標是確保文檔在技術上準確、結構清晰、易於理解,並能有效地傳達信息。 
           ]],
           mapping = "<leader>acc",
-          description = ".NET Assistant",
+          description = "Doccument Review",
           -- selection = require("CopilotChat.select").visual,
         },
 
@@ -91,7 +91,7 @@ return {
 5. 使用的Library需要是最新的版本, 包含 SqlSuger, Quartz, Dapper, Swagger, AutoMapper, FluentValidation, Nlog   
     ]],
           mapping = "<leader>acd",
-          description = "Doccument Review",
+          description = ".NET Assistant",
         },
       },
     },
