@@ -14,7 +14,7 @@ require("lazy").setup({
     -- import any extras modules here
     -- coding
     { import = "lazyvim.plugins.extras.coding.copilot" },
-    { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+    -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     -- dap
     { import = "lazyvim.plugins.extras.dap.core" },

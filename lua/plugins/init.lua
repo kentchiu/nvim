@@ -86,7 +86,6 @@ local kentOnly = {
   { "keaising/im-select.nvim", enabled = false },
   { "nvim-neotest/neotest", enabled = false },
   { "zbirenbaum/copilot.lua", enabled = false },
-  { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
   { "epwalsh/obsidian.nvim", enabled = false },
 }
 
@@ -97,7 +96,7 @@ results = vim.list_extend(results, others)
 results = vim.list_extend(results, disables)
 
 local user = os.getenv("USER")
-if user ~= "kent" then
+if user ~= "kent" and user ~= "kentchiu" then
   results = vim.list_extend(results, kentOnly)
 end
 
