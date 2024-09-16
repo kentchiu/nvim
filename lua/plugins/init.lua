@@ -87,6 +87,7 @@ local kentOnly = {
   { "nvim-neotest/neotest", enabled = false },
   { "zbirenbaum/copilot.lua", enabled = false },
   { "epwalsh/obsidian.nvim", enabled = false },
+  { "yetone/avante.nvim", enabled = false },
 }
 
 local results = {}
