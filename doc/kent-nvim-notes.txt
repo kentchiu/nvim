@@ -391,6 +391,12 @@ config 裡面有一些 keymap 可以參考
 - CTRL-R : redo
 - `U`: Undo all latest changes on one line.
 
+在telescope-undo 裡面,可以使用下面的操作
+
+- <C-cr> or <C-r>: revert to that state
+- <cr>:  yank to register
+- <S-cr> or <C-y>: yank the deletions
+
 >lua
       mappings = {
         i = {
