@@ -12,7 +12,8 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    enabled = false,
+    enabled = true,
+    lazy = false,
     opts = {
       debug = true, -- Enable debugging
       prompts = {
