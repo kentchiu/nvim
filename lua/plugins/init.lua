@@ -80,6 +80,7 @@ local disables = {
   { "folke/noice.nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
   { "folke/persistence.nvim", enabled = false },
+  { "zbirenbaum/copilot-cmp", enabled = false },
 }
 --
 local kentOnly = {

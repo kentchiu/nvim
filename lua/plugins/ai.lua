@@ -206,6 +206,36 @@ You are   a front-end developer who is proficient in Vue 3 and its related techn
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
       },
+      mappings = {
+        --- @class AvanteConflictMappings
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          all_theirs = "ca",
+          both = "cb",
+          cursor = "cc",
+          next = "]x",
+          prev = "[x",
+        },
+        suggestion = {
+          accept = "<C-y>",
+          next = "<C-p>",
+          prev = "<C-n>",
+          dismiss = "<C-]>",
+        },
+        jump = {
+          next = "]]",
+          prev = "[[",
+        },
+        submit = {
+          normal = "<CR>",
+          insert = "<C-s>",
+        },
+        sidebar = {
+          switch_windows = "<Tab>",
+          reverse_switch_windows = "<S-Tab>",
+        },
+      },
       hints = { enabled = true },
       windows = {
         ---@type "right" | "left" | "top" | "bottom"
@@ -244,14 +274,14 @@ You are   a front-end developer who is proficient in Vue 3 and its related techn
           },
         },
       },
-      -- {
-      --   -- Make sure to set this up properly if you have lazy=true
-      --   "MeanderingProgrammer/render-markdown.nvim",
-      --   opts = {
-      --     file_types = { "markdown", "Avante" },
-      --   },
-      --   ft = { "markdown", "Avante" },
-      -- },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
     },
   },
 }
