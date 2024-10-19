@@ -16,23 +16,29 @@ return {
       mode = "popup",
       -- Default formatter
       formatters = {
-        json = { "jq" }, -- Make sure you have install jq in your system, e.g: brew install jq
+        json = { "jq" },
         html = {
-          "prettier", -- Make sure you have install prettier in your system, e.g: npm install -g prettier
+          "prettier",
           "--parser",
           "html",
+        },
+        xml = {
+          "tidy",
+          "-xml",
+          "-i",
+          "-q",
         },
       },
     },
     keys = {
       -- Run API request
       -- { "<leader>rR", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
-      { "<leader>rr", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
+      { "<leader>rr", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request", mode = { "n", "v" } },
+      { "<leader>rv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode", mode = { "n", "v" } },
       { "<leader>rRe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
       { "<leader>rRm", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
-      { "<leader>rRv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
       -- Run Hurl request in visual mode
-      { "<leader>rr", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
+      -- { "<leader>rr", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
     },
   },
 
