@@ -9,13 +9,13 @@ return {
         -- "onedark",
         -- "catppuccin-latte",
         -- "catppuccin",
-        "catppuccin-frappe",
-        "catppuccin-macchiato",
-        "catppuccin-mocha",
+        -- "catppuccin-frappe",
+        -- "catppuccin-macchiato",
+        -- "catppuccin-mocha",
         -- "tokyonight",
         "tokyonight-moon",
-        "tokyonight-night",
-        "tokyonight-storm",
+        -- "tokyonight-night",
+        -- "tokyonight-storm",
         --
       }
 
