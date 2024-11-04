@@ -50,3 +50,6 @@ vim.keymap.set("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc =
 
 -- map q: to nop in command mode
 vim.keymap.set("c", "q:", "<nop>", { silent = true })
+
+-- convinent keymap for code companion
+vim.cmd([[cab cc CodeCompanion]])
