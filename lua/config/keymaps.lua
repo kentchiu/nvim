@@ -28,15 +28,7 @@ vim.keymap.set("n", "<leader>fa", '<cmd>let @+ = expand("%:.")<CR>', { desc = "C
 -- vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- vim.keymap.del("n", "<leader>ft")
-vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "Terminal" })
-
--- disable lazygit  keymap
--- vim.keymap.del("n", "<leader>gg") -- Lazygit (Root Dir)
--- vim.keymap.del("n", "<leader>gG") -- Lazygit (cwd)
--- vim.keymap.del("n", "<leader>gf") -- Laygit Current File History
--- vim.keymap.del("n", "<leader>gl") -- Lazygit Log
--- vim.keymap.del("n", "<leader>gL") -- Lazygit Log
--- vim.keymap.del("n", "<leader>gb") -- Laygit Blame line
+-- vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "Terminal" })
 
 -- keymap 的啟動會比所有的plugin 還晚, 無法在 plugin 裡面 overwrite lazymap default keymap
 -- 所有目前只能寫在這裡, 才會 overwrite lazymap 的 keymap
