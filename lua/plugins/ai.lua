@@ -303,7 +303,7 @@ return {
   {
     "olimorris/codecompanion.nvim",
     keys = {
-      { "<leader>ae", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "[CC]Inline assistant" },
+      { "<leader>ai", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "[CC]Inline assistant" },
       { "<leader>ac", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "[CC]Chat buffer" },
       { "<leader>ap", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "[CC]Action Palette" },
     },
