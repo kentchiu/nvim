@@ -176,6 +176,7 @@ S	Flash Treesitter	n, o, x
 ------------------------------------------------------------------------------
 			                        *kent.keymaps.telescope*
 
+- foo → press <C-k> → "foo"  → "foo" -tmd (with telescope-live-grep-args.nvim)
 - CTRL-/ :  Show mappings for picker actions (insert mode)
 - `?` : Show mappings for picker actions (normal mode)  
 - CTRL-q : Send all items not filtered to quickfixlist (qflist)

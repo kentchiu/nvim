@@ -1,6 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+
     priority = 1000, -- make sure to load this before all the other start plugins
     keys = {
       { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent(cwd)" },
@@ -53,16 +54,16 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
-      -- configs for us. We won't use data, as everything is in it's own namespace (telescope
-      -- defaults, as well as each extension).
-
-      require("telescope").setup(opts)
-      -- See `:help telescope.builtin`
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>sf", builtin.builtin, { desc = "Builtin" })
-    end,
+    -- config = function(_, opts)
+    --   -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
+    --   -- configs for us. We won't use data, as everything is in it's own namespace (telescope
+    --   -- defaults, as well as each extension).
+    --
+    --   require("telescope").setup(opts)
+    --   -- See `:help telescope.builtin`
+    --   local builtin = require("telescope.builtin")
+    --   vim.keymap.set("n", "<leader>sf", builtin.builtin, { desc = "Builtin" })
+    -- end,
   },
   {
     "debugloop/telescope-undo.nvim",
@@ -113,5 +114,41 @@ return {
       require("telescope").setup(opts)
       require("telescope").load_extension("undo")
     end,
+  },
+  { "nvim-telescope/telescope-live-grep-args.nvim" },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        config = function()
+          LazyVim.on_load("telescope.nvim", function()
+            require("telescope").load_extension("live_grep_args")
+          end)
+        end,
+      },
+    },
+    keys = {
+      {
+        "<leader>/",
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
+        desc = "Grep with Args (root dir)",
+      },
+    },
+    opts = {
+      extensions = {
+        live_grep_args = {
+          mappings = {
+            i = {
+              ["<C-k>"] = function(picker)
+                require("telescope-live-grep-args.actions").quote_prompt()(picker)
+              end,
+            },
+          },
+        },
+      },
+    },
   },
 }

@@ -24,17 +24,6 @@ vim.keymap.set("n", "<leader>fP", '<cmd>let @+ = expand("%")<CR>', { desc = "Cop
 vim.keymap.set("n", "<leader>fp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 vim.keymap.set("n", "<leader>fa", '<cmd>let @+ = expand("%:.")<CR>', { desc = "Copy Relative File Path" })
 
--- Inspect TreeSitter
--- vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
-
--- vim.keymap.del("n", "<leader>ft")
--- vim.keymap.set("n", "<leader>ft", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "Terminal" })
-
--- keymap 的啟動會比所有的plugin 還晚, 無法在 plugin 裡面 overwrite lazymap default keymap
--- 所有目前只能寫在這裡, 才會 overwrite lazymap 的 keymap
--- vim.keymap.set("n", "<leader>gl", ":Gclog<CR>", { desc = "Commit Log in Qfix" })
--- vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory<cr>", { desc = "Branch History" })
-
 -- tab keymap
 -- vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "<leader><tab>h", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })
