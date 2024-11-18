@@ -27,12 +27,12 @@ return {
           hide_during_completion = true,
           debounce = 75,
           keymap = {
-            accept = "<M-l>",
+            accept = "<C-y>",
             accept_word = false,
             accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
+            next = "<C-n>",
+            prev = "<C-p>",
+            dismiss = "<C-x>",
           },
         },
         filetypes = {
@@ -191,7 +191,7 @@ return {
           accept = "<C-y>",
           next = "<C-n>",
           prev = "<C-p>",
-          dismiss = "<C-]>",
+          dismiss = "<C-x>",
         },
         jump = {
           next = "]]",
@@ -302,6 +302,7 @@ return {
   },
   {
     "olimorris/codecompanion.nvim",
+    enabled = false,
     keys = {
       { "<leader>ai", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "[CC]Inline assistant" },
       { "<leader>ac", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "[CC]Chat buffer" },

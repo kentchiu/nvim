@@ -4,9 +4,9 @@ return {
     {
       "-",
       function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        require("mini.files").open(LazyVim.root(), true)
       end,
-      desc = "Open mini.files (directory of current file)",
+      desc = "Open mini.files (root)",
     },
     {
       "<leader>e",
@@ -15,12 +15,12 @@ return {
       end,
       desc = "Open mini.files (directory of current file)",
     },
-    {
-      "<leader>fm",
-      function()
-        require("mini.files").open(LazyVim.root(), true)
-      end,
-      desc = "Open mini.files (root)",
-    },
+    -- {
+    --   "<leader>fm",
+    --   function()
+    --     require("mini.files").open(LazyVim.root(), true)
+    --   end,
+    --   desc = "Open mini.files (root)",
+    -- },
   },
 }
