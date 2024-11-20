@@ -24,6 +24,10 @@ vim.keymap.set("n", "<leader>fP", '<cmd>let @+ = expand("%")<CR>', { desc = "Cop
 vim.keymap.set("n", "<leader>fp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 vim.keymap.set("n", "<leader>fa", '<cmd>let @+ = expand("%:.")<CR>', { desc = "Copy Relative File Path" })
 
+vim.keymap.set("n", "<leader>ft", function()
+  Snacks.terminal.open(nil, { win = { position = "right" } })
+end, { desc = "Open Terminal in right" })
+
 -- tab keymap
 -- vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "<leader><tab>h", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })

@@ -12,17 +12,20 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    -- coding
+    -- ai
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+    -- coding
+    { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     -- dap
     { import = "lazyvim.plugins.extras.dap.core" },
     -- editor
+    -- { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.editor.mini-diff" },
     { import = "lazyvim.plugins.extras.editor.mini-files" },
-    -- { import = "lazyvim.plugins.extras.editor.fzf" },
+    { import = "lazyvim.plugins.extras.editor.telescope" },
     -- formatter
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     -- lang

@@ -4,12 +4,12 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    bigfile = { enabled = false },
+    bigfile = { enabled = true },
     notifier = {
       enabled = true,
       -- timeout = 3000,
     },
-    quickfile = { enabled = false },
+    quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
     styles = {
@@ -17,6 +17,7 @@ return {
         wo = { wrap = true }, -- Wrap notifications
       },
     },
+    dashboard = { enabled = false },
   },
   keys = {
     {
