@@ -38,3 +38,10 @@ vim.keymap.set("c", "q:", "<nop>", { silent = true })
 
 -- convinent keymap for code companion
 vim.cmd([[cab cc CodeCompanion]])
+
+-- Disable C-A which mis triigers which tmux leader key
+vim.keymap.set("n", "<C-a>", "<nop>")
+
+vim.keymap.set("n", "<leader>ps", "<cmd>source % <CR>", { desc = "Source Current File" })
+vim.keymap.set("n", "<leader>pe", ":.lua<CR>", { desc = "Evaluate current line" })
+vim.keymap.set("v", "<leader>pe", ":lua<CR>", { desc = "Evaluate current selection" })

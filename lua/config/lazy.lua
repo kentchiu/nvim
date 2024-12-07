@@ -23,6 +23,7 @@ require("lazy").setup({
     -- editor
     -- { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.editor.mini-diff" },
     { import = "lazyvim.plugins.extras.editor.mini-files" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
@@ -52,6 +53,7 @@ require("lazy").setup({
     -- ui
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+    { import = "lazyvim.plugins.extras.ui.smear-cursor" },
     -- util
     -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     -- import/override with your plugins

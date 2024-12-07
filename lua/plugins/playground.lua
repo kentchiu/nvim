@@ -6,6 +6,7 @@ return {
     },
     keys = {
       { "<leader>add", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
+      { "<leader>ad/", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
       { "<leader>ads", "<cmd>AiderTerminalSend<cr>", desc = "Send to Aider", mode = { "n", "v" } },
       { "<leader>adc", "<cmd>AiderQuickSendCommand<cr>", desc = "Send Command To Aider" },
       { "<leader>adb", "<cmd>AiderQuickSendBuffer<cr>", desc = "Send Buffer To Aider" },
