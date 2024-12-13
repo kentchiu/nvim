@@ -140,6 +140,11 @@ return {
     opts = {
       extensions = {
         live_grep_args = {
+          layout_config = {
+            width = 0.95,
+            preview_width = 0.6,
+            preview_cutoff = 20,
+          },
           mappings = {
             i = {
               ["<C-k>"] = function(picker)

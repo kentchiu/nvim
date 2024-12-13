@@ -1,12 +1,8 @@
 {
-  "extras": [
-    "lazyvim.plugins.extras.editor.inc-rename",
-    "lazyvim.plugins.extras.lang.toml",
-    "lazyvim.plugins.extras.ui.smear-cursor",
-    "lazyvim.plugins.extras.util.mini-hipatterns"
-  ],
+  "extras": [],
   "news": {
     "NEWS.md": "7429"
   },
   "version": 7
 }
+

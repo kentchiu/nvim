@@ -37,7 +37,7 @@ vim.keymap.set("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc =
 vim.keymap.set("c", "q:", "<nop>", { silent = true })
 
 -- convinent keymap for code companion
-vim.cmd([[cab cc CodeCompanion]])
+-- vim.cmd([[cab cc CodeCompanion]])
 
 -- Disable C-A which mis triigers which tmux leader key
 vim.keymap.set("n", "<C-a>", "<nop>")

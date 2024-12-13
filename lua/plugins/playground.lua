@@ -19,6 +19,14 @@ return {
       --- The below dependencies are optional
       "catppuccin/nvim",
     },
-    config = true,
+    opts = {
+      -- Command line arguments passed to aider
+      args = {
+        "--no-auto-commits",
+        "--pretty",
+        "--stream",
+        "--watch-file",
+      },
+    },
   },
 }
