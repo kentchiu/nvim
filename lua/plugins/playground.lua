@@ -15,7 +15,7 @@ return {
     },
     dependencies = {
       "folke/snacks.nvim",
-      "nvim-telescope/telescope.nvim",
+      -- "nvim-telescope/telescope.nvim",
       --- The below dependencies are optional
       "catppuccin/nvim",
     },
@@ -27,6 +27,15 @@ return {
         "--stream",
         "--watch-file",
       },
+      win = {
+        style = "nvim_aider",
+        position = "right",
+      },
     },
+  },
+  {
+    "kentchiu/aider.nvim",
+    dir = "~/.config/nvim/lua/aider.nvim",
+    lazy = false,
   },
 }

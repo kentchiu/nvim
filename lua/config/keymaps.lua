@@ -20,17 +20,17 @@ vim.keymap.set({ "n", "x" }, "M", "%") --middle of line
 -- cd to current folder
 -- vim.keymap.set("n", "<leader>bc", "<cmd>cd %:p:h<cr>", { desc = "Change to current folder" })
 -- Copy file paths
-vim.keymap.set("n", "<leader>fP", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name" })
-vim.keymap.set("n", "<leader>fp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
-vim.keymap.set("n", "<leader>fa", '<cmd>let @+ = expand("%:.")<CR>', { desc = "Copy Relative File Path" })
-
-vim.keymap.set("n", "<leader>ft", function()
-  Snacks.terminal.open(nil, { win = { position = "right" } })
-end, { desc = "Open Terminal in right" })
-
+-- vim.keymap.set("n", "<leader>fP", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name" })
+-- vim.keymap.set("n", "<leader>fp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
+-- vim.keymap.set("n", "<leader>fa", '<cmd>let @+ = expand("%:.")<CR>', { desc = "Copy Relative File Path" })
+--
+-- vim.keymap.set("n", "<leader>ft", function()
+--   Snacks.terminal.open(nil, { win = { position = "right" } })
+-- end, { desc = "Open Terminal in right" })
+--
 -- tab keymap
 -- vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>")
-vim.keymap.set("n", "<leader><tab>h", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })
+-- vim.keymap.set("n", "<leader><tab>h", "<cmd>tabfirst<cr><cmd>tabonly<cr>", { desc = "Keep First Tab Only" })
 vim.keymap.set("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in vslipt" })
 
 -- map q: to nop in command mode
