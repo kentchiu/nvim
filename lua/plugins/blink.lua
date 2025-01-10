@@ -1,8 +1,7 @@
 return {
-  {
-    "saghen/blink.cmp",
-    opts = {
-      signature = { enabled = true },
-    },
-  },
+  -- {
+  --   "saghen/blink.cmp",
+  --   opts = {
+  --     signature = { enabled = true },
+  --   },
 }

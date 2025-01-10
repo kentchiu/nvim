@@ -15,26 +15,20 @@ return {
       end,
       desc = "Open mini.files (directory of current file)",
     },
-    -- {
-    --   "<leader>fm",
-    --   function()
-    --     require("mini.files").open(LazyVim.root(), true)
-    --   end,
-    --   desc = "Open mini.files (root)",
-    -- },
   },
   opts = {
     windows = {
       -- -- Maximum number of windows to show side by side
       -- max_number = math.huge,
+      max_number = 3,
       -- -- Whether to show preview of file/directory under cursor
-      -- preview = false,
+      preview = true,
       -- -- Width of focused window
-      -- width_focus = 50,
+      width_focus = 20,
       -- -- Width of non-focused window
-      -- width_nofocus = 15,
+      width_nofocus = 15,
       -- Width of preview window
-      width_preview = 75,
+      width_preview = 50,
     },
   },
 }

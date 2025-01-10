@@ -43,5 +43,6 @@ vim.keymap.set("c", "q:", "<nop>", { silent = true })
 vim.keymap.set("n", "<C-a>", "<nop>")
 
 vim.keymap.set("n", "<leader>ps", "<cmd>source % <CR>", { desc = "Source Current File" })
+vim.keymap.set("n", "<leader>pr", "<cmd>Lazy reload aider.nvim<CR>", { desc = "Reload plugin" })
 vim.keymap.set("n", "<leader>pe", ":.lua<CR>", { desc = "Evaluate current line" })
 vim.keymap.set("v", "<leader>pe", ":lua<CR>", { desc = "Evaluate current selection" })
