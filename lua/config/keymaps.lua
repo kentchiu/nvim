@@ -46,3 +46,7 @@ vim.keymap.set("n", "<leader>ps", "<cmd>source % <CR>", { desc = "Source Current
 vim.keymap.set("n", "<leader>pr", "<cmd>Lazy reload aider.nvim<CR>", { desc = "Reload plugin" })
 vim.keymap.set("n", "<leader>pe", ":.lua<CR>", { desc = "Evaluate current line" })
 vim.keymap.set("v", "<leader>pe", ":lua<CR>", { desc = "Evaluate current selection" })
+
+-- Remap macro recording from q to ctrl+q
+vim.keymap.set("n", "q", "<nop>", { desc = "Disable macro recording with q" })
+vim.keymap.set("n", "<C-q>", "q", { desc = "Start/stop macro recording" })
