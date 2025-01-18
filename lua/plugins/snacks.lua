@@ -1,5 +1,5 @@
 return {
-  -- "folke/snacks.nvim",
+  "folke/snacks.nvim",
   -- priority = 1000,
   -- lazy = false,
   ---@type snacks.Config
@@ -22,92 +22,48 @@ return {
   --   },
   -- },
   -- },
-  -- keys = {
-  --   {
-  --     "<leader>un",
-  --     function()
-  --       Snacks.notifier.hide()
-  --     end,
-  --     desc = "Dismiss All Notifications",
-  --   },
-  --   {
-  --     "<leader>bd",
-  --     function()
-  --       Snacks.bufdelete()
-  --     end,
-  --     desc = "Delete Buffer",
-  --   },
-  --   -- {
-  --   --   "<leader>gg",
-  --   --   function()
-  --   --     Snacks.lazygit()
-  --   --   end,
-  --   --   desc = "Lazygit",
-  --   -- },
-  --   {
-  --     "<leader>gb",
-  --     function()
-  --       Snacks.git.blame_line()
-  --     end,
-  --     desc = "Git Blame Line",
-  --   },
-  --   {
-  --     "<leader>gB",
-  --     function()
-  --       Snacks.gitbrowse()
-  --     end,
-  --     desc = "Git Browse",
-  --   },
-  --   {
-  --     "<leader>gf",
-  --     function()
-  --       Snacks.lazygit.log_file()
-  --     end,
-  --     desc = "Lazygit Current File History",
-  --   },
-  --   {
-  --     "<leader>gl",
-  --     function()
-  --       Snacks.lazygit.log()
-  --     end,
-  --     desc = "Lazygit Log (cwd)",
-  --   },
-  --   {
-  --     "<leader>cR",
-  --     function()
-  --       Snacks.rename()
-  --     end,
-  --     desc = "Rename File",
-  --   },
-  --   {
-  --     "<c-/>",
-  --     function()
-  --       Snacks.terminal()
-  --     end,
-  --     desc = "Toggle Terminal",
-  --   },
-  --   {
-  --     "<c-\\>",
-  --     function()
-  --       Snacks.terminal(nil, { win = { position = "float", border = "rounded" } })
-  --     end,
-  --     desc = "which_key_ignore",
-  --   },
-  --   {
-  --     "]]",
-  --     function()
-  --       Snacks.words.jump(vim.v.count1)
-  --     end,
-  --     desc = "Next Reference",
-  --   },
-  --   {
-  --     "[[",
-  --     function()
-  --       Snacks.words.jump(-vim.v.count1)
-  --     end,
-  --     desc = "Prev Reference",
-  --   },
-  -- },
+  -- stylua: ignore
+  keys = {
+    { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>/", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+    { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<leader><space>", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+    -- find
+    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
+    { "<leader>fF", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+    { "<leader>ff", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+    { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Files (git-files)" },
+    { "<leader>fR", LazyVim.pick("oldfiles"), desc = "Recent" },
+    { "<leader>fr", LazyVim.pick("oldfiles", { only_cwd = true }), desc = "Recent (cwd)" },
+    -- git
+    { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
+    { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+    -- Grep
+    { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+    { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+    { "<leader>sG", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+    { "<leader>sg", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+    { "<leader>sW", LazyVim.pick("grep_word"), desc = "Visual selection or word (Root Dir)", mode = { "n", "x" } },
+    { "<leader>sw", LazyVim.pick("grep_word", { root = false }), desc = "Visual selection or word (cwd)", mode = { "n", "x" } },
+    -- search
+    { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+    { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+    { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+    { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+    { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+    { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+    { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+    { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+    { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+    { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+    { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+    { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+    { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+    { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+    { "<leader>qp", function() Snacks.picker.projects() end, desc = "Projects" },
+  },
   -- init = function()
   --   vim.api.nvim_create_autocmd("User", {
   --     pattern = "VeryLazy",
