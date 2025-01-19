@@ -52,7 +52,7 @@ local others = {
 }
 
 local disables = {
-  -- { "nvim-neo-tree/neo-tree.nvim", enabled = true },
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   -- { "nvimdev/dashboard-nvim", enabled = false },
   -- { "akinsho/bufferline.nvim", enabled = true },
   { "akinsho/bufferline.nvim", enabled = true },
