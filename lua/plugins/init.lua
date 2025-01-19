@@ -52,11 +52,12 @@ local others = {
 }
 
 local disables = {
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-  { "nvimdev/dashboard-nvim", enabled = false },
-  { "akinsho/bufferline.nvim", enabled = false },
-  -- { "zbirenbaum/copilot-cmp", enabled = false },
+  -- { "nvim-neo-tree/neo-tree.nvim", enabled = true },
+  -- { "nvimdev/dashboard-nvim", enabled = false },
+  -- { "akinsho/bufferline.nvim", enabled = true },
+  { "akinsho/bufferline.nvim", enabled = true },
 }
+--
 --
 local DISABLED_FOR_NON_DEV = {
   -- { "keaising/im-select.nvim", enabled = false },
