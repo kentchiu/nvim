@@ -306,6 +306,7 @@ create a feature branch named fizzbuzz with :G switch -c fizzbuzz:
 
 有衝突時, 用 git mergetool 可以調用出 neovim 的 3-ways merge mode
 
+mini-diff 如果要對 hunk 做 apply, reset, 可以想用 v 把要操作的選取後進行操作.
 
 
 ------------------------------------------------------------------------------
