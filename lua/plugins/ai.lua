@@ -17,10 +17,18 @@ return {
   --   },
   -- },
   -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = true,
+  -- },
+  -- {
   --   "yetone/avante.nvim",
   --   event = "VeryLazy",
   --   lazy = false,
-  --   version = false, -- set this if you want to always pull the latest change
+  --   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   --   opts = {
   --     -- add any opts here
   --   },
@@ -32,7 +40,10 @@ return {
   --     "nvim-lua/plenary.nvim",
   --     "MunifTanjim/nui.nvim",
   --     --- The below dependencies are optional,
+  --     "echasnovski/mini.pick", -- for file_selector provider mini.pick
+  --     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
   --     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+  --     "ibhagwan/fzf-lua", -- for file_selector provider fzf
   --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
   --     "zbirenbaum/copilot.lua", -- for providers='copilot'
   --     {
@@ -62,4 +73,26 @@ return {
   --     },
   --   },
   -- },
+  -- {
+  --   "GeorgesAlkhouri/nvim-aider",
+  --   cmd = {
+  --     "AiderTerminalToggle",
+  --   },
+  --   keys = {
+  --     { "<leader>a/", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
+  --     { "<leader>as", "<cmd>AiderTerminalSend<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+  --     { "<leader>ac", "<cmd>AiderQuickSendCommand<cr>", desc = "Send Command To Aider" },
+  --     { "<leader>ab", "<cmd>AiderQuickSendBuffer<cr>", desc = "Send Buffer To Aider" },
+  --     { "<leader>a+", "<cmd>AiderQuickAddFile<cr>", desc = "Add File to Aider" },
+  --     { "<leader>a-", "<cmd>AiderQuickDropFile<cr>", desc = "Drop File from Aider" },
+  --   },
+  --   dependencies = {
+  --     "folke/snacks.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --     --- The below dependencies are optional
+  --     "catppuccin/nvim",
+  --   },
+  --   config = true,
+  -- },
+  --
 }
