@@ -173,6 +173,8 @@ S	Flash Treesitter	n, o, x
 2. `:` to command-line mode
 3. Press CTRL-r" to paste from default register
 
+
+
 ------------------------------------------------------------------------------
 			                        *kent.keymaps.telescope*
 
@@ -182,6 +184,8 @@ S	Flash Treesitter	n, o, x
 - CTRL-q : Send all items not filtered to quickfixlist (qflist)
 - ALT-q : Send all selected items to qflist 
 - <ESC> or CTRL-[ : Enter normal mode
+
+
 
 ------------------------------------------------------------------------------
 				                   *kent.keymaps.debug*
@@ -534,6 +538,12 @@ d?                      Show this help.
 - Diffview 与 Neogit 的集成使得在进行复杂的 Git 操作时更容易理解和管理更改
 
 注意：具体的快捷键可能会根据您的 Neovim 配置略有不同。始终检查您的配置或使用 `:h` 命令来确认快捷键。
+
+==============================================================================
+Snacks			                        	*kent.snacks.picker*
+
+1. `foobar -- -g=*.cpp`
+2. `foobar -- -g={.cpp,.hpp*}`
 
 
 ==============================================================================
