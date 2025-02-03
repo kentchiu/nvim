@@ -4,6 +4,7 @@
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
+vim.keymap.set("i", "jjj", "<Esc>", { desc = "Escape" })
 
 -- remove ^M
 -- vim.keymap.set("n", "<leader>bc", "<cmd>%s/\\r$//g<cr>", { desc = "remove ^M" })
@@ -50,3 +51,13 @@ vim.keymap.set("v", "<leader>pe", ":lua<CR>", { desc = "Evaluate current selecti
 -- Remap macro recording from q to ctrl+q
 vim.keymap.set("n", "q", "<nop>", { desc = "Disable macro recording with q" })
 vim.keymap.set("n", "<C-q>", "q", { desc = "Start/stop macro recording" })
+
+-- playggroud
+-- When lines are on, text is off. Text on, lines off. Minimize clutter.
+vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
+vim.keymap.set("", "<leader>uv", function()
+  vim.diagnostic.config({
+    virtual_lines = not vim.diagnostic.config().virtual_lines,
+    virtual_text = not vim.diagnostic.config().virtual_text,
+  })
+end, { desc = "Toggle diagnostic lines" })

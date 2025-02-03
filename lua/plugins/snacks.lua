@@ -22,9 +22,34 @@ return {
   --   },
   -- },
   -- },
+  opts = {
+    explorer = {},
+    picker = {
+      sources = {
+        explorer = {
+          -- your explorer picker configuration comes here
+          -- or leave it empty to use the default settings
+          finder = "explorer",
+          sort = { fields = { "sort" } },
+          tree = true,
+          git_status = true,
+          git_status_open = false,
+          supports_live = true,
+          follow_file = true,
+          focus = "list",
+          auto_close = true,
+          jump = { close = false },
+          layout = { preset = "ivy", preview = true },
+          formatters = { file = { filename_only = true } },
+          matcher = { sort_empty = true },
+        },
+      },
+    },
+  },
   -- stylua: ignore
   keys = {
 
+    { "<leader>fa", function() Snacks.picker() end, desc = "All pickers" },
     { "<leader>su", function() Snacks.picker("undo") end, desc = "Undo" },
     --
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
