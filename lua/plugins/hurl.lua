@@ -39,6 +39,7 @@ return {
       wk.add({
         mode = { "n", "v" },
         { "<leader>r", group = "+run", icon = "" }, -- group
+        { "<leader>ra", "<cmd>HurlRunner<CR>", desc = "Run All requests", icon = "", mode = { "n", "v" } },
         { "<leader>rr", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request", icon = "", mode = { "n", "v" } },
         { "<leader>rv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode", icon = "", mode = { "n", "v" } },
         { "<leader>rRe", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry", icon = "" },
