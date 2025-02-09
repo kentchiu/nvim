@@ -22,3 +22,5 @@ vim.g.lazyvim_picker = "snacks"
 -- you need to have a working rust toolchain to build the plugin
 -- in this case.
 -- vim.g.lazyvim_blink_main = false
+--
+vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"

@@ -54,10 +54,10 @@ vim.keymap.set("n", "<C-q>", "q", { desc = "Start/stop macro recording" })
 
 -- playggroud
 -- When lines are on, text is off. Text on, lines off. Minimize clutter.
-vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
-vim.keymap.set("", "<leader>uv", function()
-  vim.diagnostic.config({
-    virtual_lines = not vim.diagnostic.config().virtual_lines,
-    virtual_text = not vim.diagnostic.config().virtual_text,
-  })
-end, { desc = "Toggle diagnostic lines" })
+-- vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
+-- vim.keymap.set("", "<leader>uv", function()
+--   vim.diagnostic.config({
+--     virtual_lines = not vim.diagnostic.config().virtual_lines,
+--     virtual_text = not vim.diagnostic.config().virtual_text,
+--   })
+-- end, { desc = "Toggle diagnostic lines" })
