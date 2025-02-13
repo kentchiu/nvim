@@ -52,19 +52,19 @@ local others = {
 }
 
 local disables = {
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   -- { "nvimdev/dashboard-nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
 }
 --
 --
-local DISABLED_FOR_NON_DEV = {
-  -- { "keaising/im-select.nvim", enabled = false },
-  { "nvim-neotest/neotest", enabled = false },
-  -- { "zbirenbaum/copilot.lua", enabled = false },
-  { "epwalsh/obsidian.nvim", enabled = false },
-  -- { "yetone/avante.nvim", enabled = false },
-}
+-- local DISABLED_FOR_NON_DEV = {
+-- { "keaising/im-select.nvim", enabled = false },
+-- { "nvim-neotest/neotest", enabled = false },
+-- { "zbirenbaum/copilot.lua", enabled = false },
+-- { "epwalsh/obsidian.nvim", enabled = false },
+-- { "yetone/avante.nvim", enabled = false },
+-- }
 
 local results = {}
 
@@ -72,9 +72,9 @@ local results = {}
 results = vim.list_extend(results, others)
 results = vim.list_extend(results, disables)
 
-local user = os.getenv("USER")
-if user ~= "kent" and user ~= "kentchiu" then
-  results = vim.list_extend(results, DISABLED_FOR_NON_DEV)
-end
+-- local user = os.getenv("USER")
+-- if user ~= "kent" and user ~= "kentchiu" then
+--   results = vim.list_extend(results, DISABLED_FOR_NON_DEV)
+-- end
 
 return results

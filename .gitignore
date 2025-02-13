@@ -9,3 +9,4 @@ data
 .aider*
 .env
 lazy-lock.json
+lua/plugins/playground.lua
