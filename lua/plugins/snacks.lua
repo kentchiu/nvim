@@ -39,7 +39,10 @@ return {
           -- focus = "list",
           auto_close = true,
           -- jump = { close = false },
-          layout = { preset = "ivy", preview = true },
+          layout = {
+            -- preset = "ivy",
+            preview = true,
+          },
           -- formatters = { file = { filename_only = true } },
           -- matcher = { sort_empty = true },
         },
