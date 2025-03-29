@@ -35,3 +35,7 @@ vim.opt.diffopt = {
   "indent-heuristic", -- smart indent
   -- "iwhite", -- this one, it doesn't fit all cases.
 }
+
+-- SSH remove copy support.
+-- https://github.com/neovim/neovim/pull/33021
+vim.g.clipboard = "osc52"
