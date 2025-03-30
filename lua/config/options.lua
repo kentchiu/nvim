@@ -38,4 +38,4 @@ vim.opt.diffopt = {
 
 -- SSH remove copy support.
 -- https://github.com/neovim/neovim/pull/33021
-vim.g.clipboard = "osc52"
+-- vim.g.clipboard = "osc52"
