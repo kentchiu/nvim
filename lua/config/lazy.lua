@@ -26,7 +26,6 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.editor.mini-files" },
     { import = "lazyvim.plugins.extras.editor.snacks_picker" },
     { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
-    -- { import = "lazyvim.plugins.extras.editor.telescope" },
     -- formatter
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     -- lang

@@ -49,8 +49,8 @@ vim.keymap.set("n", "<leader>pe", ":.lua<CR>", { desc = "Evaluate current line" 
 vim.keymap.set("v", "<leader>pe", ":lua<CR>", { desc = "Evaluate current selection" })
 
 -- Remap macro recording from q to ctrl+q
--- vim.keymap.set("n", "q", "<nop>", { desc = "Disable macro recording with q" })
--- vim.keymap.set("n", "<C-q>", "q", { desc = "Start/stop macro recording" })
+vim.keymap.set("n", "q", "<nop>", { desc = "Disable macro recording with q" })
+vim.keymap.set("n", "<C-q>", "q", { desc = "Start/stop macro recording" })
 
 -- playggroud
 -- When lines are on, text is off. Text on, lines off. Minimize clutter.
