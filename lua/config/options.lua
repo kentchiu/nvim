@@ -6,6 +6,7 @@ vim.opt.relativenumber = true -- Relative line numbers
 vim.opt.swapfile = false -- disable swapfiles
 -- vim.opt.conceallevel = 0 -- disable conceal
 vim.opt.inccommand = "split" -- Incremental live completion
+vim.opt.spelllang = "en_us,cjk" -- cjk for Chinese, Japanese and korean
 
 -- vim.opt.listchars = { space = "·", tab = "⇥ ", eol = "↵" }
 vim.opt.listchars = {
@@ -18,6 +19,7 @@ vim.opt.listchars = {
   nbsp = "␣",
 }
 vim.g.lazyvim_picker = "snacks"
+-- vim.g.lazyvim_blink_main = true
 -- set to `true` to follow the main branch
 -- you need to have a working rust toolchain to build the plugin
 -- in this case.

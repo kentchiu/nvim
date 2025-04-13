@@ -56,15 +56,6 @@ local disables = {
   -- { "nvimdev/dashboard-nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
 }
---
---
--- local DISABLED_FOR_NON_DEV = {
--- { "keaising/im-select.nvim", enabled = false },
--- { "nvim-neotest/neotest", enabled = false },
--- { "zbirenbaum/copilot.lua", enabled = false },
--- { "epwalsh/obsidian.nvim", enabled = false },
--- { "yetone/avante.nvim", enabled = false },
--- }
 
 local results = {}
 
