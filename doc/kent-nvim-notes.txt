@@ -176,18 +176,6 @@ S	Flash Treesitter	n, o, x
 
 
 ------------------------------------------------------------------------------
-			                        *kent.keymaps.telescope*
-
-- foo → press <C-k> → "foo"  → "foo" -tmd (with telescope-live-grep-args.nvim)
-- CTRL-/ :  Show mappings for picker actions (insert mode)
-- `?` : Show mappings for picker actions (normal mode)  
-- CTRL-q : Send all items not filtered to quickfixlist (qflist)
-- ALT-q : Send all selected items to qflist 
-- <ESC> or CTRL-[ : Enter normal mode
-
-
-
-------------------------------------------------------------------------------
 				                   *kent.keymaps.debug*
 
 先要確定對應的 debugger lib 有安裝, python 需要安裝 'pydebug' 這個是跟 project
@@ -421,87 +409,6 @@ config 裡面有一些 keymap 可以參考
       },
 
 ------------------------------------------------------------------------------
-		                    *kent.diff.fugitive*
-
-在 status view 裡面常用的資料有:
-
-commit:
-
-cc                      Create a commit.
-
-ca                      Amend the last commit and edit the message. 
-	  
-			git commit --amend
-
-			這個命令會重新提交上一次提交(commit id change)，
-			可以修改提交信息並包含新暫存的更改。
-
-			當你發現上一次提交有錯誤或遺漏，需要更正或補充內容時，
-			可以使用這個命令。
-
-cw                      Reword the last commit.
-
-			git commit --amend --only
-
-			用於重新編寫上一次提交的提交信息，但不改變提交的內容。
-			這個命令只修改提交信息，不影響已提交的文件。
-
-			這個命令只修改提交信息，不改變已提交的文件內容。
-
-cvc                     Create a commit with -v. (帶 diff view)
-
-cva                     Amend the last commit with -v. (帶 diff view)
-
-crc                     Revert the commit under the cursor.
-
-
-  Diff maps ~
-                                                *fugitive_dp*
-dp                      Invoke |:Git| diff on the file under the cursor.
-                        Deprecated in favor of inline diffs.
-
-                                                *fugitive_dd*
-dd                      Perform a |:Gdiffsplit| on the file under the cursor.
-
-                                                *fugitive_dq*
-dq                      Close all but one diff buffer, and |:diffoff|! the
-                        last one.
-
-                                                *fugitive_d?*
-d?                      Show this help.
-
-
-------------------------------------------------------------------------------
-		                    *kent.diff.neogit-telescope*
-
-				    
-# Neogit-Telescope 集成命令快速参考
-
-## 在 Neogit 缓冲区中：
-
-- `<C-p>`: 打开 Telescope 以搜索分支
-- `<C-f>`: 使用 Telescope 搜索提交日志
-- `<C-s>`: 通过 Telescope 查看和管理 stashes
-- `gb`: 使用 Telescope 界面进行交互式 rebase
-
-## 全局命令：
-
-- `:Neogit kind=tab`: 在新标签页中打开 Neogit
-- `:Telescope git_branches`: 列出并切换分支
-- `:Telescope git_commits`: 浏览所有提交
-- `:Telescope git_bcommits`: 浏览当前文件的提交历史
-- `:Telescope git_stash`: 查看和管理 stash
-
-## 提示：
-
-- 在大多数 Telescope 窗口中，您可以使用 `<C-n>` 和 `<C-p>` 来上下导航
-- 使用 `<CR>` (回车键) 来选择一个项目
-- 在 Telescope 窗口中输入文本可以进行实时过滤
-
-注意：具体的快捷键可能会根据您的 Neovim 配置略有不同。您可以使用 `:h neogit` 和 `:h telescope` 查看更多详细信息。
-
-
-------------------------------------------------------------------------------
 		                    *kent.diff.neogit-diffview*
 
 # Neogit-Diffview 集成命令快速参考
@@ -542,8 +449,12 @@ d?                      Show this help.
 ==============================================================================
 Snacks			                        	*kent.snacks.picker*
 
-1. `foobar -- -g=*.cpp`
-2. `foobar -- -g={.cpp,.hpp*}`
+-  `foobar -- -g=*.cpp`
+- `foobar -- -g={.cpp,.hpp*}`
+- 用 `<ESC>` 退回 normal 後, 可以用 `?`  看到 keymap
+- 在 picker 畫面按 `<C-R>` 可以從特殊的 Registry 選擇要貼上的內容, ex: current file, current line
+- 在選中的 item 按 `<C-D>` 可以做 inspect
+- 按 `s`, `<M-S>`  可以用 [[flash.nvim]] 提供的功能定位到特定的位置
 
 
 ==============================================================================
@@ -570,19 +481,6 @@ Macro	                 			*kent.macro*
 
 vim 錄製後是放到 register裡面, 所以, 可以查看 register 內容, 就可以看到 marco 錄製的內容, 而這個特性, 還有另一個有趣的使用方式, 就是, 可以把要錄製的內容, 寫成一行, 然後, yank 到 register , 然後還能像使用 marco 一樣的播放
 
-==============================================================================
-Snippets			      *kent.snippets*
-
-- angular: 	https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks/angular
-- vue:     	https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks/vue
-- python:  	https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/python
-- sql:     	https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/sql.json  
-- typescript:	https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/javascript/typescript.json
-
-wiki:
-- vue:		https://github.com/rafamadriz/friendly-snippets/wiki/Vue
-- typescript: 	https://github.com/rafamadriz/friendly-snippets/wiki/Javascript,-Typescript,-Javascriptreact,-Typescriptreact
-  
 
 ==============================================================================
 Search And Replace			      *kent.search-and-replace*
@@ -598,6 +496,9 @@ Search And Replace			      *kent.search-and-replace*
 
 update 是指將文件保存並更新。
 因此，當你在 NeoVim 中執行 cfdo update 指令時，它會對當前打開的所有文件進行保存並更新操作。
+
+==============================================================================
+Grug-far			      *kent.grug-far*
 
 
 ==============================================================================
@@ -628,15 +529,6 @@ A WORD is... what unix standard thinks is a word.
 - A sequence of characters delimited by any kind of whitespace characters.
 
 
-------------------------------------------------------------------------------
-						      *kent.poetry*
-
-開發 python 時, 在進入 nvim 前,需要先用 `poetry shell` 進入 virtual
-environment, 不然 LSP 會抓不到對應的lib 跟 python interpretor, 另外在使用
-terminal 時, 需要用 `source .venv/bin/activate` 啟動 terminal 內的 virtual
-environment
-
-這邊應該可以使用 autocmd 自動化這個過程
 
 
 ==============================================================================
