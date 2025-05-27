@@ -41,3 +41,6 @@ vim.opt.diffopt = {
 -- SSH remove copy support.
 -- https://github.com/neovim/neovim/pull/33021
 -- vim.g.clipboard = "osc52"
+--
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"

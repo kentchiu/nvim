@@ -10,6 +10,12 @@ return {
     opts = {
       -- your configuration comes here
       global_keymaps = true,
+      global_keymaps_prefix = "<leader>R",
+      ui = {
+        display_mode = "float",
+        formatter = true,
+        show_variable_info_text = true,
+      },
     },
   },
 }
