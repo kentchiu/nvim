@@ -176,7 +176,7 @@ S	Flash Treesitter	n, o, x
 
 
 ------------------------------------------------------------------------------
-				                   *kent.keymaps.debug*
+		                   *kent.keymaps.debug*
 
 先要確定對應的 debugger lib 有安裝, python 需要安裝 'pydebug' 這個是跟 project
 的其他 lib 在一起的, 不要安裝成 global 的.
@@ -217,64 +217,34 @@ tail common)
       ]
   }
 
+==============================================================================
+Visual Block Editing               	*kent.visual-block*
 
-------------------------------------------------------------------------------
-				                 *kent.keymaps.neotest*
-
-
-from |neotest.setup()|
-
->lua
-    summary = {
-      animated = true,
-      enabled = true,
-      expand_errors = true,
-      follow = true,
-      mappings = {
-        attach = "a",
-        clear_marked = "M",
-        clear_target = "T",
-        debug = "d",
-        debug_marked = "D",
-        expand = { "<CR>", "<2-LeftMouse>" },
-        expand_all = "e",
-        jumpto = "i",
-        mark = "m",
-        next_failed = "J",
-        output = "o",
-        prev_failed = "K",
-        run = "r",
-        run_marked = "R",
-        short = "O",
-        stop = "u",
-        target = "t"
-      },
+ctrl + v 進入 visual block mode 然後使用 `I` 進入 insert mode後, 開始輸入,
+輸入時只會在第一行看到效果, 但是當離開 visual block mode 後,
+就會套用到所有選中的範圍.
 
 
-------------------------------------------------------------------------------
-				                 *kent.keymaps.trouble*
->lua
-   action_keys = { -- key mappings for actions in the trouble list
-        -- map to {} to remove a mapping, for example:
-        -- close = {},
-        close = "q", -- close the list
-        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
-        refresh = "r", -- manually refresh
-        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
-        open_split = { "<c-x>" }, -- open buffer in new split
-        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
-        open_tab = { "<c-t>" }, -- open buffer in new tab
-        jump_close = {"o"}, -- jump to the diagnostic and close the list
-        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
-        toggle_preview = "P", -- toggle auto_preview
-        hover = "K", -- opens a small popup with the full multiline message
-        preview = "p", -- preview the diagnostic location
-        close_folds = {"zM", "zm"}, -- close all folds
-        open_folds = {"zR", "zr"}, -- open all folds
-        toggle_fold = {"zA", "za"}, -- toggle fold of current file
-        previous = "k", -- previous item
-        next = "j" -- next item
-    },
+`:norm` command
+
+visual block mode 只能在 column 是對齊的情況下使用, 如果colum 是不對齊的,
+就不合適, ex: 在長短不一的每一行後面甚至是第一個字後面都插入同樣一個字.
+
+這時候, 可以使用 `:norm`  (`:normal`) command 處理:
+
+對1到5行的行尾加上 foo 
+
+ex: `:1,5norm A foo`
+
+
+對選取的每行第一個字加上星號
+
+ex: `'<,'> norm 0wi*^[ea*`
+
+- `'<,'> norm` or `'<,'>norm` 選取範圍跟 norm 間的空格是可選的
+- `0wi*` 回到行首後 insert 星號
+- `^[` 這個符合代表command line 裡面輸入 `ESC`, 方法有兩種,先按 `ctrl + v` 後, 再按 `esc` 或是先按 `ctrl + v` 後再按 `ctrl + [` 
+- `ea*` 異動到字尾後加入另一個星號
 
 ==============================================================================
 Diff	                 			*kent.diff*
@@ -343,7 +313,7 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 
 
 ------------------------------------------------------------------------------
-		                    *kent.diff.diffvie- `:DiffviewOpen`
+		                    *kent.diff.diffvie2 `:DiffviewOpen`
 
 開啟後, 可以用 `g?` 看到 help
 
@@ -479,7 +449,10 @@ Macro	                 			*kent.macro*
 - @@: Repeat the previous @{0-9a-z":*} [count] times.
 - Q: Repeat the last recorded register [count] times.
 
-vim 錄製後是放到 register裡面, 所以, 可以查看 register 內容, 就可以看到 marco 錄製的內容, 而這個特性, 還有另一個有趣的使用方式, 就是, 可以把要錄製的內容, 寫成一行, 然後, yank 到 register , 然後還能像使用 marco 一樣的播放
+vim 錄製後是放到 register裡面, 所以, 可以查看 register 內容, 
+就可以看到 marco 錄製的內容, 而這個特性, 還有另一個有趣的使用方式, 
+就是, 可以把要錄製的內容, 寫成一行, 然後, yank 到 register , 
+然後還能像使用 marco 一樣的播放
 
 
 ==============================================================================
@@ -527,8 +500,6 @@ A word is... an almost C-style variable name.
 A WORD is... what unix standard thinks is a word.
 
 - A sequence of characters delimited by any kind of whitespace characters.
-
-
 
 
 ==============================================================================
