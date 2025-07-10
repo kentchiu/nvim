@@ -23,20 +23,11 @@ return {
   -- },
   -- },
   opts = {
-    explorer = {},
     picker = {
       sources = {
         explorer = {
-          -- your explorer picker configuration comes here
-          -- or leave it empty to use the default settings
-          -- finder = "explorer",
-          -- sort = { fields = { "sort" } },
-          -- tree = true,
-          -- git_status = true,
-          -- git_status_open = false,
-          -- supports_live = true,
-          -- follow_file = true,
-          -- focus = "list",
+          hidden = true,  -- 預設顯示 hidden files (以 . 開頭的檔案)
+          -- ignored = true,  -- 若也想預設顯示 gitignore 的檔案，可取消註解
           auto_close = true,
           -- jump = { close = false },
           layout = {
