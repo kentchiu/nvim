@@ -26,8 +26,8 @@ return {
     picker = {
       sources = {
         explorer = {
-          hidden = true,  -- 預設顯示 hidden files (以 . 開頭的檔案)
-          -- ignored = true,  -- 若也想預設顯示 gitignore 的檔案，可取消註解
+          hidden = true, -- 預設顯示 hidden files (以 . 開頭的檔案)
+          ignored = true, -- 若也想預設顯示 gitignore 的檔案，可取消註解
           auto_close = true,
           -- jump = { close = false },
           layout = {
