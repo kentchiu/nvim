@@ -12,7 +12,7 @@ return {
       global_keymaps = true,
       global_keymaps_prefix = "<leader>R",
       ui = {
-        -- display_mode = "float",
+        display_mode = "float",
         show_variable_info_text = false,
       },
     },
