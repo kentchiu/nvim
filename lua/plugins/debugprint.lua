@@ -2,10 +2,6 @@ return {
   {
     "andrewferrier/debugprint.nvim",
     lazy = false,
-    dependencies = {
-      "nvim-mini/mini.nvim", -- Needed to enable :ToggleCommentDebugPrints for NeoVim <= 0.9
-      "nvim-treesitter/nvim-treesitter", -- Needed to enable treesitter for NeoVim 0.8
-    },
     keys = {
       {
         "<leader>pl",
