@@ -2,8 +2,8 @@ return {
   {
     "kentchiu/aider.nvim",
     enabled = false,
-    dir = "~/dev/kent/aider.nvim",
-    dev = true,
+    -- dir = "~/dev/kent/aider.nvim",
+    dev = false,
     opts = {
       logger = {
         level = "OFF",
@@ -12,10 +12,10 @@ return {
   },
   {
     "kentchiu/tmux-send.nvim",
-    dir = "~/dev/kent/tmux-send.nvim",
+    -- dir = "~/dev/kent/tmux-send.nvim",
     lazy = false,
     enabled = true,
-    dev = true,
+    dev = false,
     opts = {
       logger = {
         level = "OFF",
@@ -24,9 +24,9 @@ return {
   },
   {
     "kentchiu/d2.nvim",
-    dir = "~/dev/kent/d2.nvim",
+    -- dir = "~/dev/kent/d2.nvim",
     lazy = false,
-    dev = true,
+    dev = false,
     opts = {
       logger = {
         level = "OFF",
@@ -35,8 +35,8 @@ return {
   },
   {
     "kentchiu/olink.nvim",
-    dir = "~/dev/kent/olink.nvim",
+    -- dir = "~/dev/kent/olink.nvim",
     lazy = false,
-    dev = true,
+    dev = false,
   },
 }
