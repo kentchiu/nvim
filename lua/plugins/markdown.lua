@@ -8,6 +8,28 @@ return {
       },
     },
   },
+  {
+    "UtkarshKunwar/markdown-preview.nvim",
+    init = function()
+      vim.g.mkdp_theme = "light"
+      vim.g.mkdp_auto_close = 0
+    end,
+  },
+  -- {
+  --   "brianhuster/live-preview.nvim",
+  --
+  --   dependencies = {
+  --     "folke/snacks.nvim",
+  --   },
+  --   opts = {
+  --     browser = "default",
+  --     -- dynamic_root = true,
+  --     -- picker = "snacks",
+  --     port = 55500,
+  --     sync_scroll = false,
+  --   },
+  -- },
+
   -- {
   --   "MeanderingProgrammer/render-markdown.nvim",
   --   opts = {
