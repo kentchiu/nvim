@@ -35,6 +35,7 @@ return {
   },
   {
     "kentchiu/olink.nvim",
+    enabled = false,
     -- dir = "~/dev/kent/olink.nvim",
     lazy = false,
     dev = false,
