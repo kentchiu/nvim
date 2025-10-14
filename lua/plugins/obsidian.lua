@@ -1,6 +1,6 @@
 return {
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
@@ -11,21 +11,11 @@ return {
     --   "BufReadPre path/to/my-vault/**.md",
     --   "BufNewFile path/to/my-vault/**.md",
     -- },
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-
-      -- see below for full list of optional dependencies 👇
-    },
     opts = {
       workspaces = {
         {
           name = "personal",
           path = "/mnt/c/Users/kentc/Documents/notes",
-        },
-        {
-          name = "view360",
-          path = "/mnt/c/Users/kentc/dev/nices/view360-doc",
         },
       },
       disable_frontmatter = true,

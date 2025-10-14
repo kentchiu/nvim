@@ -244,7 +244,7 @@ ex: `'<,'> norm 0wi*^[ea*`
 - `'<,'> norm` or `'<,'>norm` 選取範圍跟 norm 間的空格是可選的
 - `0wi*` 回到行首後 insert 星號
 - `^[` 這個符合代表command line 裡面輸入 `ESC`, 方法有兩種,先按 `ctrl + v` 後, 再按 `esc` 或是先按 `ctrl + v` 後再按 `ctrl + [` 
-- `ea*` 異動到字尾後加入另一個星號
+- `ea*` 移動到字尾後加入另一個星號
 
 ==============================================================================
 Diff	                 			*kent.diff*
@@ -319,6 +319,7 @@ Mappings for some functionality are assumed to be done manually. See tag `*MiniD
 
 
 - `:DiffviewOpen` : 顯示當前工作目錄的所有變更（如果有未提交的變更）或當前分支與默認分支（通常是 origin/main 或 origin/master）之間的差異。
+- `:DiffviewOpen feat_branch..main`: 顯示 feature branch 跟 main branch 的差異。
 - `:DiffviewOpen HEAD~2`: 顯示當前 HEAD 與兩個提交之前的提交（即 HEAD~2）之間的差異。
 - `:DiffviewOpen HEAD~2 --cached`: Diff the index against a git rev  (測試結果跟上面的沒兩樣)
 - `:DiffviewOpen HEAD~4..HEAD~2`: 顯示 HEAD~4 和 HEAD~2 之間的差異，即四個提交之前的版本與兩個提交之前的版本之間的變更。
