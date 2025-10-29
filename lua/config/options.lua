@@ -63,5 +63,7 @@ end
 
 -- SSH remote copy support using OSC 52
 -- https://github.com/neovim/neovim/pull/33021
-vim.g.clipboard = "osc52"
-vim.opt.clipboard = "unnamedplus" -- use system clipboard for all yank/paste operations
+-- vim.g.clipboard = "osc52"
+-- vim.opt.clipboard = "unnamedplus" -- use system clipboard for all yank/paste operations
+--
+-- WORKAROUND: Using mouse to select then copy & paste
