@@ -61,3 +61,14 @@ vim.keymap.set("n", "<C-q>", "q", { desc = "Start/stop macro recording" })
 --     virtual_text = not vim.diagnostic.config().virtual_text,
 --   })
 -- end, { desc = "Toggle diagnostic lines" })
+
+-- Open current markdown file with Typora
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.keymap.set("n", "<leader>ct", function()
+      local filepath = vim.fn.expand("%:p")
+      vim.fn.jobstart({ "typora", filepath }, { detach = true })
+    end, { buffer = true, desc = "Open in Typora" })
+  end,
+})

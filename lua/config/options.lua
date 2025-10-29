@@ -60,3 +60,8 @@ if vim.fn.has("wsl") == 1 then
     cache_enabled = 0,
   }
 end
+
+-- SSH remote copy support using OSC 52
+-- https://github.com/neovim/neovim/pull/33021
+vim.g.clipboard = "osc52"
+vim.opt.clipboard = "unnamedplus" -- use system clipboard for all yank/paste operations
