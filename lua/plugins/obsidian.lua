@@ -15,7 +15,7 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "/mnt/c/Users/kentc/Documents/notes",
+          path = "/home/kent/dev/kent/notes",
         },
       },
       disable_frontmatter = true,

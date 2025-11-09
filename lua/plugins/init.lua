@@ -1,59 +1,17 @@
 local others = {
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = {
-  --     ensure_installed = {
-  --       "angular",
-  --       "bash",
-  --       "c",
-  --       "c_sharp",
-  --       "css",
-  --       "csv",
-  --       "diff",
-  --       "dockerfile",
-  --       "gitignore",
-  --       "go",
-  --       "html",
-  --       "http",
-  --       "hurl",
-  --       "ini",
-  --       "java",
-  --       "javascript",
-  --       "jq",
-  --       "jsdoc",
-  --       "json",
-  --       "json5",
-  --       "jsonc",
-  --       "latex",
-  --       "lua",
-  --       "luadoc",
-  --       "luap",
-  --       "make",
-  --       "markdown",
-  --       "markdown_inline",
-  --       "properties",
-  --       "proto",
-  --       "python",
-  --       "query",
-  --       "regex",
-  --       "scss",
-  --       "sql",
-  --       "toml",
-  --       "tsx",
-  --       "typescript",
-  --       "vim",
-  --       "vimdoc",
-  --       "vue",
-  --       "xml",
-  --       "yaml",
-  --     },
-  --   },
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      -- Use traditional vim syntax for Vue instead of treesitter
+      -- This fixes the issue where treesitter blocks vim syntax but doesn't provide highlighting
+      highlight = {
+        disable = { "vue" },
+      },
+    },
+  },
 }
 
 local disables = {
-  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-  -- { "nvimdev/dashboard-nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
 }
 
