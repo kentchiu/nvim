@@ -45,8 +45,9 @@ vim.opt.diffopt = {
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 
--- WSL clipboard configuration
+-- Clipboard configuration with environment detection
 if vim.fn.has("wsl") == 1 then
+  -- WSL: use win32yank.exe
   vim.g.clipboard = {
     name = "win32yank-wsl",
     copy = {
@@ -59,11 +60,13 @@ if vim.fn.has("wsl") == 1 then
     },
     cache_enabled = 0,
   }
+elseif vim.env.SSH_CONNECTION ~= nil then
+  -- SSH remote: use OSC 52
+  -- https://github.com/neovim/neovim/pull/33021
+  vim.g.clipboard = "osc52"
+  vim.opt.clipboard = "unnamedplus"
+else
+  -- Local: use system clipboard (auto-detect wl-clipboard/xclip/xsel)
+  vim.opt.clipboard = "unnamedplus"
+  -- Don't set vim.g.clipboard, let Neovim auto-detect the best provider
 end
-
--- SSH remote copy support using OSC 52
--- https://github.com/neovim/neovim/pull/33021
--- vim.g.clipboard = "osc52"
--- vim.opt.clipboard = "unnamedplus" -- use system clipboard for all yank/paste operations
---
--- WORKAROUND: Using mouse to select then copy & paste
