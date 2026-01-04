@@ -64,9 +64,9 @@ elseif vim.env.SSH_CONNECTION ~= nil then
   -- SSH remote: use OSC 52
   -- https://github.com/neovim/neovim/pull/33021
   vim.g.clipboard = "osc52"
-  vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamed,unnamedplus"
 else
   -- Local: use system clipboard (auto-detect wl-clipboard/xclip/xsel)
-  vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamed,unnamedplus"
   -- Don't set vim.g.clipboard, let Neovim auto-detect the best provider
 end
