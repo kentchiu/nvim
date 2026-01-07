@@ -23,6 +23,20 @@ return {
   -- },
   -- },
   opts = {
+    image = {
+      doc = {
+        inline = true, -- 圖像自動內嵌顯示在 code block 下方
+        float = false, -- 關閉 hover 浮動窗口
+        -- max_width = math.huge,
+        -- max_height = math.huge,
+      },
+      -- convert = {
+      --   mermaid = function()
+      --     local theme = vim.o.background == "light" and "neutral" or "dark"
+      --     return { "-i", "{src}", "-o", "{file}", "-b", "transparent", "-t", theme, "-s", "8" }
+      --   end,
+      -- },
+    },
     picker = {
       sources = {
         explorer = {
