@@ -25,7 +25,7 @@ return {
   opts = {
     image = {
       doc = {
-        inline = true, -- 圖像自動內嵌顯示在 code block 下方
+        inline = false, -- 圖像自動內嵌顯示在 code block 下方
         float = false, -- 關閉 hover 浮動窗口
         -- max_width = math.huge,
         -- max_height = math.huge,
