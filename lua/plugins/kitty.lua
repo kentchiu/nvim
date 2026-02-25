@@ -15,6 +15,11 @@ return {
       require("kitty-scrollback").setup({
         -- global options applied to all configs (index [1])
         {
+          callbacks = {
+            after_ready = function()
+              vim.bo.filetype = "markdown"
+            end,
+          },
           paste_window = {
             yank_register_enabled = false,
           },
