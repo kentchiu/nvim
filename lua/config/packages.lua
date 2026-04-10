@@ -24,6 +24,10 @@ if ok_oil then
   oil.setup({
     default_file_explorer = true,
     skip_confirm_for_simple_edits = true,
+    keymaps = {
+      ["gy"] = "actions.yank_entry",
+      ["gY"] = { "actions.yank_entry", opts = { modify = ":." } },
+    },
     view_options = {
       show_hidden = true,
     },
