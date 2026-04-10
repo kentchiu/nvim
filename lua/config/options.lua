@@ -11,6 +11,7 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.updatetime = 250
+opt.clipboard = "unnamedplus"
 opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 opt.pummaxwidth = 40
 opt.pumborder = "rounded"

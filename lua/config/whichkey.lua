@@ -18,4 +18,5 @@ wk.setup({
 wk.add({
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },
+  { "<leader>u", group = "Undo" },
 })
