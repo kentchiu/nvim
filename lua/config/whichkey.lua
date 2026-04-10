@@ -6,6 +6,9 @@ end
 wk.setup({
   preset = "classic",
   delay = 200,
+  icons = {
+    mappings = false,
+  },
   triggers = {
     { "<auto>", mode = "nxso" },
     { "<leader>", mode = { "n", "v" } },

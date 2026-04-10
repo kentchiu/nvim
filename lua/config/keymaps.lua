@@ -108,6 +108,9 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map("x", "<", "<gv")
 map("x", ">", ">gv")
 
+-- terminal
+-- map("n", "<leader>t", "<cmd>below terminal<cr>", { desc = "Terminal" })
+
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
