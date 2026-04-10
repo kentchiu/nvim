@@ -4,7 +4,7 @@ end
 
 vim.pack.add({
   { src = gh("catppuccin/nvim") },
-  { src = gh("nvim-treesitter/nvim-treesitter") },
+
   { src = gh("stevearc/oil.nvim") },
   { src = gh("ibhagwan/fzf-lua") },
   { src = gh("folke/which-key.nvim") },
@@ -14,10 +14,6 @@ vim.pack.add({
   confirm = false,
 })
 
-local ok_treesitter, treesitter = pcall(require, "nvim-treesitter")
-if ok_treesitter then
-  treesitter.setup({})
-end
 
 local ok_oil, oil = pcall(require, "oil")
 if ok_oil then

@@ -1,6 +1,6 @@
 vim.lsp.config("*", {})
 
-local group = vim.api.nvim_create_augroup("nvim12_lsp", { clear = true })
+local group = vim.api.nvim_create_augroup("nvim_lsp", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = group,

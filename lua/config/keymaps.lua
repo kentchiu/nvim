@@ -74,6 +74,12 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+
+-- Better paste
+-- remap "p" in visual mode to delete the highlighted text without overwriting your yanked/copied text, and then paste the content from the unnamed register.
+map("v", "p", '"_dP', { noremap = true, silent = true })
+
+
 --
 -- Taking from LazyVim
 --
@@ -92,6 +98,11 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
+-- Add undo break-points
+-- map("i", ",", ",<c-g>u")
+-- map("i", ".", ".<c-g>u")
+-- map("i", ";", ";<c-g>u")
+
 
 -- better indenting
 map("x", "<", "<gv")
@@ -99,3 +110,19 @@ map("x", ">", ">gv")
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+
+-- Quickfix and location lists
+map("n", "<leader>xl", function()
+  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Location List" })
+
+map("n", "<leader>xq", function()
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Quickfix List" })
