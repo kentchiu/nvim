@@ -3,6 +3,7 @@ local function gh(repo)
 end
 
 vim.pack.add({
+  { src = gh("catppuccin/nvim") },
   { src = gh("nvim-treesitter/nvim-treesitter") },
   { src = gh("stevearc/oil.nvim") },
   { src = gh("ibhagwan/fzf-lua") },
