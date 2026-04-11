@@ -10,10 +10,17 @@ vim.pack.add({
   { src = gh("folke/which-key.nvim") },
   { src = gh("nvim-lua/plenary.nvim") },
   { src = gh("NeogitOrg/neogit") },
+  { src = gh("echasnovski/mini.icons") },
 }, {
   confirm = false,
 })
 
+
+local ok_mini_icons, mini_icons = pcall(require, "mini.icons")
+if ok_mini_icons then
+  mini_icons.setup()
+  mini_icons.mock_nvim_web_devicons()
+end
 
 local ok_oil, oil = pcall(require, "oil")
 if ok_oil then
