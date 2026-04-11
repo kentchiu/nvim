@@ -4,7 +4,6 @@ end
 
 vim.pack.add({
   { src = gh("catppuccin/nvim") },
-
   { src = gh("stevearc/oil.nvim") },
   { src = gh("ibhagwan/fzf-lua") },
   { src = gh("folke/which-key.nvim") },

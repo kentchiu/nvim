@@ -23,20 +23,33 @@ end
 
 map("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
 -- fzf
-map("n", "<leader><space>", "<Cmd>FzfLua files<CR>", { desc = "Files" })
+map("n", "<leader><space>", "<Cmd>FzfLua<CR>", { desc = "FZF" })
 map("n", "<leader>:", "<Cmd>FzfLua command_history<CR>", { desc = "Command History" })
 map("n", "<leader>/", "<Cmd>FzfLua live_grep<CR>", { desc = "Grep" })
 map("n", "<leader>fr", "<Cmd>FzfLua oldfiles<CR>", { desc = "Recent" })
-map("n", "<leader>ff", "<Cmd>FzfLua<CR>", { desc = "FzfLua All" })
+map("n", "<leader>ff", "<Cmd>FzfLua files<CR>", { desc = "Files" })
 map("n", "<leader>fg", "<Cmd>FzfLua live_grep<CR>", { desc = "Grep" })
 map("n", "<leader>fb", "<Cmd>FzfLua buffers<CR>", { desc = "Buffers" })
 map("n", "<leader>fh", "<Cmd>FzfLua help_tags<CR>", { desc = "Help" })
 
-
--- 
+--
 map("n", "<leader>gg", "<Cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>gd", open_difftool, { desc = "Diff Tool" })
 map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
+
+-- Diff: gitsigns-backed diff views (native nvim diff mode, respects `diffopt`)
+map("n", "<leader>di", function() require("gitsigns").diffthis() end,     { desc = "Diff vs Index" })
+map("n", "<leader>dh", function() require("gitsigns").diffthis("HEAD") end, { desc = "Diff vs HEAD" })
+map("n", "<leader>dt", function() require("gitsigns").toggle_deleted() end, { desc = "Toggle Deleted (inline)" })
+
+-- Hunk navigation and inspection (non-destructive)
+map("n", "]c", function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
+map("n", "[c", function() require("gitsigns").nav_hunk("prev") end, { desc = "Prev Hunk" })
+map("n", "<leader>hp", function() require("gitsigns").preview_hunk() end,           { desc = "Preview Hunk" })
+map("n", "<leader>hb", function() require("gitsigns").blame_line({ full = true }) end, { desc = "Blame Line" })
+
+-- Hunk staging (visual mode stages only the selected lines within the hunk)
+map({ "n", "v" }, "<leader>hs", function() require("gitsigns").stage_hunk() end, { desc = "Stage Hunk" })
 map("n", "<leader>?", function()
   require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps" })

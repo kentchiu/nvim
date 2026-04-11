@@ -42,7 +42,38 @@ opt.pumborder = "rounded"
 opt.winborder = "rounded"
 
 -- Enable built-in auto-completion
-vim.o.autocomplete = true
+opt.autocomplete = true
 
 -- Disable swap files
 opt.swapfile = false
+
+-- vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
+-- example here: https://vimways.org/2018/the-power-of-diff/
+opt.diffopt = {
+  "internal", -- use internal diffS
+  "inline:char", -- Diff: enable word-level inline highlight (delta-like) and smarter line matching
+  "filler", -- fill diff with empty row which make diff more Intuitive
+  "closeoff", -- auto close diff when buffer close
+  "context:12", -- diff conext line
+  "algorithm:histogram", -- suit for small chunk
+  "linematch:60",
+  "indent-heuristic", -- smart indent
+  -- "iwhite", -- this one, it doesn't fit all cases.
+}
+--
+--
+
+-- vim.opt.conceallevel = 0 -- disable conceal
+opt.inccommand = "split" -- Incremental live completion
+opt.spelllang = "en_us,cjk" -- cjk for Chinese, Japanese and korean
+
+-- vim.opt.listchars = { space = "·", tab = "⇥ ", eol = "↵" }
+opt.listchars = {
+  eol = "↲",
+  tab = "⇥ ",
+  space = "·",
+  trail = "·",
+  extends = ">",
+  precedes = "<",
+  nbsp = "␣",
+}
