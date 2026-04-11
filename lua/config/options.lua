@@ -43,3 +43,6 @@ opt.winborder = "rounded"
 
 -- Enable built-in auto-completion
 vim.o.autocomplete = true
+
+-- Disable swap files
+opt.swapfile = false
