@@ -38,7 +38,7 @@ if ok_oil then
     end
     prefix = prefix or ""
     local out = vim.fn.systemlist({
-      "git", "-C", dir, "status", "--porcelain=v1", "-uall",
+      "git", "-C", dir, "status", "--porcelain=v1", "-uall", "--ignored",
     })
     if vim.v.shell_error ~= 0 then
       git_cache[dir] = {}
@@ -71,7 +71,9 @@ if ok_oil then
   vim.api.nvim_set_hl(0, "OilGitModified", { fg = "#e5c07b", bold = true })
   vim.api.nvim_set_hl(0, "OilGitUntracked", { fg = "#61afef", bold = true })
   vim.api.nvim_set_hl(0, "OilGitAdded", { fg = "#98c379", bold = true })
+  vim.api.nvim_set_hl(0, "OilGitDeleted", { fg = "#e06c75", bold = true })
   vim.api.nvim_set_hl(0, "OilGitClean", { fg = "#5c6370" })
+  vim.api.nvim_set_hl(0, "OilGitIgnored", { fg = "#4b5263" })
 
   require("oil.columns").register("git_status", {
     render = function(entry, _conf, bufnr)
@@ -82,12 +84,14 @@ if ok_oil then
       if not code then return nil end
       -- Collapse 2-char porcelain code into a single symbol
       local sym, hl
-      if code:find("?", 1, true) then
+      if code == "!!" then
+        sym, hl = "!", "OilGitIgnored"
+      elseif code:find("?", 1, true) then
         sym, hl = "?", "OilGitUntracked"
       elseif code:find("A", 1, true) then
         sym, hl = "A", "OilGitAdded"
       elseif code:find("D", 1, true) then
-        sym, hl = "D", "OilGitModified"
+        sym, hl = "D", "OilGitDeleted"
       elseif code:find("[MRCU]") then
         sym, hl = "M", "OilGitModified"
       else
