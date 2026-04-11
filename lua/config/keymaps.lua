@@ -50,6 +50,7 @@ map("n", "<leader>hb", function() require("gitsigns").blame_line({ full = true }
 
 -- Hunk staging (visual mode stages only the selected lines within the hunk)
 map({ "n", "v" }, "<leader>hs", function() require("gitsigns").stage_hunk() end, { desc = "Stage Hunk" })
+map({ "n", "v" }, "<leader>hr", function() require("gitsigns").reset_hunk() end, { desc = "Reset Hunk" })
 map("n", "<leader>?", function()
   require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps" })
