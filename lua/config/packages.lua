@@ -12,6 +12,7 @@ vim.pack.add({
   { src = gh("echasnovski/mini.icons") },
   { src = gh("lewis6991/gitsigns.nvim") },
   { src = gh("refractalize/oil-git-status.nvim") },
+
 }, {
   confirm = false,
 })
@@ -75,3 +76,4 @@ local ok_gitsigns, gitsigns = pcall(require, "gitsigns")
 if ok_gitsigns then
   gitsigns.setup()
 end
+

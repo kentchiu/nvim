@@ -20,6 +20,10 @@
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "nvim-jump": {
+      "rev": "7cce9540623ff6c50475dc6d30316dedb074e851",
+      "src": "https://github.com/yorickpeterse/nvim-jump"
+    },
     "oil-git-status.nvim": {
       "rev": "a3e2ccb00cb8822115e28a9a1791eda051d940c9",
       "src": "https://github.com/refractalize/oil-git-status.nvim"

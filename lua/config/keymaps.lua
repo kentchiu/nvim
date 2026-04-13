@@ -40,7 +40,7 @@ map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 -- Diff: gitsigns-backed diff views (native nvim diff mode, respects `diffopt`)
 map("n", "<leader>di", function() require("gitsigns").diffthis() end,     { desc = "Diff vs Index" })
 map("n", "<leader>dh", function() require("gitsigns").diffthis("HEAD") end, { desc = "Diff vs HEAD" })
-map("n", "<leader>dt", function() require("gitsigns").toggle_deleted() end, { desc = "Toggle Deleted (inline)" })
+map("n", "<leader>dt", function() require("gitsigns").preview_hunk_inline() end, { desc = "Toggle Deleted (inline)" })
 
 -- Hunk navigation and inspection (non-destructive)
 map("n", "]c", function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
@@ -62,6 +62,10 @@ map({ "i", "n", "s" }, "<esc>", function()
   return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 
+
+-- Disable accidental macro recording; use Q to record instead
+map("n", "q", "<Nop>")
+map("n", "Q", "q", { desc = "Record Macro" })
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape" })
@@ -143,3 +147,4 @@ map("n", "<leader>xq", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = "Quickfix List" })
+
