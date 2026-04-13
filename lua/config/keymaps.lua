@@ -27,49 +27,16 @@ end
 local function create_ref_snapshot(ref, callback)
   local tmp_dir = "/tmp/nvim-difftool-" .. vim.fn.getpid()
   vim.fn.delete(tmp_dir, "rf")
+  vim.fn.mkdir(tmp_dir, "p")
 
-  local diff_cmd = { "git", "diff", "--name-only", ref }
-  vim.system(diff_cmd, { text = true }, function(result)
-    if result.code ~= 0 then
-      vim.schedule(function()
-        vim.notify("git diff failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
-      end)
-      return
-    end
-
+  local cmd = { "sh", "-c", "git archive " .. ref .. " | tar -x -C " .. tmp_dir }
+  vim.system(cmd, {}, function(result)
     vim.schedule(function()
-      local files = vim.split(vim.trim(result.stdout), "\n", { trimempty = true })
-      if #files == 0 then
-        vim.notify("No differences found against " .. ref, vim.log.levels.INFO)
+      if result.code ~= 0 then
+        vim.notify("git archive failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
         return
       end
-
-      for _, file in ipairs(files) do
-        local dest_dir = vim.fn.fnamemodify(tmp_dir .. "/" .. file, ":h")
-        vim.fn.mkdir(dest_dir, "p")
-      end
-
-      local pending = #files
-      for _, file in ipairs(files) do
-        local dest = tmp_dir .. "/" .. file
-        local show_cmd = { "git", "show", ref .. ":" .. file }
-        vim.system(show_cmd, { text = true }, function(show_result)
-          vim.schedule(function()
-            if show_result.code == 0 then
-              local f = io.open(dest, "w")
-              if f then
-                f:write(show_result.stdout)
-                f:close()
-              end
-            end
-
-            pending = pending - 1
-            if pending == 0 then
-              callback(tmp_dir)
-            end
-          end)
-        end)
-      end
+      callback(tmp_dir)
     end)
   end)
 end
@@ -94,7 +61,7 @@ local function open_directory_diff()
 
         create_ref_snapshot(ref, function(tmp_dir)
           vim.cmd.packadd("nvim.difftool")
-          vim.cmd.DiffTool({ args = { tmp_dir, vim.fn.getcwd() } })
+          require("difftool").open(tmp_dir, vim.fn.getcwd(), { ignore = { ".git" } })
 
           vim.api.nvim_create_autocmd("BufWinLeave", {
             pattern = "*",
