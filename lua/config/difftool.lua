@@ -43,15 +43,43 @@ function M.diff_against_ref()
           return
         end
 
+        local changed = {}
         local items = {}
         for _, file in ipairs(output) do
           table.insert(items, { filename = file, lnum = 1 })
+          changed[vim.fn.fnamemodify(file, ":p")] = true
         end
         vim.fn.setqflist(items, "r")
         vim.fn.setqflist({}, "a", { title = "Diff vs " .. ref })
+
+        local group = vim.api.nvim_create_augroup("DiffAgainstRef", { clear = true })
+
+        -- auto-trigger gitsigns diff when entering a changed file
+        vim.api.nvim_create_autocmd("BufEnter", {
+          group = group,
+          callback = function()
+            local bufpath = vim.api.nvim_buf_get_name(0)
+            if changed[bufpath] and not vim.wo.diff then
+              vim.defer_fn(function()
+                pcall(require("gitsigns").diffthis, ref)
+              end, 50)
+            end
+          end,
+        })
+
+        -- cleanup when quickfix window is closed
+        vim.api.nvim_create_autocmd("BufWinLeave", {
+          group = group,
+          callback = function(ev)
+            if vim.fn.getbufvar(ev.buf, "&buftype") == "quickfix" then
+              pcall(vim.api.nvim_del_augroup_by_name, "DiffAgainstRef")
+              return true
+            end
+          end,
+        })
+
         vim.cmd.copen()
         vim.cmd.cfirst()
-        require("gitsigns").diffthis(ref)
       end,
     },
   })
