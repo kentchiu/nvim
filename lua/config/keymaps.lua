@@ -45,28 +45,31 @@ local function create_ref_snapshot(ref, callback)
       return
     end
 
+    -- pre-create directories on main thread (vim.fn.* is not thread-safe)
+    for _, file in ipairs(files) do
+      local dest_dir = vim.fn.fnamemodify(tmp_dir .. "/" .. file, ":h")
+      vim.fn.mkdir(dest_dir, "p")
+    end
+
     local pending = #files
     for _, file in ipairs(files) do
       local dest = tmp_dir .. "/" .. file
-      local dest_dir = vim.fn.fnamemodify(dest, ":h")
-      vim.fn.mkdir(dest_dir, "p")
-
       local show_cmd = { "git", "show", ref .. ":" .. file }
       vim.system(show_cmd, { text = true }, function(show_result)
-        if show_result.code == 0 then
-          local f = io.open(dest, "w")
-          if f then
-            f:write(show_result.stdout)
-            f:close()
+        vim.schedule(function()
+          if show_result.code == 0 then
+            local f = io.open(dest, "w")
+            if f then
+              f:write(show_result.stdout)
+              f:close()
+            end
           end
-        end
 
-        pending = pending - 1
-        if pending == 0 then
-          vim.schedule(function()
+          pending = pending - 1
+          if pending == 0 then
             callback(tmp_dir)
-          end)
-        end
+          end
+        end)
       end)
     end
   end)
@@ -96,10 +99,10 @@ local function open_directory_diff()
 
           vim.api.nvim_create_autocmd("BufWinLeave", {
             pattern = "*",
-            once = true,
             callback = function(ev)
               if vim.fn.getbufvar(ev.buf, "&buftype") == "quickfix" then
                 vim.fn.delete(tmp_dir, "rf")
+                return true -- remove this autocmd
               end
             end,
           })
