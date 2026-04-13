@@ -19,6 +19,59 @@ local function git_ref_list()
   return lines
 end
 
+local function parse_ref(selected)
+  local ref = selected:match("^%[%w+%]%s+(%S+)")
+  return ref
+end
+
+local function create_ref_snapshot(ref, callback)
+  local tmp_dir = "/tmp/nvim-difftool-" .. vim.fn.getpid()
+  vim.fn.delete(tmp_dir, "rf")
+
+  local diff_cmd = { "git", "diff", "--name-only", ref }
+  vim.system(diff_cmd, { text = true }, function(result)
+    if result.code ~= 0 then
+      vim.schedule(function()
+        vim.notify("git diff failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
+      end)
+      return
+    end
+
+    local files = vim.split(vim.trim(result.stdout), "\n", { trimempty = true })
+    if #files == 0 then
+      vim.schedule(function()
+        vim.notify("No differences found against " .. ref, vim.log.levels.INFO)
+      end)
+      return
+    end
+
+    local pending = #files
+    for _, file in ipairs(files) do
+      local dest = tmp_dir .. "/" .. file
+      local dest_dir = vim.fn.fnamemodify(dest, ":h")
+      vim.fn.mkdir(dest_dir, "p")
+
+      local show_cmd = { "git", "show", ref .. ":" .. file }
+      vim.system(show_cmd, { text = true }, function(show_result)
+        if show_result.code == 0 then
+          local f = io.open(dest, "w")
+          if f then
+            f:write(show_result.stdout)
+            f:close()
+          end
+        end
+
+        pending = pending - 1
+        if pending == 0 then
+          vim.schedule(function()
+            callback(tmp_dir)
+          end)
+        end
+      end)
+    end
+  end)
+end
+
 
 map("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
 -- fzf
