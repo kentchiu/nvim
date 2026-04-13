@@ -24,23 +24,6 @@ local function parse_ref(selected)
   return ref
 end
 
-local function create_ref_snapshot(ref, callback)
-  local tmp_dir = "/tmp/nvim-difftool-" .. vim.fn.getpid()
-  vim.fn.delete(tmp_dir, "rf")
-  vim.fn.mkdir(tmp_dir, "p")
-
-  local cmd = { "sh", "-c", "git archive " .. ref .. " | tar -x -C " .. tmp_dir }
-  vim.system(cmd, {}, function(result)
-    vim.schedule(function()
-      if result.code ~= 0 then
-        vim.notify("git archive failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
-        return
-      end
-      callback(tmp_dir)
-    end)
-  end)
-end
-
 local function open_directory_diff()
   local fzf = require("fzf-lua")
   local refs = git_ref_list()
@@ -59,20 +42,21 @@ local function open_directory_diff()
           return
         end
 
-        create_ref_snapshot(ref, function(tmp_dir)
-          vim.cmd.packadd("nvim.difftool")
-          require("difftool").open(tmp_dir, vim.fn.getcwd(), { ignore = { ".git" } })
+        local output = vim.fn.systemlist("git diff --name-only " .. ref)
+        if vim.v.shell_error ~= 0 or #output == 0 then
+          vim.notify("No differences found against " .. ref, vim.log.levels.INFO)
+          return
+        end
 
-          vim.api.nvim_create_autocmd("BufWinLeave", {
-            pattern = "*",
-            callback = function(ev)
-              if vim.fn.getbufvar(ev.buf, "&buftype") == "quickfix" then
-                vim.fn.delete(tmp_dir, "rf")
-                return true -- remove this autocmd
-              end
-            end,
-          })
-        end)
+        local items = {}
+        for _, file in ipairs(output) do
+          table.insert(items, { filename = file, lnum = 1 })
+        end
+        vim.fn.setqflist(items, "r")
+        vim.fn.setqflist({}, "a", { title = "Diff vs " .. ref })
+        vim.cmd.copen()
+        vim.cmd.cfirst()
+        require("gitsigns").diffthis(ref)
       end,
     },
   })
