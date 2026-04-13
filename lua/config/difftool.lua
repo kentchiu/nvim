@@ -19,6 +19,16 @@ local function parse_ref(selected)
   return ref
 end
 
+local function close_diff_splits()
+  local cur = vim.api.nvim_get_current_win()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if win ~= cur and vim.wo[win].diff then
+      pcall(vim.api.nvim_win_close, win, true)
+    end
+  end
+  vim.cmd("diffoff")
+end
+
 function M.diff_against_ref()
   local fzf = require("fzf-lua")
   local refs = git_ref_list()
@@ -61,6 +71,7 @@ function M.diff_against_ref()
             local bufpath = vim.api.nvim_buf_get_name(0)
             if changed[bufpath] and not vim.wo.diff then
               vim.defer_fn(function()
+                close_diff_splits()
                 pcall(require("gitsigns").diffthis, ref)
               end, 50)
             end
