@@ -133,6 +133,37 @@ function M.diff_against_ref()
   })
 end
 
+local function diff_current_file_against(ref, label)
+  local filepath = vim.fn.expand("%:.")
+  if filepath == "" then
+    vim.notify("No file open", vim.log.levels.WARN)
+    return
+  end
+
+  close_ref_split()
+  local content = git_show(ref, filepath)
+  if not content then
+    vim.notify(filepath .. " does not exist in " .. label, vim.log.levels.INFO)
+    return
+  end
+
+  local ft = vim.bo.filetype
+  vim.cmd("leftabove vnew")
+  create_scratch_buf("diffref://" .. label .. ":" .. filepath, content, ft)
+  vim.cmd("diffthis")
+  vim.cmd.wincmd("l")
+  vim.cmd("diffthis")
+end
+
+function M.diff_file_vs_index()
+  -- empty ref means index: `git show :path` shows staged version
+  diff_current_file_against("", "index")
+end
+
+function M.diff_file_vs_head()
+  diff_current_file_against("HEAD", "HEAD")
+end
+
 function M.diff_file_against_ref()
   local fzf = require("fzf-lua")
   local refs = git_ref_list()
@@ -156,20 +187,27 @@ function M.diff_file_against_ref()
           vim.notify("Could not parse ref from selection", vim.log.levels.ERROR)
           return
         end
+        diff_current_file_against(ref, ref)
+      end,
+    },
+  })
+end
 
-        close_ref_split()
-        local content = git_show(ref, filepath)
-        if not content then
-          vim.notify(filepath .. " does not exist in " .. ref, vim.log.levels.INFO)
-          return
-        end
-
-        local ft = vim.bo.filetype
-        vim.cmd("leftabove vnew")
-        create_scratch_buf("diffref://" .. ref .. ":" .. filepath, content, ft)
-        vim.cmd("diffthis")
-        vim.cmd.wincmd("l")
-        vim.cmd("diffthis")
+function M.path_history()
+  local fzf = require("fzf-lua")
+  fzf.fzf_exec("fd --type d --hidden --exclude .git", {
+    prompt = "Directory> ",
+    actions = {
+      ["default"] = function(selected)
+        local path = selected[1]
+        if not path or path == "" then return end
+        fzf.git_commits({
+          cmd = string.format(
+            "git log --color --pretty=format:'%%h %%ad %%s' --date=short -- %s",
+            vim.fn.shellescape(path)
+          ),
+          prompt = "History " .. path .. "> ",
+        })
       end,
     },
   })

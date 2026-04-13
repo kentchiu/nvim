@@ -23,12 +23,13 @@ map("n", "<leader>gg", "<Cmd>Neogit<CR>", { desc = "Neogit" })
 -- search
 map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 
--- Diff: gitsigns-backed diff views (native nvim diff mode, respects `diffopt`)
-map("n", "<leader>di", function() require("gitsigns").diffthis() end,     { desc = "Diff vs Index" })
-map("n", "<leader>dh", function() require("gitsigns").diffthis("HEAD") end, { desc = "Diff vs HEAD" })
-map("n", "<leader>dt", function() require("gitsigns").preview_hunk_inline() end, { desc = "Toggle Deleted (inline)" })
+-- Diff: native nvim diff mode, respects `diffopt`
+map("n", "<leader>di", function() require("config.difftool").diff_file_vs_index() end, { desc = "Diff vs Index" })
+map("n", "<leader>dh", function() require("config.difftool").diff_file_vs_head() end,  { desc = "Diff vs HEAD" })
+map("n", "<leader>dt", function() require("gitsigns").preview_hunk_inline() end,       { desc = "Toggle Deleted (inline)" })
 map("n", "<leader>dc", function() require("config.difftool").diff_file_against_ref() end, { desc = "Diff File vs Ref" })
-map("n", "<leader>dd", function() require("config.difftool").diff_against_ref() end, { desc = "Diff Directory vs Ref" })
+map("n", "<leader>dd", function() require("config.difftool").diff_against_ref() end,   { desc = "Diff Directory vs Ref" })
+map("n", "<leader>dp", function() require("config.difftool").path_history() end,       { desc = "Path History" })
 
 -- Hunk navigation and inspection (non-destructive)
 map("n", "]c", function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
