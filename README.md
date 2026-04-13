@@ -20,9 +20,16 @@
 
 ## Difftool
 
+| Keymap        | What it does                                              |
+| ------------- | --------------------------------------------------------- |
+| `<leader>dd`  | Pick a git ref via fzf, show changed files in quickfix with diff |
+
+Quickfix shows `[new]` / `[del]` / `[mod]` status. Press Enter on an entry to open diff view (left = ref, right = working tree, editable).
+
+For ref-vs-ref comparison (both sides read-only), use git directly:
+
 ```
-gh pr checkout 123
-git difftool -d main
+git difftool -d main..feature/xxx
 ```
 
 

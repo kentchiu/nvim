@@ -6,6 +6,7 @@ local function open_undotree()
 end
 
 map("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
+
 -- fzf
 map("n", "<leader><space>", "<Cmd>FzfLua<CR>", { desc = "FZF" })
 map("n", "<leader>:", "<Cmd>FzfLua command_history<CR>", { desc = "Command History" })
@@ -16,8 +17,10 @@ map("n", "<leader>fg", "<Cmd>FzfLua live_grep<CR>", { desc = "Grep" })
 map("n", "<leader>fb", "<Cmd>FzfLua buffers<CR>", { desc = "Buffers" })
 map("n", "<leader>fh", "<Cmd>FzfLua help_tags<CR>", { desc = "Help" })
 
---
+-- git
 map("n", "<leader>gg", "<Cmd>Neogit<CR>", { desc = "Neogit" })
+
+-- search
 map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 
 -- Diff: gitsigns-backed diff views (native nvim diff mode, respects `diffopt`)
@@ -35,6 +38,8 @@ map("n", "<leader>hb", function() require("gitsigns").blame_line({ full = true }
 -- Hunk staging (visual mode stages only the selected lines within the hunk)
 map({ "n", "v" }, "<leader>hs", function() require("gitsigns").stage_hunk() end, { desc = "Stage Hunk" })
 map({ "n", "v" }, "<leader>hr", function() require("gitsigns").reset_hunk() end, { desc = "Reset Hunk" })
+
+-- which key
 map("n", "<leader>?", function()
   require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps" })
