@@ -5,21 +5,6 @@ local function open_undotree()
   vim.cmd.Undotree()
 end
 
-local function open_difftool()
-  vim.cmd.packadd("nvim.difftool")
-
-  local left = vim.fn.input("Diff left: ", "", "file")
-  if left == "" then
-    return
-  end
-
-  local right = vim.fn.input("Diff right: ", "", "file")
-  if right == "" then
-    return
-  end
-
-  vim.cmd.DiffTool({ args = { left, right } })
-end
 
 map("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
 -- fzf
@@ -34,7 +19,6 @@ map("n", "<leader>fh", "<Cmd>FzfLua help_tags<CR>", { desc = "Help" })
 
 --
 map("n", "<leader>gg", "<Cmd>Neogit<CR>", { desc = "Neogit" })
-map("n", "<leader>gd", open_difftool, { desc = "Diff Tool" })
 map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 
 -- Diff: gitsigns-backed diff views (native nvim diff mode, respects `diffopt`)
