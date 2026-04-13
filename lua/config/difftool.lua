@@ -19,14 +19,41 @@ local function parse_ref(selected)
   return ref
 end
 
-local function close_diff_splits()
-  local cur = vim.api.nvim_get_current_win()
+-- close the ref-version scratch buffer (if any) and turn off diff
+local function close_ref_split()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if win ~= cur and vim.wo[win].diff then
-      pcall(vim.api.nvim_win_close, win, true)
+    local buf = vim.api.nvim_win_get_buf(win)
+    local name = vim.api.nvim_buf_get_name(buf)
+    if name:match("^diffref://") then
+      vim.api.nvim_win_close(win, true)
     end
   end
-  vim.cmd("diffoff")
+  pcall(vim.cmd, "diffoff")
+end
+
+-- open a read-only split with the file content at the given ref
+local function open_ref_split(ref)
+  local filepath = vim.fn.expand("%:.")
+  local content = vim.fn.systemlist("git show " .. ref .. ":" .. filepath)
+  if vim.v.shell_error ~= 0 then
+    return
+  end
+
+  local ft = vim.bo.filetype
+
+  vim.cmd("leftabove vnew")
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
+  vim.api.nvim_buf_set_name(buf, "diffref://" .. ref .. ":" .. filepath)
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].modifiable = false
+  vim.bo[buf].filetype = ft
+  vim.cmd("diffthis")
+
+  -- move to the working tree window and enable diff
+  vim.cmd.wincmd("l")
+  vim.cmd("diffthis")
 end
 
 function M.diff_against_ref()
@@ -53,44 +80,21 @@ function M.diff_against_ref()
           return
         end
 
-        local changed = {}
         local items = {}
         for _, file in ipairs(output) do
           table.insert(items, { filename = file, lnum = 1 })
-          changed[vim.fn.fnamemodify(file, ":p")] = true
         end
         vim.fn.setqflist(items, "r")
         vim.fn.setqflist({}, "a", { title = "Diff vs " .. ref })
-
-        local group = vim.api.nvim_create_augroup("DiffAgainstRef", { clear = true })
-
-        -- auto-trigger gitsigns diff when entering a changed file
-        vim.api.nvim_create_autocmd("BufEnter", {
-          group = group,
-          callback = function()
-            local bufpath = vim.api.nvim_buf_get_name(0)
-            if changed[bufpath] and not vim.wo.diff then
-              vim.defer_fn(function()
-                close_diff_splits()
-                pcall(require("gitsigns").diffthis, ref)
-              end, 50)
-            end
-          end,
-        })
-
-        -- cleanup when quickfix window is closed
-        vim.api.nvim_create_autocmd("BufWinLeave", {
-          group = group,
-          callback = function(ev)
-            if vim.fn.getbufvar(ev.buf, "&buftype") == "quickfix" then
-              pcall(vim.api.nvim_del_augroup_by_name, "DiffAgainstRef")
-              return true
-            end
-          end,
-        })
-
         vim.cmd.copen()
-        vim.cmd.cfirst()
+
+        -- override Enter in quickfix to open file with diff
+        vim.keymap.set("n", "<CR>", function()
+          local idx = vim.fn.line(".")
+          close_ref_split()
+          vim.cmd("cc " .. idx)
+          open_ref_split(ref)
+        end, { buffer = true, nowait = true })
       end,
     },
   })
