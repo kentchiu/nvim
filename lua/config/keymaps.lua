@@ -72,6 +72,43 @@ local function create_ref_snapshot(ref, callback)
   end)
 end
 
+local function open_directory_diff()
+  local fzf = require("fzf-lua")
+  local refs = git_ref_list()
+  if #refs == 0 then
+    vim.notify("No git refs found", vim.log.levels.WARN)
+    return
+  end
+
+  fzf.fzf_exec(refs, {
+    prompt = "Diff against> ",
+    actions = {
+      ["default"] = function(selected)
+        local ref = parse_ref(selected[1])
+        if not ref then
+          vim.notify("Could not parse ref from selection", vim.log.levels.ERROR)
+          return
+        end
+
+        create_ref_snapshot(ref, function(tmp_dir)
+          vim.cmd.packadd("nvim.difftool")
+          vim.cmd.DiffTool({ args = { tmp_dir, vim.fn.getcwd() } })
+
+          vim.api.nvim_create_autocmd("BufWinLeave", {
+            pattern = "*",
+            once = true,
+            callback = function(ev)
+              if vim.fn.getbufvar(ev.buf, "&buftype") == "quickfix" then
+                vim.fn.delete(tmp_dir, "rf")
+              end
+            end,
+          })
+        end)
+      end,
+    },
+  })
+end
+
 
 map("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
 -- fzf
@@ -92,6 +129,7 @@ map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 map("n", "<leader>di", function() require("gitsigns").diffthis() end,     { desc = "Diff vs Index" })
 map("n", "<leader>dh", function() require("gitsigns").diffthis("HEAD") end, { desc = "Diff vs HEAD" })
 map("n", "<leader>dt", function() require("gitsigns").preview_hunk_inline() end, { desc = "Toggle Deleted (inline)" })
+map("n", "<leader>dd", open_directory_diff, { desc = "Diff Directory vs Ref" })
 
 -- Hunk navigation and inspection (non-destructive)
 map("n", "]c", function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
