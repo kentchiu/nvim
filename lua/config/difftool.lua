@@ -133,4 +133,46 @@ function M.diff_against_ref()
   })
 end
 
+function M.diff_file_against_ref()
+  local fzf = require("fzf-lua")
+  local refs = git_ref_list()
+  if #refs == 0 then
+    vim.notify("No git refs found", vim.log.levels.WARN)
+    return
+  end
+
+  local filepath = vim.fn.expand("%:.")
+  if filepath == "" then
+    vim.notify("No file open", vim.log.levels.WARN)
+    return
+  end
+
+  fzf.fzf_exec(refs, {
+    prompt = "Diff " .. filepath .. " against> ",
+    actions = {
+      ["default"] = function(selected)
+        local ref = parse_ref(selected[1])
+        if not ref then
+          vim.notify("Could not parse ref from selection", vim.log.levels.ERROR)
+          return
+        end
+
+        close_ref_split()
+        local content = git_show(ref, filepath)
+        if not content then
+          vim.notify(filepath .. " does not exist in " .. ref, vim.log.levels.INFO)
+          return
+        end
+
+        local ft = vim.bo.filetype
+        vim.cmd("leftabove vnew")
+        create_scratch_buf("diffref://" .. ref .. ":" .. filepath, content, ft)
+        vim.cmd("diffthis")
+        vim.cmd.wincmd("l")
+        vim.cmd("diffthis")
+      end,
+    },
+  })
+end
+
 return M

@@ -27,6 +27,7 @@ map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 map("n", "<leader>di", function() require("gitsigns").diffthis() end,     { desc = "Diff vs Index" })
 map("n", "<leader>dh", function() require("gitsigns").diffthis("HEAD") end, { desc = "Diff vs HEAD" })
 map("n", "<leader>dt", function() require("gitsigns").preview_hunk_inline() end, { desc = "Toggle Deleted (inline)" })
+map("n", "<leader>dc", function() require("config.difftool").diff_file_against_ref() end, { desc = "Diff File vs Ref" })
 map("n", "<leader>dd", function() require("config.difftool").diff_against_ref() end, { desc = "Diff Directory vs Ref" })
 
 -- Hunk navigation and inspection (non-destructive)
