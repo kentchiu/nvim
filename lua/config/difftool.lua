@@ -19,7 +19,6 @@ local function parse_ref(selected)
   return ref
 end
 
--- close the ref-version scratch buffer (if any) and turn off diff
 local function close_ref_split()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -31,60 +30,50 @@ local function close_ref_split()
   pcall(vim.cmd, "diffoff")
 end
 
--- open a diff split: left = ref version, right = working tree
+local function create_scratch_buf(name, content, ft)
+  local buf = vim.api.nvim_get_current_buf()
+  if content then
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
+  end
+  vim.api.nvim_buf_set_name(buf, name)
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].modifiable = false
+  vim.bo[buf].filetype = ft
+end
+
+local function git_show(ref, filepath)
+  local result = vim.system({ "git", "show", ref .. ":" .. filepath }, { text = true }):wait()
+  if result.code ~= 0 then
+    return nil
+  end
+  return vim.split(result.stdout, "\n", { plain = true })
+end
+
 local function open_diff_split(ref, filepath, status)
   local ft = vim.filetype.match({ filename = filepath }) or ""
 
+  if status == "D" then
+    -- deleted: right side is empty scratch, left side has ref content
+    vim.cmd("enew")
+    create_scratch_buf(filepath, nil, ft)
+  end
+
+  vim.cmd("leftabove vnew")
+
   if status == "A" then
     -- new file: left side is empty
-    vim.cmd("leftabove vnew")
-    local buf = vim.api.nvim_get_current_buf()
-    vim.api.nvim_buf_set_name(buf, "diffref://" .. ref .. ":" .. filepath)
-    vim.bo[buf].buftype = "nofile"
-    vim.bo[buf].bufhidden = "wipe"
-    vim.bo[buf].modifiable = false
-    vim.bo[buf].filetype = ft
-    vim.cmd("diffthis")
-    vim.cmd.wincmd("l")
-    vim.cmd("diffthis")
-  elseif status == "D" then
-    -- deleted file: right side is empty, left side has ref content
-    vim.cmd("enew")
-    vim.api.nvim_buf_set_name(0, filepath)
-    vim.bo.buftype = "nofile"
-    vim.bo.bufhidden = "wipe"
-    vim.bo.filetype = ft
-
-    vim.cmd("leftabove vnew")
-    local buf = vim.api.nvim_get_current_buf()
-    local content = vim.fn.systemlist("git show " .. ref .. ":" .. filepath)
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
-    vim.api.nvim_buf_set_name(buf, "diffref://" .. ref .. ":" .. filepath)
-    vim.bo[buf].buftype = "nofile"
-    vim.bo[buf].bufhidden = "wipe"
-    vim.bo[buf].modifiable = false
-    vim.bo[buf].filetype = ft
-    vim.cmd("diffthis")
-    vim.cmd.wincmd("l")
-    vim.cmd("diffthis")
+    create_scratch_buf("diffref://" .. ref .. ":" .. filepath, nil, ft)
   else
-    -- modified: left = ref version, right = working tree (editable)
-    local content = vim.fn.systemlist("git show " .. ref .. ":" .. filepath)
-    if vim.v.shell_error ~= 0 then
-      return
-    end
-    vim.cmd("leftabove vnew")
-    local buf = vim.api.nvim_get_current_buf()
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
-    vim.api.nvim_buf_set_name(buf, "diffref://" .. ref .. ":" .. filepath)
-    vim.bo[buf].buftype = "nofile"
-    vim.bo[buf].bufhidden = "wipe"
-    vim.bo[buf].modifiable = false
-    vim.bo[buf].filetype = ft
-    vim.cmd("diffthis")
-    vim.cmd.wincmd("l")
-    vim.cmd("diffthis")
+    -- modified or deleted: left side has ref content
+    local content = git_show(ref, filepath)
+    if not content then return end
+    create_scratch_buf("diffref://" .. ref .. ":" .. filepath, content, ft)
   end
+
+  vim.cmd("diffthis")
+  vim.cmd.wincmd("l")
+  vim.cmd("diffthis")
 end
 
 function M.diff_against_ref()
@@ -105,16 +94,15 @@ function M.diff_against_ref()
           return
         end
 
-        local output = vim.fn.systemlist("git diff --name-status " .. ref)
-        if vim.v.shell_error ~= 0 or #output == 0 then
+        local result = vim.system({ "git", "diff", "--name-status", ref }, { text = true }):wait()
+        if result.code ~= 0 or result.stdout == "" then
           vim.notify("No differences found against " .. ref, vim.log.levels.INFO)
           return
         end
 
-        -- parse "M\tfilepath" or "A\tfilepath" etc.
         local file_statuses = {}
         local items = {}
-        for _, line in ipairs(output) do
+        for _, line in ipairs(vim.split(vim.trim(result.stdout), "\n")) do
           local status, file = line:match("^(%a)%s+(.+)$")
           if status and file then
             file_statuses[file] = status
@@ -127,7 +115,6 @@ function M.diff_against_ref()
         vim.fn.setqflist({}, "a", { title = "Diff vs " .. ref })
         vim.cmd.copen()
 
-        -- override Enter in quickfix to open file with diff
         vim.keymap.set("n", "<CR>", function()
           local idx = vim.fn.line(".")
           local entry = vim.fn.getqflist()[idx]
@@ -136,13 +123,10 @@ function M.diff_against_ref()
           local status = file_statuses[filepath] or "M"
 
           close_ref_split()
-          if status == "D" then
-            -- deleted file: don't use cc (file doesn't exist), handle manually
-            open_diff_split(ref, filepath, status)
-          else
+          if status ~= "D" then
             vim.cmd("cc " .. idx)
-            open_diff_split(ref, vim.fn.expand("%:."), status)
           end
+          open_diff_split(ref, filepath, status)
         end, { buffer = true, nowait = true })
       end,
     },
