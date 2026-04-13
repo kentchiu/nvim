@@ -37,41 +37,40 @@ local function create_ref_snapshot(ref, callback)
       return
     end
 
-    local files = vim.split(vim.trim(result.stdout), "\n", { trimempty = true })
-    if #files == 0 then
-      vim.schedule(function()
+    vim.schedule(function()
+      local files = vim.split(vim.trim(result.stdout), "\n", { trimempty = true })
+      if #files == 0 then
         vim.notify("No differences found against " .. ref, vim.log.levels.INFO)
-      end)
-      return
-    end
+        return
+      end
 
-    -- pre-create directories on main thread (vim.fn.* is not thread-safe)
-    for _, file in ipairs(files) do
-      local dest_dir = vim.fn.fnamemodify(tmp_dir .. "/" .. file, ":h")
-      vim.fn.mkdir(dest_dir, "p")
-    end
+      for _, file in ipairs(files) do
+        local dest_dir = vim.fn.fnamemodify(tmp_dir .. "/" .. file, ":h")
+        vim.fn.mkdir(dest_dir, "p")
+      end
 
-    local pending = #files
-    for _, file in ipairs(files) do
-      local dest = tmp_dir .. "/" .. file
-      local show_cmd = { "git", "show", ref .. ":" .. file }
-      vim.system(show_cmd, { text = true }, function(show_result)
-        vim.schedule(function()
-          if show_result.code == 0 then
-            local f = io.open(dest, "w")
-            if f then
-              f:write(show_result.stdout)
-              f:close()
+      local pending = #files
+      for _, file in ipairs(files) do
+        local dest = tmp_dir .. "/" .. file
+        local show_cmd = { "git", "show", ref .. ":" .. file }
+        vim.system(show_cmd, { text = true }, function(show_result)
+          vim.schedule(function()
+            if show_result.code == 0 then
+              local f = io.open(dest, "w")
+              if f then
+                f:write(show_result.stdout)
+                f:close()
+              end
             end
-          end
 
-          pending = pending - 1
-          if pending == 0 then
-            callback(tmp_dir)
-          end
+            pending = pending - 1
+            if pending == 0 then
+              callback(tmp_dir)
+            end
+          end)
         end)
-      end)
-    end
+      end
+    end)
   end)
 end
 
