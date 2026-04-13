@@ -5,6 +5,20 @@ local function open_undotree()
   vim.cmd.Undotree()
 end
 
+local function git_ref_list()
+  local lines = {}
+  local function collect(cmd)
+    local output = vim.fn.systemlist(cmd)
+    if vim.v.shell_error == 0 then
+      vim.list_extend(lines, output)
+    end
+  end
+  collect("git branch -a --format='[branch] %(refname:short)'")
+  collect("git tag --format='[tag] %(refname:short)'")
+  collect("git log --oneline --max-count=50 --format='[commit] %h %s'")
+  return lines
+end
+
 
 map("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
 -- fzf
