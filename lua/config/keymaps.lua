@@ -75,7 +75,6 @@ vim.keymap.set({ "n" }, "L", "$") --end of line
 vim.keymap.set({ "x" }, "L", "g_") --end of line (without eol character)
 vim.keymap.set({ "n", "x" }, "M", "%") --middle of line
 
-vim.keymap.set("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in vslipt" })
 
 -- Open current markdown file with Typora
 vim.api.nvim_create_autocmd("FileType", {
@@ -144,3 +143,77 @@ map("n", "<leader>xq", function()
   end
 end, { desc = "Quickfix List" })
 
+
+--
+-- LazyVim-style built-in keymaps (no plugin required)
+--
+
+-- Keep search matches centered
+map("n", "n", "nzzzv", { desc = "Next search (centered)" })
+map("n", "N", "Nzzzv", { desc = "Prev search (centered)" })
+
+-- Save with Ctrl-S in any mode
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+-- Move lines up/down
+map("n", "<A-j>", "<cmd>m .+1<cr>==",       { desc = "Move Line Down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==",       { desc = "Move Line Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi",{ desc = "Move Line Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi",{ desc = "Move Line Up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv",       { desc = "Move Selection Down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv",       { desc = "Move Selection Up" })
+
+-- Buffer navigation
+-- map("n", "<S-h>",       "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- map("n", "<S-l>",       "<cmd>bnext<cr>",     { desc = "Next Buffer" })
+map("n", "[b",          "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "]b",          "<cmd>bnext<cr>",     { desc = "Next Buffer" })
+-- map("n", "<leader>bb",  "<cmd>e #<cr>",       { desc = "Alternate Buffer" })
+-- map("n", "<leader>`",   "<cmd>e #<cr>",       { desc = "Alternate Buffer" })
+-- map("n", "<leader>bd",  "<cmd>bd<cr>",        { desc = "Delete Buffer" })
+
+-- Window splits
+-- map("n", "<leader>-",  "<C-W>s", { desc = "Split Below", remap = true })
+-- map("n", "<leader>|",  "<C-W>v", { desc = "Split Right", remap = true })
+-- map("n", "<leader>wd", "<C-W>c", { desc = "Close Window", remap = true })
+
+-- Quickfix navigation
+map("n", "[q", vim.cmd.cprev, { desc = "Prev Quickfix" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+
+-- Diagnostic navigation (error-only variants)
+map("n", "]e", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Next Error" })
+map("n", "[e", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Prev Error" })
+map("n", "]w", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN })
+end, { desc = "Next Warning" })
+map("n", "[w", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN })
+end, { desc = "Prev Warning" })
+
+-- Toggle options
+map("n", "<leader>ul", function() vim.wo.number = not vim.wo.number end,             { desc = "Toggle Line Numbers" })
+map("n", "<leader>uw", function() vim.wo.wrap = not vim.wo.wrap end,                 { desc = "Toggle Wrap" })
+map("n", "<leader>us", function() vim.wo.spell = not vim.wo.spell end,               { desc = "Toggle Spell" })
+map("n", "<leader>ud", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle Diagnostics" })
+
+-- Terminal
+map("n", "<leader>tb", "<cmd>below split | terminal<cr>i",     { desc = "Terminal Below" })
+map("n", "<leader>tr", "<cmd>botright vsplit | terminal<cr>i", { desc = "Terminal Right" })
+
+-- Terminal mode
+map("t", "<esc><esc>", "<C-\\><C-n>",       { desc = "Enter Normal Mode" })
+map("t", "<C-h>",      "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
+map("t", "<C-j>",      "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
+map("t", "<C-k>",      "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
+map("t", "<C-l>",      "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
+
+-- New file
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+-- 
+map("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in vslipt" })
