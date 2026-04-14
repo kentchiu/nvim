@@ -68,12 +68,16 @@ opt.inccommand = "split" -- Incremental live completion
 opt.spelllang = "en_us,cjk" -- cjk for Chinese, Japanese and korean
 
 -- vim.opt.listchars = { space = "·", tab = "⇥ ", eol = "↵" }
+opt.list = true
 opt.listchars = {
   eol = "↲",
   tab = "⇥ ",
-  space = "·",
-  trail = "·",
-  extends = ">",
-  precedes = "<",
   nbsp = "␣",
+  lead = "·",      -- 只點縮排 
+  -- space = "·",
+  -- trail = "·",     -- 標記行尾                                                    
+  precedes = "<",
+  extends = "›",
 }
+
+
