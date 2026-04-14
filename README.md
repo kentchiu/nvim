@@ -147,6 +147,27 @@ nvim oil-ssh://[username@]hostname[:port]/[path]
 
 可以把 Remote File copy 會本機
 
+  
+## FZF
+
+- `:Fzflua oldfies`
+- `:FzfLua combine pickers=oldfiles;git_files`
+- Shfit + UP
+
+### `grep` vs `live_grep`
+
+這是 fzf-lua 最容易混淆的一對，差別在於**誰來做模糊篩選**：
+
+| | `grep` | `live_grep` |
+|--|--|--|
+| **搜尋時機** | 先輸入 pattern → 執行一次 rg → 結果固定 | 每次輸入都重新執行 rg |
+| **模糊篩選** | fzf 對 rg 的結果做模糊過濾 | rg 直接搜尋（精確 regex） |
+| **適合場景** | 知道大概關鍵字，想再從結果裡縮小範圍 | 想用 regex 精確搜尋，即時看到結果 |
+| **效能** | rg 只跑一次，結果在 fzf 裡篩選很快 | 每按一鍵就跑一次 rg，大專案略慢 |
+| **輸入內容** | 兩段：先給 rg 的 pattern，再在 fzf 裡打字 | 單段：直接就是 rg 的 query |
+
+
+> 在任一模式下按 `Ctrl-G` 可以直接切換 `grep ↔ live_grep`，不用關掉重開。
 
 ## MISC
 
