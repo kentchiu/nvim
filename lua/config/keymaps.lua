@@ -19,6 +19,9 @@ map("n", "<leader>fh", "<Cmd>FzfLua help_tags<CR>", { desc = "Help" })
 
 -- git
 map("n", "<leader>gg", "<Cmd>Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>gl", function()
+  require("neogit").action("log", "log_current", { "--graph", "--decorate", "--color" })()
+end, { desc = "Git Log Graph" })
 
 -- search
 map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
