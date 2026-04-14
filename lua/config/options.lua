@@ -9,6 +9,9 @@ local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
 
+-- Don't wrap long lines by default; toggle with <leader>uw
+opt.wrap = false
+
 -- Search: case-insensitive unless query contains uppercase
 opt.ignorecase = true
 opt.smartcase = true

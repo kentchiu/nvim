@@ -23,8 +23,6 @@ map("n", "<leader>gl", function()
   require("neogit").action("log", "log_current", { "--graph", "--decorate", "--color" })()
 end, { desc = "Git Log Graph" })
 
--- search
-map("n", "<leader>su", open_undotree, { desc = "Undo Tree" })
 
 -- Diff: native nvim diff mode, respects `diffopt`
 map("n", "<leader>di", function() require("config.difftool").diff_file_vs_index() end, { desc = "Diff vs Index" })
@@ -121,11 +119,10 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map("x", "<", "<gv")
 map("x", ">", ">gv")
 
--- terminal
--- map("n", "<leader>t", "<cmd>below terminal<cr>", { desc = "Terminal" })
 
 -- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>qq", "<cmd>qa<cr>",  { desc = "Quit All" })
+map("n", "<leader>qs", "<cmd>wqa<cr>", { desc = "Save & Quit All" })
 
 
 -- Quickfix and location lists
@@ -143,10 +140,8 @@ map("n", "<leader>xq", function()
   end
 end, { desc = "Quickfix List" })
 
+map("n", "<leader>xu", open_undotree, { desc = "Undo Tree" })
 
---
--- LazyVim-style built-in keymaps (no plugin required)
---
 
 -- Keep search matches centered
 map("n", "n", "nzzzv", { desc = "Next search (centered)" })
@@ -212,8 +207,5 @@ map("t", "<C-j>",      "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
 map("t", "<C-k>",      "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>",      "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 
--- New file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- 
+-- lsp
 map("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in vslipt" })

@@ -21,15 +21,16 @@ wk.setup({
 })
 
 wk.add({
-  { "<leader>f", group = "Find" },
+  { "<leader>f", group = "FZF" },
   { "<leader>g", group = "Git" },
-  { "<leader>u", group = "Undo" },
+  { "<leader>u", group = "UI" },
+  { "<leader>d", group = "Diff" },
+  { "<leader>h", group = "Hunk" },
+  { "<leader>t", group = "Terminal" },
+  { "<leader>x", group = "List" },
+  { "<leader>q", group = "Quit" },
 
   -- Built-in prefixes that which-key can't auto-detect
-  { "Z", group = "Quit" },
-  { "ZZ", desc = "Write & quit" },
-  { "ZQ", desc = "Quit without save" },
-
   { "@", group = "Play macro" },
   { "@q", desc = "Play macro q" },
   { "@a", desc = "Play macro a" },
