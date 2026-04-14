@@ -21,6 +21,7 @@ wk.setup({
 })
 
 wk.add({
+  { "<leader>b", group = "Buffer" },
   { "<leader>f", group = "FZF" },
   { "<leader>g", group = "Git" },
   { "<leader>u", group = "UI" },
