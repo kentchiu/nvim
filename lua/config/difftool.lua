@@ -23,15 +23,20 @@ local STATUS_LABELS = { A = "[new]", D = "[del]", M = "[mod]" }
 -- later strip the prefix. Commits are capped at 50 to keep fzf snappy.
 local function git_ref_list()
   local lines = {}
-  local function collect(cmd)
-    local output = vim.fn.systemlist(cmd)
-    if vim.v.shell_error == 0 then
-      vim.list_extend(lines, output)
+  local function collect(args)
+    local result = vim.system(args, { text = true }):wait()
+    if result.code ~= 0 then return end
+    for line in result.stdout:gmatch("[^\n]+") do
+      -- Skip symbolic refs like "[branch] origin/HEAD -> origin/main"
+      -- which are not valid ref names to diff against.
+      if not line:find("->") then
+        table.insert(lines, line)
+      end
     end
   end
-  collect("git branch -a --format='[branch] %(refname:short)'")
-  collect("git tag --format='[tag] %(refname:short)'")
-  collect("git log --oneline --max-count=50 --format='[commit] %h %s'")
+  collect({ "git", "branch", "-a", "--format=[branch] %(refname:short)" })
+  collect({ "git", "tag", "--format=[tag] %(refname:short)" })
+  collect({ "git", "log", "--oneline", "--max-count=50", "--format=[commit] %h %s" })
   return lines
 end
 
@@ -149,14 +154,17 @@ end
 --   A (added):    empty on left, working tree on right (all green)
 --   D (deleted):  ref version on left, empty on right (all red)
 --
--- For M/A the caller runs `:cc N` first to put the working tree file
--- in the target window. For D the file doesn't exist on disk, so we
--- create an empty buffer as the right side manually.
+-- For M/A the caller runs `:cc N` first, which moves to a non-qf
+-- window and loads the file. For D the file doesn't exist, so we
+-- jump to the previous window manually and create an empty buffer
+-- there. Running `enew` in the quickfix window itself would replace
+-- the quickfix list with a blank buffer.
 local function open_qf_diff(ref, filepath, status)
   close_diff_splits()
 
   if status == "D" then
     local ft = vim.filetype.match({ filename = filepath }) or ""
+    vim.cmd.wincmd("p")
     vim.cmd("enew")
     make_scratch(filepath, nil, ft)
   end
