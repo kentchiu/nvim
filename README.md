@@ -18,46 +18,37 @@
 - v_[n - select next node
 
 
-## Difftool
+## Diff
 
-| Keymap        | What it does                                              |
-| ------------- | --------------------------------------------------------- |
-| `<leader>dd`  | Pick a git ref via fzf, show changed files in quickfix with diff |
+所有 diff view 都用 native Neovim diff mode（respect `diffopt`:
+`inline:char`, `linematch` 等）。Layout 一律是 **ref 在左（readonly），
+working tree 在右（editable）**，跟 `git diff` 和 code review 工具一致。
 
-Quickfix shows `[new]` / `[del]` / `[mod]` status. Press Enter on an entry to open diff view (left = ref, right = working tree, editable).
+| Keymap       | 範圍   | 使用情境                                                                     |
+| ------------ | ------ | ---------------------------------------------------------------------------- |
+| `<leader>di` | Buffer | 編輯中想看「這個檔案還沒 stage 的改動」                                      |
+| `<leader>dh` | Buffer | 編輯中想看「這個檔案相對最後一次 commit 改了什麼」（最常用）                 |
+| `<leader>dc` | Buffer | 想知道「這個檔案在某個 branch/tag/commit 當時長什麼樣」，例如對照半年前的版本 |
+| `<leader>db` | Buffer | 查這個檔案歷代被誰改過、什麼時候改、改了什麼(file history)                   |
+| `<leader>dt` | Buffer | 看當前 hunk 被刪掉的那幾行(inline 顯示)                                      |
+| `<leader>dd` | Folder | 看「整個專案相對某個 ref 差多少」— 例如 cherry-pick 前看差異、對照某個 release tag |
+| `<leader>dm` | Folder | Review 自己 feature branch / PR — 只看「這個 branch 加了什麼」，排除 base 推進的雜訊 |
+| `<leader>dp` | Folder | 查某個目錄(例如 `src/auth/`)的演進歷史，看所有影響它的 commits               |
 
-For ref-vs-ref comparison (both sides read-only), use git directly:
+實務流程：
+
+- **寫 code 中** → `dh`（看當前變更）、`di`（看未 stage）
+- **挖歷史** → `db`（單檔歷史）、`dp`（目錄歷史）、`dc`（挑時間點比）
+- **Review 整體** → `dd`（跟某 ref 全比）、`dm`（PR 範圍）
+
+`dd` / `dm` 的 quickfix list 會用 `[new]` / `[del]` / `[mod]` 標示狀態，
+按 Enter 開啟該檔案的 diff split。
+
+Ref vs ref（兩邊都 readonly）的情境，直接用 git：
 
 ```
 git difftool -d main..feature/xxx
 ```
-
-
-## Git Diff (current buffer)
-
-Powered by `gitsigns.nvim`. Opens a vertical split in native Neovim diff mode,
-so `diffopt` options (e.g. `inline:char`, `linematch`) are respected.
-
-| Keymap        | Compares against | What you see                                   |
-| ------------- | ---------------- | ---------------------------------------------- |
-| `<leader>di`  | index            | Unstaged changes only                          |
-| `<leader>dh`  | HEAD             | All uncommitted changes (staged + unstaged)    |
-| `<leader>dt`  | —                | Toggle inline display of deleted lines         |
-
-
-### `~` vs `^` — different operators
-
-```
-       A ── B ── C         ← feature
-      /          \
-··· X ── Y ── Z ── M        ← main, HEAD = M
-```
-
-- `M~1` = `M^1` = `M^` = **Z**  (first parent, main line)
-- `M~2` = `Z^` = **Y**           (two steps along main line)
-- `M~3` = **X**
-- `M^2` = **C**                  (second parent — the merged branch)
-- `M^3` = error (M has only 2 parents)
 
 
 ## MISC

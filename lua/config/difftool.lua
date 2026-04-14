@@ -215,6 +215,51 @@ function M.diff_file_against_ref()
   })
 end
 
+-- Populate the quickfix with all changed files between working tree
+-- and `ref`, then install a buffer-local <CR> mapping so each entry
+-- opens in a diff split. `title` shows up in the quickfix title bar.
+local function show_diff_quickfix(ref, title)
+  local result = vim.system({ "git", "diff", "--name-status", ref }, { text = true }):wait()
+  if result.code ~= 0 or result.stdout == "" then
+    vim.notify("No differences found against " .. (title or ref), vim.log.levels.INFO)
+    return
+  end
+
+  local lines = vim.split(vim.trim(result.stdout), "\n")
+  local items, statuses = build_qf_items(lines)
+  vim.fn.setqflist(items, "r")
+  vim.fn.setqflist({}, "a", { title = "Diff vs " .. (title or ref) })
+  vim.cmd.copen()
+
+  -- Buffer-local override: <CR> opens a diff split instead of just
+  -- jumping to the file. Scoped so it doesn't leak to other quickfix
+  -- lists.
+  vim.keymap.set("n", "<CR>", function()
+    local idx = vim.fn.line(".")
+    local entry = vim.fn.getqflist()[idx]
+    if not entry then return end
+    local filepath = vim.fn.bufname(entry.bufnr)
+    local status = statuses[filepath] or "M"
+
+    -- `:cc N` would warn for deleted files, so skip it there.
+    if status ~= "D" then
+      vim.cmd("cc " .. idx)
+    end
+    open_qf_diff(ref, filepath, status)
+  end, { buffer = true, nowait = true })
+end
+
+-- Resolve the merge base of HEAD and `base_ref`. Returns nil (and
+-- notifies) if the refs don't share history.
+local function git_merge_base(base_ref)
+  local result = vim.system({ "git", "merge-base", "HEAD", base_ref }, { text = true }):wait()
+  if result.code ~= 0 then
+    vim.notify("No merge base with " .. base_ref, vim.log.levels.WARN)
+    return nil
+  end
+  return vim.trim(result.stdout)
+end
+
 -- Pick a ref via fzf, then list all changed files in the quickfix
 -- window. Pressing <CR> on an entry opens that file in a diff split.
 function M.diff_against_ref()
@@ -234,35 +279,35 @@ function M.diff_against_ref()
           vim.notify("Could not parse ref from selection", vim.log.levels.ERROR)
           return
         end
+        show_diff_quickfix(ref, ref)
+      end,
+    },
+  })
+end
 
-        local result = vim.system({ "git", "diff", "--name-status", ref }, { text = true }):wait()
-        if result.code ~= 0 or result.stdout == "" then
-          vim.notify("No differences found against " .. ref, vim.log.levels.INFO)
+-- Pick a base ref via fzf and diff HEAD against the merge base of HEAD
+-- and the chosen ref. Useful for reviewing a feature branch's own
+-- changes when the base has advanced since the branch was cut.
+function M.diff_against_merge_base()
+  local fzf = require("fzf-lua")
+  local refs = git_ref_list()
+  if #refs == 0 then
+    vim.notify("No git refs found", vim.log.levels.WARN)
+    return
+  end
+
+  fzf.fzf_exec(refs, {
+    prompt = "Merge base with> ",
+    actions = {
+      ["default"] = function(selected)
+        local base = parse_ref(selected[1])
+        if not base then
+          vim.notify("Could not parse ref from selection", vim.log.levels.ERROR)
           return
         end
-
-        local lines = vim.split(vim.trim(result.stdout), "\n")
-        local items, statuses = build_qf_items(lines)
-        vim.fn.setqflist(items, "r")
-        vim.fn.setqflist({}, "a", { title = "Diff vs " .. ref })
-        vim.cmd.copen()
-
-        -- Buffer-local override: pressing <CR> on a quickfix entry
-        -- opens a diff split instead of just jumping to the file.
-        -- Scoped to this quickfix buffer so it doesn't leak.
-        vim.keymap.set("n", "<CR>", function()
-          local idx = vim.fn.line(".")
-          local entry = vim.fn.getqflist()[idx]
-          if not entry then return end
-          local filepath = vim.fn.bufname(entry.bufnr)
-          local status = statuses[filepath] or "M"
-
-          -- `:cc N` would warn for deleted files, so skip it there.
-          if status ~= "D" then
-            vim.cmd("cc " .. idx)
-          end
-          open_qf_diff(ref, filepath, status)
-        end, { buffer = true, nowait = true })
+        local merge_base = git_merge_base(base)
+        if not merge_base then return end
+        show_diff_quickfix(merge_base, "merge-base(" .. base .. ")")
       end,
     },
   })
