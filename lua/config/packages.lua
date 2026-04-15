@@ -55,11 +55,17 @@ if ok_fzf_lua then
   fzf_lua.setup({
     "default",
     winopts = {
-      height = 0.85,
-      width = 0.80,
-      preview = {
-        layout = "vertical",
-      },
+      -- height = 0.85,
+      -- width = 0.80,
+      -- preview = {
+      --   layout = "vertical",
+      -- },
+      -- keymaps.lua 有全域 t-mode <C-j>/<C-k> window-nav，會在 fzf 前攔截按鍵。
+      -- 這裡用 buffer-local t-mode keymap 覆蓋，把 <C-j>/<C-k> 送成 <Down>/<Up> 給 fzf。
+      on_create = function()
+        vim.keymap.set("t", "<C-j>", "<Down>", { silent = true, buffer = true, nowait = true })
+        vim.keymap.set("t", "<C-k>", "<Up>", { silent = true, buffer = true, nowait = true })
+      end,
     },
     files = {
       fd_opts = "--color=never --type f --hidden --follow --exclude .git",

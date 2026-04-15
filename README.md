@@ -152,7 +152,6 @@ nvim oil-ssh://[username@]hostname[:port]/[path]
 
 - `:Fzflua oldfies`
 - `:FzfLua combine pickers=oldfiles;git_files`
-- Shfit + UP
 
 ### `grep` vs `live_grep`
 
@@ -168,6 +167,30 @@ nvim oil-ssh://[username@]hostname[:port]/[path]
 
 
 > 在任一模式下按 `Ctrl-G` 可以直接切換 `grep ↔ live_grep`，不用關掉重開。
+
+
+### Keymap
+
+- `f1` help 
+- `<alt-a>` toggle-all（全選 / 取消全選）
+- `<alt-g>` / `<alt-G>` 跳到第一筆 / 最後一筆
+- `<c-f>` / `<c-b>` **結果清單**半頁捲動
+- `<tab>` 選當前項 + 往下（toggle+down）
+- `<shift-tab>` 選當前項 + 往上（toggle+up）
+- `<c-j>` / `↓` 往下、`<c-k>` / `↑` 往上
+- `<enter>` 確認、`<esc>` / `<c-c>` / `<c-g>` / `<c-q>` 取消
+
+query 編輯為 emac 風格操作
+
+### Preview Keymap
+
+- `<shift-down>` / `<shift-up>` preview 整頁捲動
+- `<alt-shift-down>` / `<alt-shift-up>` preview 捲動一行
+- `f3` toggle preview wrap、`f4` toggle preview
+
+
+### 1. fzf binary 預設層（寫死在 fzf 執行檔）
+
 
 ## MISC
 
