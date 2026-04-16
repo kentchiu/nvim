@@ -79,7 +79,7 @@ local function filetype_component()
 end
 
 local function position_component()
-  return "%#StMuted# %l:%c%*"
+  return "%#StMuted# %l:%c %p%%%*"
 end
 
 local SEP = "%#StMuted# | %*"
