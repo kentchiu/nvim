@@ -31,6 +31,15 @@ opt.softtabstop = 2
 -- Faster CursorHold trigger (default 4000ms), improves LSP hover/diagnostics responsiveness
 opt.updatetime = 250
 
+-- Folding: use Treesitter for accurate function/class folds; keep everything open on file load
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = ""
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
+-- opt.foldcolumn = "1"
+
 -- Use system clipboard for yank/paste
 opt.clipboard = "unnamedplus"
 
