@@ -16,3 +16,20 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 vim.cmd("doautocmd ColorScheme")
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("treesitter_start", { clear = true }),
+  pattern = {
+    "lua", "vim", "help",
+    "python",
+    "vue", "typescript", "typescriptreact", "javascript", "javascriptreact",
+    "html", "css",
+    "json", "yaml", "toml",
+    "bash", "sh",
+    "markdown",
+    "gitcommit", "diff",
+  },
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})

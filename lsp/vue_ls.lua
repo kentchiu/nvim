@@ -9,9 +9,9 @@ return {
   },
   on_init = function(client)
     client.handlers["tsserver/request"] = function(_, result, context)
-      local ts_client = vim.lsp.get_clients({ name = "ts_ls", bufnr = context.bufnr })[1]
+      local ts_client = vim.lsp.get_clients({ name = "vtsls", bufnr = context.bufnr })[1]
       if not ts_client then
-        vim.notify("vue_ls: missing ts_ls client for tsserver/request", vim.log.levels.ERROR)
+        vim.notify("vue_ls: missing vtsls client for tsserver/request", vim.log.levels.ERROR)
         return
       end
 

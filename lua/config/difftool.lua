@@ -53,7 +53,7 @@ local function git_show(ref, filepath)
   if result.code ~= 0 then
     return nil
   end
-  return vim.split(result.stdout, "\n", { plain = true })
+  return vim.split(result.stdout, "\n", { plain = true, trimempty = true })
 end
 
 
@@ -83,8 +83,11 @@ local function close_diff_splits()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
     local name = vim.api.nvim_buf_get_name(buf)
-    if name:match("^" .. SCRATCH_PREFIX) then
-      vim.api.nvim_win_close(win, true)
+    local is_scratch = name:match("^" .. SCRATCH_PREFIX)
+    local is_diff = vim.wo[win].diff
+    local is_qf = vim.bo[buf].buftype == "quickfix"
+    if (is_scratch or is_diff) and not is_qf then
+      pcall(vim.api.nvim_win_close, win, true)
     end
   end
   pcall(vim.cmd, "diffoff")
@@ -248,6 +251,8 @@ local function show_diff_quickfix(ref, title)
     if not entry then return end
     local filepath = vim.fn.bufname(entry.bufnr)
     local status = statuses[filepath] or "M"
+
+    close_diff_splits()
 
     -- `:cc N` would warn for deleted files, so skip it there.
     if status ~= "D" then

@@ -15,6 +15,8 @@ local function setup_highlights()
     StFile = { fg = p.text, bg = sl_bg },
     StDiagError = { fg = p.red, bg = sl_bg },
     StDiagWarn = { fg = p.yellow, bg = sl_bg },
+    StDiagHint = { fg = p.teal, bg = sl_bg },
+    StDiagInfo = { fg = p.sky, bg = sl_bg },
     StMuted = { fg = p.overlay0, bg = sl_bg },
   }
 
@@ -63,11 +65,15 @@ local function diagnostics_component()
 
   local counts = vim.diagnostic.count(0)
   local errors = counts[vim.diagnostic.severity.ERROR] or 0
-  local warns = counts[vim.diagnostic.severity.WARN] or 0
+  local warns  = counts[vim.diagnostic.severity.WARN]  or 0
+  local hints  = counts[vim.diagnostic.severity.HINT]  or 0
+  local infos  = counts[vim.diagnostic.severity.INFO]  or 0
 
   return table.concat({
     "%#StDiagError# " .. errors,
     "%#StDiagWarn#  " .. warns,
+    "%#StDiagHint#  " .. hints,
+    "%#StDiagInfo#  " .. infos,
     "%*",
   })
 end

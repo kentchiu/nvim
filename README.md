@@ -9,12 +9,19 @@
 - gO → document symbols
 - Ctrl-S in Insert mode → signature help
 
+## Diagnostics 
+
+- <C-W>d       -> Show diagnostics under the cursor
+- <C-W><C-D>   -> Show diagnostics under the cursor  (等價，給 Ctrl 按到底的人方便)
+-  `[d`  / `]d`     -> Jump to prev/next diagnostic
+-  `[D`  / `]D`     -> Jump to first/last diagnostic in buffer
+
 ## Incremental Selection
 
-- v_an - select parent node
-- v_in - select child node
-- v\_]n - select prev node
-- v\_[n - select next node
+- `v_an` - select parent node
+- `v_in` - select child node
+- `v_]n` - select prev node
+- `v_[n` - select next node
 
 ## 常見的 built-in prefix
 

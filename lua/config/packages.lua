@@ -16,6 +16,8 @@ vim.pack.add({
     src = "https://github.com/obsidian-nvim/obsidian.nvim",
     version = vim.version.range "*", -- use latest release, remove to use latest commit
   },
+  { src = gh("nvim-treesitter/nvim-treesitter"), version = "main" },
+  { src = gh("nvim-mini/mini.surround") },
 }, {
   confirm = false,
 })
@@ -108,6 +110,37 @@ if ok_obsidian then
     },
     ui = {
       enable = true,
+    },
+  })
+end
+
+local ok_ts, ts = pcall(require, "nvim-treesitter")
+if ok_ts then
+  ts.setup({})
+  ts.install({
+    "lua", "vim", "vimdoc",
+    "python",
+    "vue", "typescript", "tsx", "javascript",
+    "html", "css",
+    "json", "yaml", "toml",
+    "bash",
+    "markdown", "markdown_inline",
+    "gitcommit", "diff",
+    "regex",
+  })
+end
+
+local ok_surround, surround = pcall(require, "mini.surround")
+if ok_surround then
+  surround.setup({
+    mappings = {
+      add = "gsa",
+      delete = "gsd",
+      find = "gsf",
+      find_left = "gsF",
+      highlight = "gsh",
+      replace = "gsr",
+      update_n_lines = "gsn",
     },
   })
 end

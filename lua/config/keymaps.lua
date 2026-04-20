@@ -196,6 +196,8 @@ map("n", "<leader>ul", function() vim.wo.number = not vim.wo.number end,        
 map("n", "<leader>uw", function() vim.wo.wrap = not vim.wo.wrap end,                          { desc = "Toggle Wrap" })
 map("n", "<leader>us", function() vim.wo.spell = not vim.wo.spell end,                        { desc = "Toggle Spell" })
 map("n", "<leader>ud", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle Diagnostics" })
+map("n", "<leader>uh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hints" })
+map("n", "grX", vim.diagnostic.open_float, { desc = "Diagnostic float" })
 
 
 --
