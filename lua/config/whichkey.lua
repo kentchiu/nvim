@@ -30,6 +30,7 @@ wk.add({
   { "<leader>t", group = "Terminal" },
   { "<leader>x", group = "List" },
   { "<leader>q", group = "Quit" },
+  { "<leader>o", group = "Obsidian" },
 
   -- Built-in prefixes that which-key can't auto-detect
   { "@", group = "Play macro" },

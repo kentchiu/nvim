@@ -16,4 +16,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.lsp.enable({ "lua_ls", "pylsp", "ts_ls", "vue_ls" })
+vim.lsp.enable({ "lua_ls", "pylsp", "ts_ls", "vue_ls", "tailwindcss" })

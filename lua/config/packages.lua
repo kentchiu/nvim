@@ -12,7 +12,10 @@ vim.pack.add({
   { src = gh("echasnovski/mini.icons") },
   { src = gh("lewis6991/gitsigns.nvim") },
   { src = gh("refractalize/oil-git-status.nvim") },
-
+  {
+    src = "https://github.com/obsidian-nvim/obsidian.nvim",
+    version = vim.version.range "*", -- use latest release, remove to use latest commit
+  },
 }, {
   confirm = false,
 })
@@ -81,5 +84,31 @@ end
 local ok_gitsigns, gitsigns = pcall(require, "gitsigns")
 if ok_gitsigns then
   gitsigns.setup()
+end
+
+local ok_obsidian, obsidian = pcall(require, "obsidian")
+if ok_obsidian then
+  obsidian.setup({
+    legacy_commands = false,
+    workspaces = {
+      { name = "notes", path = "/home/kent/dev/kent/notes" },
+    },
+    templates = {
+      folder = "Extras/Templates",
+      date_format = "YYYY-MM-DD",
+      time_format = "HH:mm",
+    },
+    picker = {
+      name = "fzf-lua",
+    },
+    completion = {
+      nvim_cmp = false,
+      blink = false,
+      min_chars = 2,
+    },
+    ui = {
+      enable = true,
+    },
+  })
 end
 
