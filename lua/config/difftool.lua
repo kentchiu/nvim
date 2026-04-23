@@ -166,7 +166,7 @@ local function open_qf_diff(ref, filepath, status)
     local ft = vim.filetype.match({ filename = filepath }) or ""
     vim.cmd.wincmd("p")
     vim.cmd("enew")
-    make_scratch(filepath, nil, ft)
+    make_scratch(SCRATCH_PREFIX .. "deleted:" .. filepath, nil, ft)
   end
 
   -- For added files, the left side stays empty. For M/D we pull the
