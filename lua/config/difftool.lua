@@ -6,7 +6,7 @@
 local M = {}
 
 -- Prefix used when naming scratch buffers we create for the ref side.
--- close_diff_splits() uses this prefix to find and close old diff
+-- M.close_diff() uses this prefix to find and close old diff
 -- windows before opening a new one.
 local SCRATCH_PREFIX = "diffref://"
 
@@ -249,7 +249,7 @@ local function show_diff_quickfix(ref, title)
     local filepath = vim.fn.bufname(entry.bufnr)
     local status = statuses[filepath] or "M"
 
-    close_diff_splits()
+    M.close_diff()
 
     -- `:cc N` would warn for deleted files, so skip it there.
     if status ~= "D" then
