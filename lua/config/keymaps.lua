@@ -124,6 +124,7 @@ map("n", "<leader>dc", function() require("config.difftool").diff_file_against_r
 map("n", "<leader>dd", function() require("config.difftool").diff_against_ref() end,         { desc = "Diff Directory vs Ref" })
 map("n", "<leader>dm", function() require("config.difftool").diff_against_merge_base() end,  { desc = "Diff vs Merge Base" })
 map("n", "<leader>dp", function() require("config.difftool").path_history() end,             { desc = "Path History" })
+map("n", "<leader>dq", function() require("config.difftool").close_diff() end,               { desc = "Close Diff" })
 
 
 --
