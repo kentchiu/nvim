@@ -13,6 +13,7 @@ wk.setup({
     { "<auto>", mode = "nxso" },
     { "<leader>", mode = { "n", "v" } },
     -- single-char prefixes blocked by auto-trigger safety filter
+    { "g", mode = "n" },
     { "m", mode = "n" },
   },
   win = {
@@ -33,6 +34,8 @@ wk.add({
   { "<leader>o", group = "Obsidian" },
 
   -- Built-in prefixes that which-key can't auto-detect
+  { "g<", desc = "Recent messages", mode = "n" },
+
   { "@", group = "Play macro" },
   { "@q", desc = "Play macro q" },
   { "@a", desc = "Play macro a" },
