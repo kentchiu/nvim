@@ -76,21 +76,18 @@ local function make_scratch(name, content, ft)
   vim.bo[buf].filetype = ft
 end
 
--- Close leftover ref-side scratch splits and turn off diff mode in the
--- current window. Called before opening a new diff so windows don't
--- accumulate as the user navigates entries.
-local function close_diff_splits()
+-- Close every diffref:// scratch window and turn off diff mode on all
+-- remaining windows. Serves both cleanup (before opening a new diff)
+-- and explicit teardown (<leader>dq, buffer-local q in scratch).
+function M.close_diff()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
     local name = vim.api.nvim_buf_get_name(buf)
-    local is_scratch = name:match("^" .. SCRATCH_PREFIX)
-    local is_diff = vim.wo[win].diff
-    local is_qf = vim.bo[buf].buftype == "quickfix"
-    if (is_scratch or is_diff) and not is_qf then
+    if name:match("^" .. SCRATCH_PREFIX) then
       pcall(vim.api.nvim_win_close, win, true)
     end
   end
-  pcall(vim.cmd, "diffoff")
+  pcall(vim.cmd, "diffoff!")
 end
 
 -- Open a vertical split to the left with the ref version and enable
@@ -119,7 +116,7 @@ local function diff_current_against(ref, label)
     return
   end
 
-  close_diff_splits()
+  M.close_diff()
   local content = git_show(ref, filepath)
   if not content then
     vim.notify(filepath .. " does not exist in " .. label, vim.log.levels.INFO)
@@ -163,7 +160,7 @@ end
 -- there. Running `enew` in the quickfix window itself would replace
 -- the quickfix list with a blank buffer.
 local function open_qf_diff(ref, filepath, status)
-  close_diff_splits()
+  M.close_diff()
 
   if status == "D" then
     local ft = vim.filetype.match({ filename = filepath }) or ""
