@@ -82,6 +82,7 @@ end
 -- Close every diffref:// scratch window and turn off diff mode on all
 -- remaining windows. Serves both cleanup (before opening a new diff)
 -- and explicit teardown (<leader>dq, buffer-local q in scratch).
+-- Safe to call when no diff is open (no-op).
 function M.close_diff()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -103,6 +104,10 @@ local function open_ref_split(label, filepath, content)
   vim.cmd("diffthis")
   vim.cmd.wincmd("l")
   vim.cmd("diffthis")
+  -- Bind `q` on the working-tree buffer too so the user can close the
+  -- diff from either side. Persists for the buffer's lifetime; user has
+  -- remapped macro recording off `q` (to `Q`), so no collision.
+  vim.keymap.set("n", "q", M.close_diff, { buffer = 0, nowait = true, desc = "Close diff" })
 end
 
 
