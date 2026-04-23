@@ -64,6 +64,8 @@ end
 -- Turn the current buffer into a named, readonly scratch buffer used
 -- as the ref-version side of a diff view. `content` may be nil to
 -- produce an empty buffer (for added/deleted files).
+-- NOTE: binds buffer-local `q` to M.close_diff(); do NOT reuse this
+-- helper for non-diff scratches.
 local function make_scratch(name, content, ft)
   local buf = vim.api.nvim_get_current_buf()
   if content then
@@ -74,7 +76,7 @@ local function make_scratch(name, content, ft)
   vim.bo[buf].bufhidden = "wipe"
   vim.bo[buf].modifiable = false
   vim.bo[buf].filetype = ft
-  vim.keymap.set("n", "q", M.close_diff, { buffer = buf, nowait = true })
+  vim.keymap.set("n", "q", M.close_diff, { buffer = buf, nowait = true, desc = "Close diff" })
 end
 
 -- Close every diffref:// scratch window and turn off diff mode on all
