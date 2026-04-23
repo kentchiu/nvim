@@ -74,6 +74,7 @@ local function make_scratch(name, content, ft)
   vim.bo[buf].bufhidden = "wipe"
   vim.bo[buf].modifiable = false
   vim.bo[buf].filetype = ft
+  vim.keymap.set("n", "q", M.close_diff, { buffer = buf, nowait = true })
 end
 
 -- Close every diffref:// scratch window and turn off diff mode on all
