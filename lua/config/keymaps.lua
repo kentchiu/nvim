@@ -219,7 +219,7 @@ map("t", "<C-l>",      "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 -- [[ Save / Quit ]]
 --
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-map("n", "<leader>qq", "<cmd>qa<cr>",  { desc = "Quit All" })
+map("n", "<leader>qq", "<cmd>qa!<cr>",  { desc = "Quit All" })
 map("n", "<leader>qs", "<cmd>wqa<cr>", { desc = "Save & Quit All" })
 
 
