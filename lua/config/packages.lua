@@ -18,6 +18,7 @@ vim.pack.add({
   },
   { src = gh("nvim-treesitter/nvim-treesitter"), version = "main" },
   { src = gh("nvim-mini/mini.surround") },
+  { src = gh("mikesmithgh/kitty-scrollback.nvim") },
 }, {
   confirm = false,
 })
@@ -143,5 +144,10 @@ if ok_surround then
       update_n_lines = "gsn",
     },
   })
+end
+
+local ok_ksb, ksb = pcall(require, "kitty-scrollback")
+if ok_ksb then
+  ksb.setup()
 end
 
