@@ -71,11 +71,6 @@ map("n", "<C-Down>",  "<cmd>resize -2<cr>",          { desc = "Decrease Window H
 map("n", "<C-Left>",  "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
--- Window splits (taken from LazyVim)
--- map("n", "<leader>-",  "<C-W>s", { desc = "Split Below",  remap = true })
--- map("n", "<leader>|",  "<C-W>v", { desc = "Split Right",  remap = true })
--- map("n", "<leader>wd", "<C-W>c", { desc = "Close Window", remap = true })
-
 
 --
 -- [[ Buffers ]]

@@ -8,6 +8,10 @@
       "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "kitty-scrollback.nvim": {
+      "rev": "9342a0e0e5556ce0b7f9dc41c4bdd39ae9dc85dd",
+      "src": "https://github.com/mikesmithgh/kitty-scrollback.nvim"
+    },
     "mini.icons": {
       "rev": "7fdae2443a0e2910015ca39ad74b50524ee682d3",
       "src": "https://github.com/echasnovski/mini.icons"
@@ -23,10 +27,6 @@
     "nvim": {
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "https://github.com/catppuccin/nvim"
-    },
-    "nvim-jump": {
-      "rev": "7cce9540623ff6c50475dc6d30316dedb074e851",
-      "src": "https://github.com/yorickpeterse/nvim-jump"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
