@@ -176,6 +176,18 @@ nvim oil-ssh://[username@]hostname[:port]/[path]
 > 在任一模式下按 `Ctrl-G` 可以直接切換 `grep ↔ live_grep`，不用關掉重開。
 
 
+### 常用的操作
+
+- `live_grep` / `grep` 支援 `rg --iglob` 語法：`query --glob`
+  - `TODO --*.lua`：搜尋內容含 `TODO`，限定 Lua 檔
+  - `keymap --lua/config/**`：搜尋內容含 `keymap`，限定 `lua/config/`
+  - `TODO --*.lua !vendor/**`：限定 Lua 檔並排除 `vendor/`
+- `Alt-i` / `Alt-h` / `Alt-f`：在 file picker 裡 toggle `.gitignore`、hidden files、symlink follow
+- `Alt-q` / `Alt-Q`：把選取結果送到 quickfix / loclist，可搭配 `<Tab>` 多選或 `<Alt-a>` 全選
+- `Ctrl-s` / `Ctrl-v` / `Ctrl-t`：用 split / vsplit / tab 開啟選取結果
+- `grep_visual` / `grep_cword`：用 visual selection 或 cursor word 直接 grep
+
+
 ### Keymap
 
 - `f1` help 
@@ -200,5 +212,4 @@ query 編輯為 emac 風格操作
 
 
 ## MISC
-
 
