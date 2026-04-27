@@ -75,8 +75,7 @@ opt.diffopt = {
 --
 --
 
--- Required by obsidian.nvim UI features (formatted wiki links, checkboxes, etc.)
-opt.conceallevel = 2
+opt.conceallevel = 0
 opt.inccommand = "split" -- Incremental live completion
 opt.spelllang = "en_us,cjk" -- cjk for Chinese, Japanese and korean
 

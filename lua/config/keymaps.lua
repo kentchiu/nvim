@@ -200,22 +200,6 @@ end, { desc = "Buffer Local Keymaps" })
 
 
 --
--- [[ Obsidian ]]
---
--- map("n", "<leader>oo", "<Cmd>Obsidian open<CR>",         { desc = "Open in Obsidian app" })
--- map("n", "<leader>on", "<Cmd>Obsidian new<CR>",          { desc = "New Note" })
-map("n", "<leader>os", "<Cmd>Obsidian search<CR>",       { desc = "Search Notes" })
-map("n", "<leader>oq", "<Cmd>Obsidian quick_switch<CR>", { desc = "Quick Switch" })
-map("n", "<leader>ot", "<Cmd>Obsidian toc<CR>",          { desc = "TOC" })
-map("n", "<leader>ob", "<Cmd>Obsidian backlinks<CR>",    { desc = "Backlinks" })
-map("n", "<leader>og", "<Cmd>Obsidian tags<CR>",         { desc = "Tags" })
-map("n", "<leader>or", "<Cmd>Obsidian rename<CR>",       { desc = "Rename Note" })
-map("n", "<leader>op", "<Cmd>Obsidian paste_img<CR>",    { desc = "Paste Image" })
-map("n", "<leader>ol", "<Cmd>Obsidian link<CR>",         { desc = "Link Selection" })
--- map("v", "<leader>oL", "<Cmd>Obsidian link_new<CR>",     { desc = "Link New Note" })
---
-
---
 -- [[ Filetype-specific (buffer-local via autocmd) ]]
 --
 vim.api.nvim_create_autocmd("FileType", {
