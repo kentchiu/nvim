@@ -13,10 +13,6 @@ local function setup_highlights()
     StMode_R = { fg = p.base, bg = p.red, bold = true },
     StGit = { fg = p.blue, bg = sl_bg },
     StFile = { fg = p.text, bg = sl_bg },
-    StDiagError = { fg = p.red, bg = sl_bg },
-    StDiagWarn = { fg = p.yellow, bg = sl_bg },
-    StDiagHint = { fg = p.teal, bg = sl_bg },
-    StDiagInfo = { fg = p.sky, bg = sl_bg },
     StMuted = { fg = p.overlay0, bg = sl_bg },
   }
 
@@ -59,25 +55,6 @@ local function file_component()
   return "%#StFile#  %f%m%r%*"
 end
 
-local function diagnostics_component()
-  local clients = vim.lsp.get_clients({ bufnr = 0 })
-  if #clients == 0 then return "" end
-
-  local counts = vim.diagnostic.count(0)
-  local errors = counts[vim.diagnostic.severity.ERROR] or 0
-  local warns  = counts[vim.diagnostic.severity.WARN]  or 0
-  local hints  = counts[vim.diagnostic.severity.HINT]  or 0
-  local infos  = counts[vim.diagnostic.severity.INFO]  or 0
-
-  return table.concat({
-    "%#StDiagError# " .. errors,
-    "%#StDiagWarn#  " .. warns,
-    "%#StDiagHint#  " .. hints,
-    "%#StDiagInfo#  " .. infos,
-    "%*",
-  })
-end
-
 local function filetype_component()
   local ft = vim.bo.filetype
   if ft == "" then return "" end
@@ -93,7 +70,6 @@ local SEP = "%#StMuted# | %*"
 -- Global function required by %{%v:lua.Statusline()%}
 function Statusline()
   local git = git_component()
-  local diag = diagnostics_component()
 
   local left = { mode_component() }
   if git ~= "" then left[#left + 1] = git end
@@ -101,7 +77,6 @@ function Statusline()
   left[#left + 1] = file_component()
 
   local right = {}
-  if diag ~= "" then right[#right + 1] = diag end
   right[#right + 1] = SEP
   right[#right + 1] = filetype_component()
   right[#right + 1] = "  "

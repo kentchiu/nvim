@@ -19,7 +19,7 @@ opt.smartcase = true
 -- Enable 24-bit RGB color in the TUI
 opt.termguicolors = true
 
--- Always show sign column to avoid text shifting when diagnostics appear
+-- Always show sign column to avoid text shifting when signs appear
 opt.signcolumn = "yes"
 
 -- Indentation: use spaces, 2-space width
@@ -28,7 +28,7 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 
--- Faster CursorHold trigger (default 4000ms), improves LSP hover/diagnostics responsiveness
+-- Faster CursorHold trigger (default 4000ms)
 opt.updatetime = 250
 
 -- Folding: use Treesitter for accurate function/class folds; keep everything open on file load
@@ -92,5 +92,3 @@ opt.listchars = {
   precedes = "<",
   extends = "›",
 }
-
-

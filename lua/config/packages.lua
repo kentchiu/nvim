@@ -89,12 +89,13 @@ if ok_gitsigns then
   gitsigns.setup()
 end
 
+local notes_workspace = "/home/kent/dev/kent/notes"
 local ok_obsidian, obsidian = pcall(require, "obsidian")
-if ok_obsidian then
+if ok_obsidian and vim.fn.isdirectory(notes_workspace) == 1 then
   obsidian.setup({
     legacy_commands = false,
     workspaces = {
-      { name = "notes", path = "/home/kent/dev/kent/notes" },
+      { name = "notes", path = notes_workspace },
     },
     templates = {
       folder = "Extras/Templates",
@@ -118,17 +119,20 @@ end
 local ok_ts, ts = pcall(require, "nvim-treesitter")
 if ok_ts then
   ts.setup({})
-  ts.install({
-    "lua", "vim", "vimdoc",
-    "python",
-    "vue", "typescript", "tsx", "javascript",
-    "html", "css",
-    "json", "yaml", "toml",
-    "bash",
-    "markdown", "markdown_inline",
-    "gitcommit", "diff",
-    "regex",
-  })
+
+  if vim.fn.executable("tree-sitter") == 1 then
+    ts.install({
+      "lua", "vim", "vimdoc",
+      "python",
+      "vue", "typescript", "tsx", "javascript",
+      "html", "css",
+      "json", "yaml", "toml",
+      "bash",
+      "markdown", "markdown_inline",
+      "gitcommit", "diff",
+      "regex",
+    })
+  end
 end
 
 local ok_surround, surround = pcall(require, "mini.surround")
@@ -150,4 +154,3 @@ local ok_ksb, ksb = pcall(require, "kitty-scrollback")
 if ok_ksb then
   ksb.setup()
 end
-

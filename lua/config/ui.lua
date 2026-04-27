@@ -8,8 +8,3 @@ else
 end
 
 vim.cmd.colorscheme("catppuccin")
-
-vim.diagnostic.config({
-  severity_sort = true,
-  float = { border = "rounded" },
-})

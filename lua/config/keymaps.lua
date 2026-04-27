@@ -139,30 +139,6 @@ map({ "n", "v" }, "<leader>hr", function() require("gitsigns").reset_hunk() end,
 
 
 --
--- [[ LSP ]]
---
-map("n", "g|", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in vsplit" })
-
-
---
--- [[ Diagnostics ]]
--- Error-only and warning-only variants
---
-map("n", "]e", function()
-  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
-end, { desc = "Next Error" })
-map("n", "[e", function()
-  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
-end, { desc = "Prev Error" })
-map("n", "]w", function()
-  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN })
-end, { desc = "Next Warning" })
-map("n", "[w", function()
-  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN })
-end, { desc = "Prev Warning" })
-
-
---
 -- [[ Lists: quickfix / loclist / undotree ]]
 --
 map("n", "<leader>xl", function()
@@ -191,9 +167,6 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 map("n", "<leader>ul", function() vim.wo.number = not vim.wo.number end,                      { desc = "Toggle Line Numbers" })
 map("n", "<leader>uw", function() vim.wo.wrap = not vim.wo.wrap end,                          { desc = "Toggle Wrap" })
 map("n", "<leader>us", function() vim.wo.spell = not vim.wo.spell end,                        { desc = "Toggle Spell" })
-map("n", "<leader>ud", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle Diagnostics" })
-map("n", "<leader>uh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hints" })
-map("n", "grX", vim.diagnostic.open_float, { desc = "Diagnostic float" })
 
 
 --

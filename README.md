@@ -1,27 +1,47 @@
-## New defaults and built-in mappings
+## nvim-lite
 
-- gra → code actions
-- gri → implementations
-- grn → rename
-- grr → references
-- grt → type definition
-- grx → run codelens
-- gO → document symbols
-- Ctrl-S in Insert mode → signature help
+這份設定偏向文字編輯器：開檔、搜尋、buffer/window 操作、基本 UI、terminal、quickfix/location list、surround 編輯、Oil 檔案瀏覽、diff、which-key 與 Treesitter。
 
-## Diagnostics 
+不啟用 LSP 與 diagnostics，因此不提供 code action、rename、references、inlay hints 或 diagnostic navigation。
 
-- <C-W>d       -> Show diagnostics under the cursor
-- <C-W><C-D>   -> Show diagnostics under the cursor  (等價，給 Ctrl 按到底的人方便)
--  `[d`  / `]d`     -> Jump to prev/next diagnostic
--  `[D`  / `]D`     -> Jump to first/last diagnostic in buffer
+## 全新環境
 
-## Incremental Selection
+最小可啟動：
 
-- `v_an` - select parent node
-- `v_in` - select child node
-- `v_]n` - select prev node
-- `v_[n` - select next node
+```bash
+sudo pacman -S neovim git
+```
+
+建議完整體驗：
+
+```bash
+sudo pacman -S neovim git fzf ripgrep fd tree-sitter openssh
+```
+
+依賴用途：
+
+- `neovim`：建議 0.12+，這份設定使用 `vim.pack.add`
+- `git`：必要，`vim.pack` 下載 plugins、Neogit、gitsigns、diff 工具都會用
+- `fzf`：`fzf-lua`
+- `ripgrep`：`live_grep` / `grep`
+- `fd`：file picker、path history
+- `tree-sitter`：可選；有安裝才會自動安裝 parsers，沒安裝也不會啟動報錯
+- `openssh`：可選；Oil 的 `oil-ssh://` 遠端檔案功能需要
+- `typora`：可選；只影響 markdown 的 `<leader>ct`
+- `kitty`：可選；只影響 `kitty-scrollback.nvim`
+
+安裝設定：
+
+```bash
+git clone <this-repo> ~/.config/nvim
+nvim
+```
+
+第一次開 `nvim` 時會用 `vim.pack.add` 自動抓 plugins。若要確認 headless 能否載入：
+
+```bash
+nvim --headless +qa
+```
 
 ## 常見的 built-in prefix
 
@@ -32,7 +52,7 @@
 | `CTRL-W`            | 視窗操作（切換、分割、調大小、關閉）                                         |
 | `CTRL-X`            | insert mode 補全（`CTRL-X CTRL-F/O/N/L`）                                    |
 | `CTRL-R`            | insert/cmdline 貼暫存器；normal 為 redo                                      |
-| `[` / `]`           | 配對跳躍（`[c` `]c` diff、`[m` `]m` method、`[{` `]}`、`[d` `]d`）           |
+| `[` / `]`           | 配對跳躍（`[c` `]c` diff、`[m` `]m` method、`[{` `]}`）                     |
 | `"`                 | 指定暫存器（`"ay` `"+p`）                                                    |
 | `@`                 | 執行 macro / 暫存器                                                          |
 | `q`                 | 錄製 macro（`qa` … `q`）                                                     |
@@ -41,6 +61,19 @@
 | `CTRL-G`            | 顯示檔案資訊                                                                 |
 
 > `g<`: focus on ui2 window
+
+## Treesitter
+
+Treesitter 預設保留，用於 syntax 與 fold 這類文字編輯體驗。
+
+如果環境沒有 `tree-sitter` CLI，設定會跳過 parser 安裝，不在啟動時反覆報錯；已安裝的 parser 仍可照常使用。
+
+## Incremental Selection
+
+- `v_an` - select parent node
+- `v_in` - select child node
+- `v_]n` - select prev node
+- `v_[n` - select next node
 
 ## Mark
 
@@ -212,4 +245,3 @@ query 編輯為 emac 風格操作
 
 
 ## MISC
-
